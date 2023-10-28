@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 
-export default function Header() {
-  return <div></div>;
+export default function Footer() {
+  return <div>Footer</div>;
 }
