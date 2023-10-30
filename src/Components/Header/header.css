@@ -1,0 +1,40 @@
+.nav-links {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.726);
+  padding: 0.7rem;
+  font-size: 1rem;
+  font-weight: bolder;
+}
+.nav-links.active {
+  color: #000;
+}
+
+nav {
+  background-color: #fff !important;
+}
+
+.nav_logo {
+  width: 135px;
+  margin: 0;
+}
+
+.nav_logo_mob {
+  width: 60%;
+}
+
+@media (min-width: 600px) and (max-width: 635px) {
+  .css-130f8nx {
+    display: flex !important;
+    max-width: 635px;
+  }
+  .nav-links {
+    padding: 0.5rem;
+  }
+}
+
+.nav_cross {
+  margin-left: 35px;
+}
+.nav_cross_per {
+  text-align: left;
+}
