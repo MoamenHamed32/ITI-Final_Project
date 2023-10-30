@@ -2,8 +2,9 @@
   text-decoration: none;
   color: rgba(0, 0, 0, 0.726);
   padding: 0.7rem;
-  font-size: 1rem;
-  font-weight: bolder;
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-family: "Lato", sans-serif;
 }
 .nav-links.active {
   color: #000;
