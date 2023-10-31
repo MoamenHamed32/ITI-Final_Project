@@ -15,3 +15,7 @@ body {
   width: 80% !important;
   margin: 0 auto !important;
 }
+
+.active {
+  color: #000 !important;
+}
