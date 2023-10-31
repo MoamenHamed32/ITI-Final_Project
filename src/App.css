@@ -7,5 +7,11 @@
 }
 
 body {
-  font-family: "Lato", sans-serif;
+  font-family: "Lato", sans-serif !important;
+  background-color: #efefef !important;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
 }
