@@ -15,7 +15,7 @@ import { NavLink, Link } from "react-router-dom";
 import CloseIcon from "@mui/icons-material/Close";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import "./header.css";
+import styles from "./header.module.css";
 
 const drawerWidth = 240;
 
@@ -38,14 +38,18 @@ const Header = (props) => {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Typography className="nav_cross_per" variant="h6" sx={{ my: 2 }}>
-        <CloseIcon className="nav_cross" />
+      <Typography className={styles.nav_cross_per} variant="h6" sx={{ my: 2 }}>
+        <CloseIcon className={styles.nav_cross} />
       </Typography>
       <List>
         {navItems.map((item) => (
           <ListItem key={item.label} disablePadding>
             <ListItemButton sx={{ textAlign: "center" }}>
-              <NavLink key={item.label} className="nav-links" to={item.path}>
+              <NavLink
+                key={item.label}
+                className={styles.nav_links}
+                to={item.path}
+              >
                 {item.label !== "Wishlist" &&
                   item.label !== "Cart" &&
                   item.label}
@@ -81,7 +85,7 @@ const Header = (props) => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "block", sm: "block" } }}
           >
-            <figure className="nav_logo">
+            <figure className={styles.nav_logo}>
               <Link to="/">
                 <h2>Logo</h2>
               </Link>
@@ -89,7 +93,11 @@ const Header = (props) => {
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
-              <NavLink key={item.label} className="nav-links" to={item.path}>
+              <NavLink
+                key={item.label}
+                className={styles.nav_links}
+                to={item.path}
+              >
                 {item.label !== "Wishlist" &&
                   item.label !== "Cart" &&
                   item.label}
