@@ -1,3 +1,4 @@
-export default function ProductList() {
-  return <div>Product List</div>;
-}
+const ProductList = () => {
+  return <div></div>;
+};
+export default ProductList;
