@@ -91,7 +91,11 @@ const Header = (props) => {
               </Link>
             </figure>
           </Typography>
-          <Box sx={{ display: { xs: "none", sm: "block" } }}>
+          <Box
+            sx={{
+              display: { xs: "none", sm: "flex" },
+            }}
+          >
             {navItems.map((item) => (
               <NavLink
                 key={item.label}
