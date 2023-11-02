@@ -20,7 +20,7 @@ function App() {
   return (
     <Router>
       <Header />
-      <div className="">
+      <div className="flex flex-col min-h-screen gap-5">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
