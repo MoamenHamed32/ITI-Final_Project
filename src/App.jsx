@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
-import Home from "./pages/Home/Home";
+import Home from "./pages/home/Home";
 import Profile from "./pages/profile/Profile";
 import Shop from "./pages/shop/Shop";
 import Cart from "./pages/cart/Cart";
@@ -18,20 +18,22 @@ function App() {
   return (
     <Router>
       <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/shop" element={<Shop />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/product-details/:id" element={<ProductDetails />} />
-        <Route path="/search" element={<SearchResults />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/wishlist" element={<WishList />} />
-        <Route path="/create-product" element={<CreateProduct />} />
-        <Route path="/my-pc" element={<MyPc />} />
-      </Routes>
-      <Footer />
+      <div className="flex flex-col min-h-screen gap-5">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/product-details/:id" element={<ProductDetails />} />
+          <Route path="/search" element={<SearchResults />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/wishlist" element={<WishList />} />
+          <Route path="/create-product" element={<CreateProduct />} />
+          <Route path="/my-pc" element={<MyPc />} />
+        </Routes>
+        <Footer />
+      </div>
     </Router>
   );
 }
