@@ -5,8 +5,8 @@
   background-color: #fff;
   padding: 1rem;
   gap: 1rem;
-  margin: 1rem auto;
-  width: 100%;
+  margin: 1rem 0;
+  /* width: 100%; */
 }
 
 .product_img {

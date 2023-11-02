@@ -226,7 +226,7 @@ export default function WishList() {
               <div
                 className={
                   toggle === 2
-                    ? "wishlist-page page page-active"
+                    ? "wishlist-page page-a page-active"
                     : "page wishlist-page"
                 }
               >
@@ -333,7 +333,7 @@ export default function WishList() {
               <div
                 className={
                   toggle === 3
-                    ? "checkout-page page page-active"
+                    ? "checkout-page page-a page-active"
                     : "page checkout-page"
                 }
               >
