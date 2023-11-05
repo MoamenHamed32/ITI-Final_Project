@@ -1,5 +1,36 @@
-import { Stack, Input, Button, Typography } from "@mui/material";
+import { useMemo, useEffect } from "react";
+import { Stack } from "@mui/material";
+import { useCollectionData } from "react-firebase-hooks/firestore";
+import { userCol, auth } from "../../config/firebase/firebase";
+import {
+  useSignInWithGoogle,
+  useAuthState,
+  useSignOut,
+} from "react-firebase-hooks/auth";
+import { addDoc, query, where } from "firebase/firestore";
 export default function Signup() {
+  const [user] = useAuthState(auth);
+  const [signOut] = useSignOut(auth);
+  // const [users] = useCollectionData(userCol);
+  const [signInWithGoogle] = useSignInWithGoogle(auth);
+  console.log(user);
+
+  const isUserExist = useMemo(
+    () => user && query(userCol, where("uid", "==", user.uid)),
+    [user]
+  );
+  const [users] = useCollectionData(isUserExist);
+  useEffect(() => {
+    if (!!user && !!users && users.length === 0) {
+      addDoc(userCol, {
+        uid: user?.uid,
+        photoURL: user?.photoURL,
+        displayName: user?.displayName,
+        wishlist: [],
+        cart: [],
+      });
+    }
+  }, [user, users]);
   return (
     <form className="p-3 md:p-10 bg-white w-1/2 m-auto mt-24 ">
       <Stack
@@ -59,6 +90,10 @@ export default function Signup() {
         >
           SIGNUP
         </button>
+        <button onClick={() => signInWithGoogle()}>sign up with google</button>
+        <br />
+        <br />
+        <button onClick={() => signOut()}>logOut</button>
       </Stack>
     </form>
   );

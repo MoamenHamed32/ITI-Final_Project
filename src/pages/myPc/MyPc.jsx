@@ -3,11 +3,12 @@ import PorductCardRows from "../../Components/productCardRows/ProductCardRows";
 import AddIcon from "@mui/icons-material/Add";
 import { Link } from "react-router-dom";
 import style from "./MyPc.module.css";
+
 export default function MyPc() {
   return (
     <section id="my-pc">
       <PageBanner page={"Collect Your PC"} />
-      <div className="container">
+      <div className="container mx-auto">
         <div className={style.pc_parts}>
           <div className={style.left}>
             <figure>

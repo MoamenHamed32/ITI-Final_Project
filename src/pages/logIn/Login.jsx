@@ -1,4 +1,4 @@
-import { Stack, Input, Button, Typography } from "@mui/material";
+import { Stack } from "@mui/material";
 
 export default function Login() {
   return (
