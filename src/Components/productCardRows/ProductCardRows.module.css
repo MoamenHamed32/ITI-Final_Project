@@ -133,6 +133,16 @@
 .buttons span {
   color: #666;
 }
+.apply_btn {
+  background-color: #c8a165;
+  border-radius: 2rem;
+  /* text-align: end; */
+  width: 25%;
+  padding: 0.8rem 0;
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
 
 @media screen and (max-width: 800px) {
   .product_card {
