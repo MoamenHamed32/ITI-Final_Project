@@ -65,11 +65,13 @@
 }
 .product_price {
   color: #c87065;
+  font-size: 1.5rem;
 }
 .product_old_price {
   color: #666;
   text-decoration: line-through;
   font-weight: 500;
+  font-size: 1.5rem;
 }
 
 .product_desc {
@@ -141,11 +143,20 @@
   }
   .product_details {
     align-items: center;
+    width: 90%;
   }
-
+  .product_prices {
+    justify-content: center;
+  }
+  .product_desc {
+    display: none;
+  }
+  .product_old_price {
+    display: none;
+  }
   .actions {
-    flex-direction: column-reverse;
-    width: 60%;
+    flex-direction: column;
+    width: 90%;
     justify-content: center;
   }
   .title_rate {
