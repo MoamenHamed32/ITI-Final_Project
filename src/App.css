@@ -11,10 +11,10 @@ body {
   background-color: #efefef !important;
 }
 
-.container {
+/* .container {
   width: 80% !important;
   margin: 0 auto !important;
-}
+} */
 
 .active {
   color: #000 !important;
