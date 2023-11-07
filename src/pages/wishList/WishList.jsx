@@ -1,9 +1,8 @@
-import "./wishList.css";
-
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import CloseIcon from "@mui/icons-material/Close";
 import PageBanner from "./../../Components/pageBanner/PageBanner";
 import ProductImg from "../../../public/imgs/2.webp";
+import styles from "./wishList.module.css";
 import { useState } from "react";
 
 export default function WishList() {
@@ -12,18 +11,24 @@ export default function WishList() {
     setToggle(idx);
   };
   return (
-    <div className="wish-list">
+    <div className={styles.wish_list}>
       <PageBanner page={"WishList"} />
-      <div className="page-area">
-        <div className="container mx-auto">
-          <div className="page-area-content">
-            <ul className="tabs-menu list-none grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-12">
+      <div className={styles.page_area}>
+        <div className={`container mx-auto`}>
+          <div className={styles.page_area_content}>
+            <ul
+              className={`${styles.tabs_menu} list-none grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-12`}
+            >
               <li className="col-span-12 lg:col-span-3">
                 <button
                   onClick={() => {
                     toggleTaps(1);
                   }}
-                  className={toggle === 1 ? "btn btn-active" : "btn"}
+                  className={
+                    toggle === 1
+                      ? `${styles.btn} ${styles.btn_active}`
+                      : `${styles.btn}`
+                  }
                 >
                   SHOPPING CART
                 </button>
@@ -33,7 +38,11 @@ export default function WishList() {
                   onClick={() => {
                     toggleTaps(2);
                   }}
-                  className={toggle === 2 ? "btn btn-active" : "btn"}
+                  className={
+                    toggle === 2
+                      ? `${styles.btn} ${styles.btn_active}`
+                      : `${styles.btn}`
+                  }
                 >
                   WISHLIST
                 </button>
@@ -43,7 +52,11 @@ export default function WishList() {
                   onClick={() => {
                     toggleTaps(3);
                   }}
-                  className={toggle === 3 ? "btn btn-active" : "btn"}
+                  className={
+                    toggle === 3
+                      ? `${styles.btn} ${styles.btn_active}`
+                      : `${styles.btn}`
+                  }
                 >
                   CHECK OUT
                 </button>
@@ -53,19 +66,25 @@ export default function WishList() {
                   onClick={() => {
                     toggleTaps(4);
                   }}
-                  className={toggle === 4 ? "btn btn-active" : "btn"}
+                  className={
+                    toggle === 4
+                      ? `${styles.btn} ${styles.btn_active}`
+                      : `${styles.btn}`
+                  }
                 >
                   ORDER COMPLETE
                 </button>
               </li>
             </ul>
-            <div className="tabs-content">
+            <div className={styles.tabs_content}>
               <div
                 className={
-                  toggle === 1 ? "cart-page page page-active" : "page cart-page"
+                  toggle === 1
+                    ? `${styles.cart_page} ${styles.page} ${styles.page_active}`
+                    : ` ${styles.page}  ${styles.cart_page}`
                 }
               >
-                <div className="table-content">
+                <div className={styles.table_content}>
                   <table>
                     <thead>
                       <tr>
@@ -78,12 +97,12 @@ export default function WishList() {
                     </thead>
                     <tbody>
                       <tr>
-                        <td className="product-thumbnail">
-                          <div className="product-img">
+                        <td className={styles.product_thumbnail}>
+                          <div className={styles.product_img}>
                             <img src={ProductImg} alt="product img" />
                           </div>
-                          <div className="product-info">
-                            <h4 className="title">dummy product name</h4>
+                          <div className={styles.product_info}>
+                            <h4 className={styles.title}>dummy product name</h4>
                             <p>
                               <span>Color :</span> Black
                             </p>
@@ -92,28 +111,28 @@ export default function WishList() {
                             </p>
                           </div>
                         </td>
-                        <td className="product-price">$56.00</td>
-                        <td className="product-quantity">
-                          <div className="flex">
+                        <td className={styles.product_price}>$56.00</td>
+                        <td className={styles.product_quantity}>
+                          <div className={styles.flex}>
                             <button>-</button>
                             <input type="number" value="1" min="1" />
                             <button>+</button>
                           </div>
                         </td>
-                        <td className="product-total">$112.00</td>
-                        <td className="remove-product">
+                        <td className={styles.product_total}>$112.00</td>
+                        <td className={styles.remove_product}>
                           <button>
-                            <CloseIcon className="icon" />
+                            <CloseIcon className={styles.icon} />
                           </button>
                         </td>
                       </tr>
                       <tr>
-                        <td className="product-thumbnail">
-                          <div className="product-img">
+                        <td className={styles.product_thumbnail}>
+                          <div className={styles.product_img}>
                             <img src={ProductImg} alt="product img" />
                           </div>
-                          <div className="product-info">
-                            <h4 className="title">dummy product name</h4>
+                          <div className={styles.product_info}>
+                            <h4 className={styles.title}>dummy product name</h4>
                             <p>
                               <span>Color :</span> Black
                             </p>
@@ -122,28 +141,28 @@ export default function WishList() {
                             </p>
                           </div>
                         </td>
-                        <td className="product-price">$56.00</td>
-                        <td className="product-quantity">
-                          <div className="flex">
+                        <td className={styles.product_price}>$56.00</td>
+                        <td className={styles.product_quantity}>
+                          <div className={styles.flex}>
                             <button>-</button>
                             <input type="number" value="1" min="1" />
                             <button>+</button>
                           </div>
                         </td>
-                        <td className="product-total">$112.00</td>
-                        <td className="remove-product">
+                        <td className={styles.product_total}>$112.00</td>
+                        <td className={styles.remove_product}>
                           <button>
-                            <CloseIcon className="icon" />
+                            <CloseIcon className={styles.icon} />
                           </button>
                         </td>
                       </tr>
                       <tr>
-                        <td className="product-thumbnail">
-                          <div className="product-img">
+                        <td className={styles.product_thumbnail}>
+                          <div className={styles.product_img}>
                             <img src={ProductImg} alt="product img" />
                           </div>
-                          <div className="product-info">
-                            <h4 className="title">dummy product name</h4>
+                          <div className={styles.product_info}>
+                            <h4 className={styles.title}>dummy product name</h4>
                             <p>
                               <span>Color :</span> Black
                             </p>
@@ -152,26 +171,30 @@ export default function WishList() {
                             </p>
                           </div>
                         </td>
-                        <td className="product-price">$56.00</td>
-                        <td className="product-quantity">
-                          <div className="flex">
+                        <td className={styles.product_price}>$56.00</td>
+                        <td className={styles.product_quantity}>
+                          <div className={styles.flex}>
                             <button>-</button>
                             <input type="number" value="1" min="1" />
                             <button>+</button>
                           </div>
                         </td>
-                        <td className="product-total">$112.00</td>
-                        <td className="remove-product">
+                        <td className={styles.product_total}>$112.00</td>
+                        <td className={styles.remove_product}>
                           <button>
-                            <CloseIcon className="icon" />
+                            <CloseIcon className={styles.icon} />
                           </button>
                         </td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-                <div className="discount-payment grid grid-cols-12 gap-6">
-                  <div className="col-span-12 md:col-span-6 coupon-discount">
+                <div
+                  className={`${styles.discount_payment} grid grid-cols-12 gap-6`}
+                >
+                  <div
+                    className={`col-span-12 md:col-span-6 ${styles.coupon_discount}`}
+                  >
                     <h4>COUPON DISCOUNT</h4>
                     <p>Enter your coupon code if you have one!</p>
                     <input
@@ -180,9 +203,11 @@ export default function WishList() {
                       id=""
                       placeholder="Enter your code here."
                     />
-                    <button className="btn">APPLY COUPON</button>
+                    <button className={styles.btn}>APPLY COUPON</button>
                   </div>
-                  <div className="col-span-12 md:col-span-6 payment-details">
+                  <div
+                    className={`col-span-12 md:col-span-6 ${styles.payment_details}`}
+                  >
                     <h4>PAYMENT DETAILS</h4>
                     <table>
                       <tbody>
@@ -198,39 +223,41 @@ export default function WishList() {
                           <td>Vat</td>
                           <td>$00.00</td>
                         </tr>
-                        <tr className="total">
+                        <tr className={styles.total}>
                           <td>Order Total</td>
                           <td>$170.00</td>
                         </tr>
                       </tbody>
                     </table>
                   </div>
-                  <div className="col-span-12 culture-shipping">
+                  <div className={`col-span-12 ${styles.culture_shipping}`}>
                     <h4>CULCULATE SHIPPING</h4>
                     <p>Enter your coupon code if you have one!</p>
-                    <div className="inputs-group grid grid-cols-12 gap-6">
-                      <div className="col-span-12 lg:col-span-4">
+                    <div
+                      className={`${styles.inputs_group} grid grid-cols-12 gap-6`}
+                    >
+                      <div className={`col-span-12 lg:col-span-4`}>
                         <input type="text" placeholder="Country" />
                       </div>
-                      <div className="col-span-12 lg:col-span-4">
+                      <div className={`col-span-12 lg:col-span-4`}>
                         <input type="text" placeholder="Region / State" />
                       </div>
-                      <div className="col-span-12 lg:col-span-4">
+                      <div className={`col-span-12 lg:col-span-4`}>
                         <input type="text" placeholder="Post code" />
                       </div>
                     </div>
-                    <button className="btn">GET A QUOTE</button>
+                    <button className={styles.btn}>GET A QUOTE</button>
                   </div>
                 </div>
               </div>
               <div
                 className={
                   toggle === 2
-                    ? "wishlist-page page-a page-active"
-                    : "page wishlist-page"
+                    ? `${styles.wishlist_page} ${styles.page} ${styles.page_active}`
+                    : `${styles.page} ${styles.wishlist_page}`
                 }
               >
-                <div className="table-content">
+                <div className={styles.table_content}>
                   <table>
                     <thead>
                       <tr>
@@ -243,11 +270,11 @@ export default function WishList() {
                     </thead>
                     <tbody>
                       <tr>
-                        <td className="product-thumbnail">
-                          <div className="product-img">
+                        <td className={styles.product_thumbnail}>
+                          <div className={styles.product_img}>
                             <img src={ProductImg} alt="product img" />
                           </div>
-                          <div className="product-info">
+                          <div className={styles.product_info}>
                             <h4 className="title">dummy product name</h4>
                             <p>
                               <span>Color :</span> Black
@@ -257,25 +284,25 @@ export default function WishList() {
                             </p>
                           </div>
                         </td>
-                        <td className="product-price">$56.00</td>
-                        <td className="product-stock">IN STOCK</td>
-                        <td className="add-cart">
+                        <td className={styles.product_price}>$56.00</td>
+                        <td className={styles.product_stock}>IN STOCK</td>
+                        <td className={styles.add_cart}>
                           <button>
-                            <AddShoppingCartIcon className="icon" />
+                            <AddShoppingCartIcon className={styles.icon} />
                           </button>
                         </td>
-                        <td className="remove-product">
+                        <td className={styles.remove_product}>
                           <button>
-                            <CloseIcon className="icon" />
+                            <CloseIcon className={styles.icon} />
                           </button>
                         </td>
                       </tr>
                       <tr>
-                        <td className="product-thumbnail">
-                          <div className="product-img">
+                        <td className={styles.product_thumbnail}>
+                          <div className={styles.product_img}>
                             <img src={ProductImg} alt="product img" />
                           </div>
-                          <div className="product-info">
+                          <div className={styles.product_info}>
                             <h4 className="title">dummy product name</h4>
                             <p>
                               <span>Color :</span> Black
@@ -285,25 +312,25 @@ export default function WishList() {
                             </p>
                           </div>
                         </td>
-                        <td className="product-price">$56.00</td>
-                        <td className="product-stock">IN STOCK</td>
-                        <td className="add-cart">
+                        <td className={styles.product_price}>$56.00</td>
+                        <td className={styles.product_stock}>IN STOCK</td>
+                        <td className={styles.add_cart}>
                           <button>
-                            <AddShoppingCartIcon className="icon" />
+                            <AddShoppingCartIcon className={styles.icon} />
                           </button>
                         </td>
-                        <td className="remove-product">
+                        <td className={styles.remove_product}>
                           <button>
-                            <CloseIcon className="icon" />
+                            <CloseIcon className={styles.icon} />
                           </button>
                         </td>
                       </tr>
                       <tr>
-                        <td className="product-thumbnail">
-                          <div className="product-img">
+                        <td className={styles.product_thumbnail}>
+                          <div className={styles.product_img}>
                             <img src={ProductImg} alt="product img" />
                           </div>
-                          <div className="product-info">
+                          <div className={styles.product_info}>
                             <h4 className="title">dummy product name</h4>
                             <p>
                               <span>Color :</span> Black
@@ -313,16 +340,16 @@ export default function WishList() {
                             </p>
                           </div>
                         </td>
-                        <td className="product-price">$56.00</td>
-                        <td className="product-stock">IN STOCK</td>
-                        <td className="add-cart">
+                        <td className={styles.product_price}>$56.00</td>
+                        <td className={styles.product_stock}>IN STOCK</td>
+                        <td className={styles.add_cart}>
                           <button>
-                            <AddShoppingCartIcon className="icon" />
+                            <AddShoppingCartIcon className={styles.icon} />
                           </button>
                         </td>
-                        <td className="remove-product">
+                        <td className={styles.remove_product}>
                           <button>
-                            <CloseIcon className="icon" />
+                            <CloseIcon className={styles.icon} />
                           </button>
                         </td>
                       </tr>
@@ -333,8 +360,8 @@ export default function WishList() {
               <div
                 className={
                   toggle === 3
-                    ? "checkout-page page-a page-active"
-                    : "page checkout-page"
+                    ? `${styles.checkout_page} ${styles.page} ${styles.page_active}`
+                    : `${styles.page} ${styles.checkout_page}`
                 }
               >
                 checkout page
@@ -342,8 +369,8 @@ export default function WishList() {
               <div
                 className={
                   toggle === 4
-                    ? "order-page page page-active"
-                    : "page order-page"
+                    ? `${styles.order_page} ${styles.page} ${styles.page_active}`
+                    : `${styles.page} ${styles.order_page}`
                 }
               >
                 order page
