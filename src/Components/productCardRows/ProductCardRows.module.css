@@ -65,11 +65,13 @@
 }
 .product_price {
   color: #c87065;
+  font-size: 1.5rem;
 }
 .product_old_price {
   color: #666;
   text-decoration: line-through;
   font-weight: 500;
+  font-size: 1.5rem;
 }
 
 .product_desc {
@@ -131,6 +133,16 @@
 .buttons span {
   color: #666;
 }
+.apply_btn {
+  background-color: #c8a165;
+  border-radius: 2rem;
+  /* text-align: end; */
+  width: 25%;
+  padding: 0.8rem 0;
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
 
 @media screen and (max-width: 800px) {
   .product_card {
@@ -141,11 +153,20 @@
   }
   .product_details {
     align-items: center;
+    width: 90%;
   }
-
+  .product_prices {
+    justify-content: center;
+  }
+  .product_desc {
+    display: none;
+  }
+  .product_old_price {
+    display: none;
+  }
   .actions {
-    flex-direction: column-reverse;
-    width: 60%;
+    flex-direction: column;
+    width: 90%;
     justify-content: center;
   }
   .title_rate {

@@ -71,11 +71,7 @@
 }
 .product_price {
   color: #c87065;
-}
-.product_old_price {
-  color: #666;
-  text-decoration: line-through;
-  font-weight: 500;
+  font-size: 1.5rem;
 }
 
 .actions {
@@ -108,4 +104,31 @@
 }
 .buttons span {
   color: #666;
+}
+
+@media screen and (max-width: 800px) {
+  .product_img {
+    width: 90%;
+  }
+  .product_details {
+    align-items: center;
+    width: 90%;
+  }
+  .product_prices {
+    justify-content: center;
+  }
+
+  .actions {
+    width: 60%;
+    justify-content: center;
+  }
+  .actions button {
+    width: 40px !important;
+  }
+  .title_rate {
+    flex-direction: column;
+  }
+  .product_rating span {
+    display: none;
+  }
 }

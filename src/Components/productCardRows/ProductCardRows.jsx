@@ -1,14 +1,21 @@
+/* eslint-disable react/prop-types */
 import ReactStars from "react-rating-stars-component";
 
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import AutorenewIcon from "@mui/icons-material/Autorenew";
 import ZoomInIcon from "@mui/icons-material/ZoomIn";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-
 import style from "./ProductCardRows.module.css";
-export default function ProductCardRows() {
+import { useDispatch } from "react-redux";
+import { closePopup } from "../../Redux/myPcPopupSlice";
+export default function ProductCardRows({ type }) {
+  const dispatch = useDispatch();
   const ratingChanged = (newRating) => {
     console.log(newRating);
+  };
+
+  const handleApply = () => {
+    dispatch(closePopup());
   };
   return (
     <div className={style.product_card_row}>
@@ -45,33 +52,38 @@ export default function ProductCardRows() {
             humou or randomised words which donot look even slightly believable.
             If you are going to use a passage of Lorem Ipsum.
           </p>
-
-          <div className={style.actions}>
-            <div className={style.quantity}>
-              <button className="decrease_btn">-</button>
-              <span>|</span>
-              <span className={style.product_qty}>02</span>
-              <span>|</span>
-              <button className="increase_btn">+</button>
+          {type === "mypc" ? (
+            <button onClick={handleApply} className={style.apply_btn}>
+              Apply Now
+            </button>
+          ) : (
+            <div className={style.actions}>
+              <div className={style.quantity}>
+                <button className="decrease_btn">-</button>
+                <span>|</span>
+                <span className={style.product_qty}>02</span>
+                <span>|</span>
+                <button className="increase_btn">+</button>
+              </div>
+              <div className={style.buttons}>
+                <button className="favorite">
+                  {<FavoriteBorderIcon sx={{ fontSize: 20 }} />}
+                </button>
+                <span>|</span>
+                <button className="more">
+                  {<ZoomInIcon sx={{ fontSize: 20 }} />}
+                </button>
+                <span>|</span>
+                <button className="refresh">
+                  {<AutorenewIcon sx={{ fontSize: 20 }} />}
+                </button>
+                <span>|</span>
+                <button className="add_to_cart">
+                  {<AddShoppingCartIcon sx={{ fontSize: 20 }} />}
+                </button>
+              </div>
             </div>
-            <div className={style.buttons}>
-              <button className="favorite">
-                {<FavoriteBorderIcon sx={{ fontSize: 20 }} />}
-              </button>
-              <span>|</span>
-              <button className="more">
-                {<ZoomInIcon sx={{ fontSize: 20 }} />}
-              </button>
-              <span>|</span>
-              <button className="refresh">
-                {<AutorenewIcon sx={{ fontSize: 20 }} />}
-              </button>
-              <span>|</span>
-              <button className="add_to_cart">
-                {<AddShoppingCartIcon sx={{ fontSize: 20 }} />}
-              </button>
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </div>
