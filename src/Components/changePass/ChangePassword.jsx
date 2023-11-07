@@ -8,7 +8,9 @@ import styles from "./changePassword.module.css";
 const ChangePassword = () => {
   const { handleSubmit, control, watch, setError, formState } = useForm();
   const { errors } = formState;
-  const [showPassword, setShowPassword] = useState(false);
+  const [showOldPassword, setShowOldPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const onSubmit = (data) => {
     console.log(data);
@@ -19,8 +21,20 @@ const ChangePassword = () => {
     return newPassword === value || "Passwords do not match";
   };
 
-  const togglePasswordVisibility = () => {
-    setShowPassword((prevShowPassword) => !prevShowPassword);
+  const togglePasswordVisibility = (field) => {
+    switch (field) {
+      case "oldPassword":
+        setShowOldPassword((prevShowPassword) => !prevShowPassword);
+        break;
+      case "newPassword":
+        setShowNewPassword((prevShowPassword) => !prevShowPassword);
+        break;
+      case "confirmPassword":
+        setShowConfirmPassword((prevShowPassword) => !prevShowPassword);
+        break;
+      default:
+        break;
+    }
   };
 
   return (
@@ -28,8 +42,8 @@ const ChangePassword = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.changepass_content}>
           <div className={styles.formField}>
-            <div onClick={togglePasswordVisibility}>
-              {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+            <div onClick={() => togglePasswordVisibility("oldPassword")}>
+              {showOldPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
             </div>
             <Controller
               name="oldPassword"
@@ -39,7 +53,7 @@ const ChangePassword = () => {
               render={({ field }) => (
                 <>
                   <input
-                    type={showPassword ? "text" : "password"}
+                    type={showOldPassword ? "text" : "password"}
                     placeholder="Old Password"
                     {...field}
                   />
@@ -51,8 +65,8 @@ const ChangePassword = () => {
             />
           </div>
           <div className={styles.formField}>
-            <div onClick={togglePasswordVisibility}>
-              {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+            <div onClick={() => togglePasswordVisibility("newPassword")}>
+              {showNewPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
             </div>
             <Controller
               name="newPassword"
@@ -62,7 +76,7 @@ const ChangePassword = () => {
               render={({ field }) => (
                 <>
                   <input
-                    type={showPassword ? "text" : "password"}
+                    type={showNewPassword ? "text" : "password"}
                     placeholder="New Password"
                     {...field}
                   />
@@ -74,8 +88,8 @@ const ChangePassword = () => {
             />
           </div>
           <div className={styles.formField}>
-            <div onClick={togglePasswordVisibility}>
-              {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+            <div onClick={() => togglePasswordVisibility("confirmPassword")}>
+              {showConfirmPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
             </div>
             <Controller
               name="confirmPassword"
@@ -88,7 +102,7 @@ const ChangePassword = () => {
               render={({ field }) => (
                 <>
                   <input
-                    type={showPassword ? "text" : "password"}
+                    type={showConfirmPassword ? "text" : "password"}
                     placeholder="Confirm New Password"
                     {...field}
                   />
