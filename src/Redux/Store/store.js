@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import myPcPopupReducer from "../myPcPopupSlice";
+import myPcPopupReducer from "../Slices/myPcPopupSlice";
+import myPcDataReducer from "../Slices/myPcDataSlice";
 
 const store = configureStore({
   reducer: {
     open: myPcPopupReducer,
+    myPcData: myPcDataReducer,
   },
 });
 

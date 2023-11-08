@@ -11,7 +11,6 @@ import { addDoc, query, where } from "firebase/firestore";
 export default function Signup() {
   const [user] = useAuthState(auth);
   const [signOut] = useSignOut(auth);
-  // const [users] = useCollectionData(userCol);
   const [signInWithGoogle] = useSignInWithGoogle(auth);
   console.log(user);
 

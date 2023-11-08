@@ -24,7 +24,8 @@ input[type="number"] {
 }
 
 .tabs_menu .btn.btn_active {
-  background: #c8a165;
+  background: #c87065;
+  color: #fff;
 }
 .tabs_content {
 }
@@ -121,7 +122,7 @@ table tbody td {
 }
 
 .add_cart .icon:hover {
-  color: #c8a165;
+  color: #c87065;
 }
 
 .remove_product .icon {
@@ -131,7 +132,7 @@ table tbody td {
 }
 
 .remove_product .icon:hover {
-  background: #c8a165;
+  background: #c87065;
   color: #ffffff;
 }
 
@@ -151,7 +152,7 @@ table tbody .flex {
 }
 
 table tbody .flex button:hover {
-  color: #c8a165;
+  color: #c87065;
 }
 
 table tbody .flex input {

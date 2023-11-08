@@ -1,7 +1,9 @@
 import PropTypes from "prop-types";
+import { useForm } from "react-hook-form";
 import List from "@mui/material/List";
 import Dialog from "@mui/material/Dialog";
 import ProductCardRows from "../productCardRows/ProductCardRows";
+import SearchIcon from "@mui/icons-material/Search";
 import style from "./myPxPopup.module.css";
 
 const products = [
@@ -36,15 +38,37 @@ export default function SimpleDialog(props) {
   const handleClose = () => {
     onClose(selectedValue);
   };
-
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (data) => {
+    console.log(data);
+  };
   return (
     <Dialog className={style.list_container} onClose={handleClose} open={open}>
-      <h1 className={style.popup_title}>
-        Select Your {selectedValue[0]?.toUpperCase() + selectedValue?.slice(1)}
-      </h1>
+      <div className="container mx-auto w-4/5">
+        <h1 className={style.popup_title}>
+          Select Your{" "}
+          {selectedValue[0]?.toUpperCase() + selectedValue?.slice(1)}
+        </h1>
+        <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
+          <input
+            type="text"
+            {...register("searchQuery")}
+            placeholder={`Search for ${selectedValue}s`}
+          />
+          <button type="submit">
+            <SearchIcon />
+          </button>
+        </form>
+      </div>
+
       <List className={style.products_list} sx={{ pt: 0 }}>
         {products.map((product) => (
-          <ProductCardRows key={product.id} product={product} type={"mypc"} />
+          <ProductCardRows
+            key={product.id}
+            product={product}
+            type={"mypc"}
+            dataCatigory={selectedValue}
+          />
         ))}
       </List>
     </Dialog>

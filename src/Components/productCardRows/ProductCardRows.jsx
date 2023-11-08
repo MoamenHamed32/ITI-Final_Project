@@ -7,16 +7,26 @@ import ZoomInIcon from "@mui/icons-material/ZoomIn";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import style from "./ProductCardRows.module.css";
 import { useDispatch } from "react-redux";
-import { closePopup } from "../../Redux/myPcPopupSlice";
-export default function ProductCardRows({ type }) {
+import { closePopup } from "../../Redux/Slices/myPcPopupSlice";
+import { addToPc } from "../../Redux/Slices/myPcDataSlice";
+
+export default function ProductCardRows({ product, type, dataCatigory }) {
   const dispatch = useDispatch();
+
   const ratingChanged = (newRating) => {
     console.log(newRating);
   };
 
   const handleApply = () => {
     dispatch(closePopup());
+    dispatch(
+      addToPc({
+        catigory: dataCatigory,
+        productTitle: product.title,
+      })
+    );
   };
+
   return (
     <div className={style.product_card_row}>
       <div className={style.product_card}>
@@ -34,7 +44,7 @@ export default function ProductCardRows({ type }) {
                   onChange={ratingChanged}
                   size={20}
                   color="#d9d9d9"
-                  activeColor="#c87065"
+                  activeColor="#C87065"
                   isHalf={true}
                   value={2.5}
                 />
