@@ -1,0 +1,409 @@
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.wish-list {
+  margin-bottom: 2rem;
+}
+
+.wish-list .page-area .tabs-menu {
+  margin-bottom: 2rem;
+}
+.wish-list .page-area .tabs-menu .btn {
+  font-size: 0.9rem;
+  background: #ffffff;
+  width: 100%;
+  padding: 1.2rem 0;
+}
+.wish-list .page-area .tabs-menu .btn.btn-active {
+  background: #c8a165;
+}
+
+.wish-list .page-area .tabs-content .page {
+  display: none;
+  width: 100%;
+  height: 100% !important;
+}
+
+.wish-list .page-area .tabs-content .page.page-active {
+  display: block;
+}
+
+.wish-list .page-area .tabs-content .table-content {
+  margin-bottom: 1.5rem;
+  padding: 2rem;
+  background: #ffffff;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.wish-list .page-area .tabs-content .table-content table {
+  width: 100%;
+  min-width: 1000px;
+}
+.wish-list .page-area .tabs-content .table-content table thead th {
+  font-size: 0.9rem;
+  padding: 10px;
+  background: #f6f6f6;
+}
+.wish-list .page-area .tabs-content .table-content table tbody tr {
+  text-align: center;
+}
+.wish-list .page-area .tabs-content .table-content table tbody td {
+  padding: 20px 0 0 0;
+  vertical-align: middle;
+  width: fit-content;
+}
+.wish-list
+  .page-area
+  .tabs-content
+  .table-content
+  table
+  tbody
+  .product-thumbnail {
+  display: flex;
+  align-items: center;
+  jusitfy-content: center;
+  gap: 1rem;
+}
+.wish-list
+  .page-area
+  .tabs-content
+  .table-content
+  table
+  tbody
+  .product-thumbnail
+  .product-img {
+  width: 100px;
+}
+.wish-list
+  .page-area
+  .tabs-content
+  .table-content
+  table
+  tbody
+  .product-thumbnail
+  .product-info {
+  text-align: center;
+}
+.wish-list
+  .page-area
+  .tabs-content
+  .table-content
+  table
+  tbody
+  .product-thumbnail
+  .product-info
+  .title {
+  font-size: 0.9rem;
+  color: #666;
+  text-transform: upperCase;
+  font-family: bree serif;
+}
+.wish-list
+  .page-area
+  .tabs-content
+  .table-content
+  table
+  tbody
+  .product-thumbnail
+  .product-info
+  p {
+  font-size: 0.9rem;
+}
+.wish-list
+  .page-area
+  .tabs-content
+  .table-content
+  table
+  tbody
+  .product-thumbnail
+  .product-info
+  p
+  span {
+  font-weight: bold;
+}
+.wish-list .page-area .tabs-content .table-content table tbody .product-price,
+.wish-list .page-area .tabs-content .table-content table tbody .product-stock,
+.wish-list .page-area .tabs-content .table-content table tbody .product-total {
+  font-size: 1rem;
+  color: #999;
+  font-weight: bold;
+}
+.wish-list .page-area .tabs-content .table-content table tbody .product-stock {
+  font-size: 0.9rem;
+}
+.wish-list .page-area .tabs-content .table-content table tbody .add-cart .icon {
+  transition: 0.5s;
+}
+.wish-list
+  .page-area
+  .tabs-content
+  .table-content
+  table
+  tbody
+  .add-cart
+  .icon:hover {
+  color: #c8a165;
+}
+.wish-list
+  .page-area
+  .tabs-content
+  .table-content
+  table
+  tbody
+  .remove-product
+  .icon {
+  background: #f6f6f6;
+  padding: 5px;
+  transition: 0.5s;
+}
+.wish-list
+  .page-area
+  .tabs-content
+  .table-content
+  table
+  tbody
+  .remove-product
+  .icon:hover {
+  background: #c8a165;
+  color: #ffffff;
+}
+.wish-list .page-area .tabs-content .table-content table tbody .flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.wish-list .page-area .tabs-content .table-content table tbody .flex button {
+  width: 30px;
+  height: 30px;
+  background: #f6f6f6;
+  transition: 0.5s;
+  font-size: 1.1rem;
+}
+.wish-list
+  .page-area
+  .tabs-content
+  .table-content
+  table
+  tbody
+  .flex
+  button:hover {
+  color: #c8a165;
+}
+.wish-list .page-area .tabs-content .table-content table tbody .flex input {
+  padding-left: 15px;
+  width: 40px;
+  height: 30px;
+  background: #f6f6f6;
+}
+
+.wish-list .page-area .tabs-content .discount-payment .coupon-discount,
+.wish-list .page-area .tabs-content .discount-payment .payment-details,
+.wish-list .page-area .tabs-content .discount-payment .culture-shipping {
+  background: #ffffff;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.wish-list .page-area .tabs-content .discount-payment .coupon-discount h4,
+.wish-list .page-area .tabs-content .discount-payment .payment-details h4,
+.wish-list .page-area .tabs-content .discount-payment .culture-shipping h4 {
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: Lato, sans-serif;
+  position: relative;
+}
+.wish-list
+  .page-area
+  .tabs-content
+  .discount-payment
+  .coupon-discount
+  h4::after,
+.wish-list
+  .page-area
+  .tabs-content
+  .discount-payment
+  .payment-details
+  h4::after,
+.wish-list
+  .page-area
+  .tabs-content
+  .discount-payment
+  .culture-shipping
+  h4::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background: #eee;
+}
+.wish-list .page-area .tabs-content .discount-payment .coupon-discount p,
+.wish-list .page-area .tabs-content .discount-payment .payment-details p,
+.wish-list .page-area .tabs-content .discount-payment .culture-shipping p {
+  color: #999;
+  font-size: 0.8rem;
+}
+.wish-list .page-area .tabs-content .discount-payment .coupon-discount input,
+.wish-list .page-area .tabs-content .discount-payment .payment-details input,
+.wish-list .page-area .tabs-content .discount-payment .culture-shipping input {
+  background: #f6f6f6;
+  padding: 0.5rem 1rem;
+  outline: none;
+}
+.wish-list .page-area .tabs-content .discount-payment .coupon-discount .btn,
+.wish-list .page-area .tabs-content .discount-payment .payment-details .btn,
+.wish-list .page-area .tabs-content .discount-payment .culture-shipping .btn {
+  background: #c87065;
+  color: #ffffff;
+  width: fit-content;
+  font-size: 0.8rem;
+  padding: 8px 20px;
+}
+.wish-list
+  .page-area
+  .tabs-content
+  .discount-payment
+  .coupon-discount
+  table
+  tbody
+  tr,
+.wish-list
+  .page-area
+  .tabs-content
+  .discount-payment
+  .payment-details
+  table
+  tbody
+  tr,
+.wish-list
+  .page-area
+  .tabs-content
+  .discount-payment
+  .culture-shipping
+  table
+  tbody
+  tr {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #e5e5e5;
+}
+.wish-list
+  .page-area
+  .tabs-content
+  .discount-payment
+  .coupon-discount
+  table
+  tbody
+  tr
+  td,
+.wish-list
+  .page-area
+  .tabs-content
+  .discount-payment
+  .payment-details
+  table
+  tbody
+  tr
+  td,
+.wish-list
+  .page-area
+  .tabs-content
+  .discount-payment
+  .culture-shipping
+  table
+  tbody
+  tr
+  td {
+  padding: 8px 15px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #999;
+}
+.wish-list
+  .page-area
+  .tabs-content
+  .discount-payment
+  .coupon-discount
+  table
+  tbody
+  tr.total,
+.wish-list
+  .page-area
+  .tabs-content
+  .discount-payment
+  .payment-details
+  table
+  tbody
+  tr.total,
+.wish-list
+  .page-area
+  .tabs-content
+  .discount-payment
+  .culture-shipping
+  table
+  tbody
+  tr.total {
+  border: none;
+}
+.wish-list
+  .page-area
+  .tabs-content
+  .discount-payment
+  .coupon-discount
+  table
+  tbody
+  tr.total
+  td,
+.wish-list
+  .page-area
+  .tabs-content
+  .discount-payment
+  .payment-details
+  table
+  tbody
+  tr.total
+  td,
+.wish-list
+  .page-area
+  .tabs-content
+  .discount-payment
+  .culture-shipping
+  table
+  tbody
+  tr.total
+  td {
+  color: #c87065;
+}
+.wish-list
+  .page-area
+  .tabs-content
+  .discount-payment
+  .coupon-discount
+  .inputs-group
+  input,
+.wish-list
+  .page-area
+  .tabs-content
+  .discount-payment
+  .payment-details
+  .inputs-group
+  input,
+.wish-list
+  .page-area
+  .tabs-content
+  .discount-payment
+  .culture-shipping
+  .inputs-group
+  input {
+  width: 100%;
+}

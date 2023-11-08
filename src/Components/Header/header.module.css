@@ -1,13 +1,10 @@
-.nav-links {
+.nav_links {
   text-decoration: none;
   color: rgba(0, 0, 0, 0.726);
   padding: 0.7rem;
   font-size: 1.2rem;
   font-weight: 600;
   font-family: "Lato", sans-serif;
-}
-.nav-links.active {
-  color: #000;
 }
 
 nav {
@@ -21,16 +18,6 @@ nav {
 
 .nav_logo_mob {
   width: 60%;
-}
-
-@media (min-width: 600px) and (max-width: 635px) {
-  .css-130f8nx {
-    display: flex !important;
-    max-width: 635px;
-  }
-  .nav-links {
-    padding: 0.5rem;
-  }
 }
 
 .nav_cross {

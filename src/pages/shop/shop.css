@@ -1,0 +1,64 @@
+.filter-section {
+  background-color: #fff;
+  padding: 0.5rem 1.5rem;
+  text-transform: capitalize;
+  
+}
+.filter-options {
+  color: #999999;
+}
+.filter-options li {
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
+.pagination {
+  background: #fff none repeat scroll 0 0;
+  display: block;
+  height: 50px;
+  margin: 0;
+  border-radius: 0;
+}
+.pagination ul {
+  display: inline-block;
+}
+ul {
+  list-style: outside none none;
+  margin: 0;
+  padding: 0;
+}
+.pagination ul li {
+  display: block;
+  float: left;
+  padding: 10px 0;
+}
+.pagination ul li a {
+  color: #666;
+  display: block;
+  line-height: 30px;
+  padding: 0 6px;
+}
+::before, a {
+  transition: all .3s ease 0s;
+}
+a {
+  text-decoration: none;
+  color: #434343;
+}
+.pagination ul li a i {
+  display: block;
+  font-size: 20px;
+  line-height: 30px;
+}
+.zmdi {
+  /* display: inline-block; */
+  font: normal normal normal 14px/1 'Material-Design-Iconic-Font';
+  /* font-size: inherit; */
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+::before, a {
+  transition: all .3s ease 0s;
+}
+
+

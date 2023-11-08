@@ -53,6 +53,10 @@
   font-weight: 400;
   height: 80px;
   max-height: 80px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .colors {
   display: flex;

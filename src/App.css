@@ -11,7 +11,11 @@ body {
   background-color: #efefef !important;
 }
 
-.container {
-  width: 80%;
-  margin: 0 auto;
+/* .container {
+  width: 80% !important;
+  margin: 0 auto !important;
+} */
+
+.active {
+  color: #000 !important;
 }
