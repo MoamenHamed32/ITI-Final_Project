@@ -23,7 +23,7 @@ function App() {
     <Provider store={store}>
       <Router>
         <Header />
-        <div className="flex flex-col min-h-screen gap-5">
+        <div className="flex flex-col min-h-screen">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/profile" element={<Profile />} />
