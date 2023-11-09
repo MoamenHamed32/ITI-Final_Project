@@ -30,7 +30,7 @@ export default function ProductCardCols() {
                 onChange={ratingChanged}
                 size={20}
                 color="#d9d9d9"
-                activeColor="#c87065"
+                activeColor="#C87065"
                 isHalf={true}
                 value={2.5}
               />
