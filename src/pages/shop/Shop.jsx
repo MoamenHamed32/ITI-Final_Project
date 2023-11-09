@@ -1,5 +1,4 @@
 import PageBanner from './../../Components/pageBanner/PageBanner.jsx';
-import Footer from './../../Components/Footer/Footer.jsx';
 import ProductList from '../../Components/productList/ProductList.jsx';
 import { useState } from 'react';
 import './shop.css';
@@ -33,7 +32,6 @@ export default function Shop() {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }
