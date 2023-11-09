@@ -1,13 +1,15 @@
-import { useMemo, useEffect } from "react";
-import { Stack } from "@mui/material";
-import { useCollectionData } from "react-firebase-hooks/firestore";
-import { userCol, auth } from "../../config/firebase/firebase";
+import { addDoc, query, where } from "firebase/firestore";
+import { auth, userCol } from "../../config/firebase/firebase";
 import {
-  useSignInWithGoogle,
   useAuthState,
+  useSignInWithGoogle,
   useSignOut,
 } from "react-firebase-hooks/auth";
-import { addDoc, query, where } from "firebase/firestore";
+import { useEffect, useMemo } from "react";
+
+import { Stack } from "@mui/material";
+import { useCollectionData } from "react-firebase-hooks/firestore";
+
 export default function Signup() {
   const [user] = useAuthState(auth);
   const [signOut] = useSignOut(auth);

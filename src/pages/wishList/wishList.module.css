@@ -163,7 +163,9 @@ table tbody .flex input {
 
 .discount_payment .coupon_discount,
 .discount_payment .payment_details,
-.discount_payment .culture_shipping {
+.discount_payment .culture_shipping,
+.our_order,
+.billing_method {
   background: #ffffff;
   padding: 2rem;
   display: flex;
@@ -173,7 +175,9 @@ table tbody .flex input {
 
 .discount_payment .coupon_discount h4,
 .discount_payment .payment_details h4,
-.discount_payment .culture_shipping h4 {
+.discount_payment .culture_shipping h4,
+.discount_payment .our_order h4,
+.discount_payment .billing_method h4 {
   font-size: 1rem;
   font-weight: bold;
   font-family: Lato, sans-serif;
@@ -182,7 +186,9 @@ table tbody .flex input {
 
 .discount_payment .coupon_discount h4::after,
 .discount_payment .payment_details h4::after,
-.discount_payment .culture_shipping h4::after {
+.discount_payment .culture_shipping h4::after,
+.discount_payment .our_order h4::after,
+.discount_payment .billing_method h4::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -201,10 +207,18 @@ table tbody .flex input {
 
 .discount_payment .coupon_discount input,
 .discount_payment .payment_details input,
-.discount_payment .culture_shipping input {
+.discount_payment .culture_shipping input,
+.discount_payment .our_order input,
+.discount_payment .billing_method input,
+.discount_payment .billing_method textarea {
   background: #f6f6f6;
   padding: 0.5rem 1rem;
   outline: none;
+}
+
+.discount_payment .billing_method input::placeholder,
+.discount_payment .billing_method textarea::placeholder {
+  font-size: 0.8rem;
 }
 
 .discount_payment .coupon_discount .btn,
@@ -219,7 +233,9 @@ table tbody .flex input {
 
 .discount_payment .coupon_discount table tbody tr,
 .discount_payment .payment_details table tbody tr,
-.discount_payment .culture_shipping table tbody tr {
+.discount_payment .culture_shipping table tbody tr,
+.discount_payment .our_order table tbody tr,
+.discount_payment .billing_method table tbody tr {
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #e5e5e5;
@@ -227,7 +243,9 @@ table tbody .flex input {
 
 .discount_payment .coupon_discount table tbody tr td,
 .discount_payment .payment_details table tbody tr td,
-.discount_payment .culture_shipping table tbody tr td {
+.discount_payment .culture_shipping table tbody tr td,
+.discount_payment .our_order table tbody tr td,
+.discount_payment .billing_method table tbody tr td {
   padding: 8px 15px;
   font-size: 0.8rem;
   font-weight: bold;
@@ -236,13 +254,17 @@ table tbody .flex input {
 
 .discount_payment .coupon_discount table tbody tr.total,
 .discount_payment .payment_details table tbody tr.total,
-.discount_payment .culture_shipping table tbody tr.total {
+.discount_payment .culture_shipping table tbody tr.total,
+.discount_payment .our_order table tbody tr.total,
+.discount_payment .billing_method table tbody tr.total {
   border: none;
 }
 
 .discount_payment .coupon_discount table tbody tr.total td,
 .discount_payment .payment_details table tbody tr.total td,
-.discount_payment .culture_shipping table tbody tr.total td {
+.discount_payment .culture_shipping table tbody tr.total td,
+.discount_payment .our_order table tbody tr.total td,
+.discount_payment .billing_method table tbody tr.total td {
   color: #c87065;
 }
 

@@ -1,15 +1,46 @@
+import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
+import { useEffect, useState } from "react";
+
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import CloseIcon from "@mui/icons-material/Close";
 import PageBanner from "./../../Components/pageBanner/PageBanner";
 import ProductImg from "../../../public/imgs/2.webp";
 import styles from "./wishList.module.css";
-import { useState } from "react";
 
 export default function WishList() {
   const [toggle, setToggle] = useState(2);
+  const [total, setTotal] = useState(170);
+
   const toggleTaps = (idx) => {
     setToggle(idx);
   };
+
+  const initialOptions = {
+    clientId:
+      "AVimr_VGtegk0WuXLEYBYtHQkgd9SIq8r_06zhTPfo-kXmRe1W9FATTUyj8VWsl9qL-r_k3AU7ePRjtD",
+    currency: "USD",
+    intent: "capture",
+  };
+
+  const createOrder = (data, actions) => {
+    return actions.order.create({
+      purchase_units: [
+        {
+          amount: {
+            value: total,
+          },
+        },
+      ],
+    });
+  };
+  const onApprove = async (data, actions) => {
+    const order = await actions.order.capture();
+    console.log(order);
+  };
+  const onError = (err) => {
+    console.log(err);
+  };
+
   return (
     <div className={styles.wish_list}>
       <PageBanner page={"WishList"} />
@@ -360,11 +391,90 @@ export default function WishList() {
               <div
                 className={
                   toggle === 3
-                    ? `${styles.checkout_page} ${styles.page} ${styles.page_active}`
-                    : `${styles.page} ${styles.checkout_page}`
+                    ? `${styles.checkout_page} ${styles.page} ${styles.page_active} bg-white`
+                    : `${styles.page} ${styles.checkout_page} bg-white`
                 }
               >
-                checkout page
+                <div
+                  className={`${styles.discount_payment} grid grid-cols-12 gap-6`}
+                >
+                  <div
+                    className={`col-span-12 md:col-span-6 ${styles.our_order}`}
+                  >
+                    <h4>OUR ORDER</h4>
+                    <table className="flex flex-col">
+                      <thead>
+                        <tr className="text-left w-full">
+                          <th className="w-full">PRODUCT</th>
+                          <th className="w-full">TOTAL</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Dummy Product Name x 2 </td>
+                          <td>$155.00</td>
+                        </tr>
+                        <tr>
+                          <td>Dummy Product Name x 1 </td>
+                          <td>$155.00</td>
+                        </tr>
+                        <tr>
+                          <td>Cart Subtotal</td>
+                          <td>$155.00</td>
+                        </tr>
+                        <tr>
+                          <td>Shipping and Handing </td>
+                          <td>$15.00</td>
+                        </tr>
+                        <tr>
+                          <td>Vat</td>
+                          <td>$00.00</td>
+                        </tr>
+                        <tr className={styles.total}>
+                          <td>Order Total</td>
+                          <td>${total.toFixed(2)}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div
+                    className={`col-span-12 md:col-span-6 ${styles.billing_method}`}
+                  >
+                    <h4>BILLING METHOD</h4>
+                    <div className="form flex flex-col gap-5">
+                      <input
+                        type="text"
+                        id="text"
+                        placeholder="Your Name here..."
+                      />
+                      <input
+                        type="email"
+                        id="email"
+                        placeholder="Email address here..."
+                      />
+                      <input
+                        type="number"
+                        id="phone"
+                        placeholder="Phone number here..."
+                      />
+                      <textarea
+                        id="address"
+                        placeholder="Your address here..."
+                      ></textarea>
+                    </div>
+                    <h4>PAYMENT METHOD</h4>
+                    <button className="btn">
+                      {/* <div id="paypal-button-container"></div> */}
+                      <PayPalScriptProvider options={initialOptions}>
+                        <PayPalButtons
+                          createOrder={createOrder}
+                          onApprove={onApprove}
+                          onError={onError}
+                        />
+                      </PayPalScriptProvider>
+                    </button>
+                  </div>
+                </div>
               </div>
               <div
                 className={
