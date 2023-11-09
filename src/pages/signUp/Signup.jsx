@@ -1,38 +1,53 @@
-import { useMemo, useEffect } from "react";
+import { useForm } from "react-hook-form";
 import { Stack } from "@mui/material";
-import { useCollectionData } from "react-firebase-hooks/firestore";
-import { userCol, auth } from "../../config/firebase/firebase";
+import SignupWithGmail from "../../Components/signupGmail/SignupWithGmail";
+import Logout from "../../Components/logout/Logout";
 import {
-  useSignInWithGoogle,
+  useCreateUserWithEmailAndPassword,
   useAuthState,
-  useSignOut,
 } from "react-firebase-hooks/auth";
-import { addDoc, query, where } from "firebase/firestore";
-export default function Signup() {
-  const [user] = useAuthState(auth);
-  const [signOut] = useSignOut(auth);
-  // const [users] = useCollectionData(userCol);
-  const [signInWithGoogle] = useSignInWithGoogle(auth);
-  console.log(user);
+import { addDoc } from "firebase/firestore";
+import { userCol, auth } from "../../config/firebase/firebase";
+import { useEffect, useState } from "react";
 
-  const isUserExist = useMemo(
-    () => user && query(userCol, where("uid", "==", user.uid)),
-    [user]
-  );
-  const [users] = useCollectionData(isUserExist);
+export default function Signup() {
+  const [userInfo, setUserInfo] = useState();
+  const [userAuth] = useAuthState(auth);
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
+
   useEffect(() => {
-    if (!!user && !!users && users.length === 0) {
+    if (!error && userAuth && user) {
+      console.log("inside email add doc");
       addDoc(userCol, {
-        uid: user?.uid,
-        photoURL: user?.photoURL,
-        displayName: user?.displayName,
+        uid: userAuth?.uid,
+        photoURL: userInfo?.photoURL || "",
+        displayName: userInfo?.displayName || "",
+        email: userAuth?.email,
         wishlist: [],
         cart: [],
       });
     }
-  }, [user, users]);
+  }, [userAuth, error]);
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmitForm = (data) => {
+    // console.log(data);
+    setUserInfo(data);
+
+    createUserWithEmailAndPassword(data.email, data.password);
+  };
   return (
-    <form className="p-3 md:p-10 bg-white w-1/2 m-auto mt-24 ">
+    <form
+      className="p-3 md:p-10 bg-white w-1/2 m-auto mt-24 "
+      onSubmit={handleSubmit(onSubmitForm)}
+    >
       <Stack
         direction="column"
         justifyContent="center"
@@ -48,27 +63,28 @@ export default function Signup() {
         <input
           className="w-full p-3 pl-3 outline-none text-neutral-400 text-xs md:text-base"
           placeholder="Enter Your Name"
-          required
           style={{ background: "#efefef" }}
+          {...register("displayName", { required: true, maxLength: 20 })}
         />
         <input
           className="w-full p-3 pl-3 outline-none text-neutral-400 text-xs md:text-base"
           placeholder="Enter Your Email"
-          required
           style={{ background: "#efefef" }}
+          {...register("email", { required: true })}
         />
         <input
           className="w-full p-3 pl-3 outline-none text-neutral-400 text-xs md:text-base"
           type="password"
           placeholder="Enter Your Password"
-          required
           style={{ background: "#efefef" }}
+          {...register("password", { required: true })}
         />
         <p>(OPTIONAL)</p>
         <div className="flex flex-col lg:flex-row gap-3">
           <input
             className="w-full p-3 pl-3 outline-none text-neutral-400 text-xs md:text-base"
             placeholder="Your Photo Link"
+            {...register("photoURL", { required: true })}
             style={{ background: "#efefef" }}
             type="text"
           />
@@ -90,10 +106,11 @@ export default function Signup() {
         >
           SIGNUP
         </button>
-        <button onClick={() => signInWithGoogle()}>sign up with google</button>
+
+        <SignupWithGmail />
         <br />
         <br />
-        <button onClick={() => signOut()}>logOut</button>
+        <Logout />
       </Stack>
     </form>
   );
