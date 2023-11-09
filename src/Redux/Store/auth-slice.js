@@ -8,7 +8,7 @@ const retrieveStoredToken = (name) => {
 
 const initialState = {
   isLoggedIn: !!retrieveStoredToken("currentUser"),
-  currentUser: retrieveStoredToken("currentUser"),
+  currentUser: JSON.parse(retrieveStoredToken("currentUser")),
   currentToken: retrieveStoredToken("currentToken"),
 };
 
@@ -16,13 +16,15 @@ const authReducer = createSlice({
   name: "auth",
   initialState: initialState,
   reducers: {
-    login: (state, action) => {
-      //   state.currentToken = action.payload.token;
-      //   state.isLoggedIn = true;
-      //   state.currentUser = action.payload.user;
-      //   localStorage.setItem("currentUser", action.payload.user);
-      //   localStorage.setItem("currentToken", action.payload.token);
+    signup: (state, action) => {
+      console.log("payload", action.payload);
+      state.currentToken = action.payload.token;
+      state.isLoggedIn = true;
+      state.currentUser = action.payload.user;
+      localStorage.setItem("currentUser", JSON.stringify(action.payload.user));
+      localStorage.setItem("currentToken", action.payload.token);
     },
+
     logout: (state, action) => {
       state.currentToken = null;
       state.isLoggedIn = false;
@@ -30,5 +32,15 @@ const authReducer = createSlice({
       localStorage.removeItem("currentUser");
       localStorage.removeItem("currentToken");
     },
+    updateUserGeneral: (state, action) => {
+      // state.currentUser=action.payload.updatedUser
+      // localStorage.setItem(
+      //   "currentUser",
+      //   JSON.stringify(action.payload.updatedUser)
+      // );
+    },
   },
 });
+
+export const { signup, logout } = authReducer.actions;
+export default authReducer.reducer;

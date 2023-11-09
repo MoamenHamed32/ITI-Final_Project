@@ -26,13 +26,13 @@ img {
   gap: 2rem;
 }
 
-.pc_parts figure a {
+.pc_parts figure button {
   position: absolute;
   top: 40%;
   left: 38%;
   height: 55px;
   width: 55px;
-  background-color: #c8a165;
+  background-color: #c87065;
   border: 1px solid #fff;
   border-radius: 50%;
   display: flex;
@@ -41,12 +41,12 @@ img {
   transition: 0.3s ease-in-out;
   cursor: pointer;
 }
-.pc_parts figure a svg {
+.pc_parts figure button svg {
   font-size: 3rem;
   color: #fff;
 }
 
-.pc_parts figure a:hover {
+.pc_parts figure button:hover {
   transform: rotate(135deg);
 }
 .mouse_add {
@@ -84,7 +84,7 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #c8a165;
+  background-color: #c87065;
   font-size: 1.5rem;
   color: #fff;
   box-shadow: 0 4px 4px 0 #00000046;
@@ -110,7 +110,23 @@ img {
   top: 0;
   left: 15px;
   font-size: 0.9rem;
-  color: #c8a165;
+  color: #c87065;
+}
+.selectedProduct {
+  position: absolute;
+  display: inline-block;
+  padding: 0.5rem 1.2rem;
+  border: 0.5px solid black;
+  background-color: #ffffffe5;
+  border-radius: 15px;
+  font-size: 1.3rem;
+  width: 14rem;
+  top: 40%;
+  left: 0;
+  text-align: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 @media screen and (max-width: 900px) {
   figure {

@@ -82,7 +82,7 @@ export default function ProductDetails() {
   return (
     <section id="product_details">
       <PageBanner page={"Single Product"} />
-      <div className="container">
+      <div className="container mx-auto">
         <div className={style.product_card}>
           <figure className={style.product_img}>
             <img src={currentImage[galleryActive]} alt="" />

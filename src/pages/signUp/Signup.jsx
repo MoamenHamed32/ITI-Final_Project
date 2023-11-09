@@ -9,33 +9,60 @@ import {
 import { addDoc } from "firebase/firestore";
 import { userCol, auth } from "../../config/firebase/firebase";
 import { useEffect, useState } from "react";
+import { signup } from "../../Redux/Store/auth-slice";
+import { useDispatch } from "react-redux";
+
+const myPc = {
+  monitor: "",
+  mouse: "",
+  keyboard: "",
+  speaker: "",
+  caseHardWare: {
+    case: "",
+    ramOne: "",
+    ramTwo: "",
+    ramThree: "",
+    ramFour: "",
+    vga: "",
+    powerSupply: "",
+    board: "",
+    cpu: "",
+    hardDesk: "",
+    secondaryHardDesk: "",
+    fan: "",
+  },
+};
 
 export default function Signup() {
+  const dispatch = useDispatch();
   const [userInfo, setUserInfo] = useState();
   const [userAuth] = useAuthState(auth);
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
-
-  useEffect(() => {
-    if (!error && userAuth && user) {
-      console.log("inside email add doc");
-      addDoc(userCol, {
-        uid: userAuth?.uid,
-        photoURL: userInfo?.photoURL || "",
-        displayName: userInfo?.displayName || "",
-        email: userAuth?.email,
-        wishlist: [],
-        cart: [],
-      });
-    }
-  }, [userAuth, error]);
-
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
+
+  useEffect(() => {
+    if (!error && userAuth && user) {
+      console.log("inside email add doc");
+      console.log(" watshhhhh", watch);
+      const newUser = {
+        uid: userAuth?.uid,
+        photoURL: userInfo?.photoURL || "",
+        displayName: userInfo?.displayName || "",
+        email: userAuth?.email,
+        wishlist: [],
+        cart: [],
+        myPc: myPc,
+      };
+      addDoc(userCol, newUser);
+      dispatch(signup({ token: userAuth.accessToken, user: newUser }));
+    }
+  }, [userAuth, error]);
 
   const onSubmitForm = (data) => {
     // console.log(data);
@@ -84,7 +111,7 @@ export default function Signup() {
           <input
             className="w-full p-3 pl-3 outline-none text-neutral-400 text-xs md:text-base"
             placeholder="Your Photo Link"
-            {...register("photoURL", { required: true })}
+            {...register("photoURL")}
             style={{ background: "#efefef" }}
             type="text"
           />

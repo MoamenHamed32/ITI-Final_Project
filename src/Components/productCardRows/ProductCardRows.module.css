@@ -17,7 +17,7 @@
   position: absolute;
   top: 1.2rem;
   left: 1.2rem;
-  background-color: #c8a165;
+  background-color: #c87065;
   border-radius: 5px;
   width: 60px;
   display: flex;
@@ -25,6 +25,7 @@
   align-items: center;
   height: 30px;
   color: #fff;
+  z-index: 1;
 }
 .product_img img {
   width: 100%;
@@ -132,6 +133,15 @@
 }
 .buttons span {
   color: #666;
+}
+.apply_btn {
+  background-color: #c87065;
+  border-radius: 2rem;
+  width: 25%;
+  padding: 0.8rem 0;
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 600;
 }
 
 @media screen and (max-width: 800px) {
