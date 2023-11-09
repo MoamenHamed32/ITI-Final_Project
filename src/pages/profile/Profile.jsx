@@ -34,7 +34,9 @@ const Profile = () => {
       <Card className="h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 flex-col">
         <div className="mb-2 p-4">
           <Typography variant="h5" color="blue-gray">
-            <span className="text-xl">{dummyUserData.name}</span>
+            <span className="text-base md:text-base lg:text-lg xl:text-xl">
+              {dummyUserData.name}
+            </span>
           </Typography>
         </div>
         <List>

@@ -19,3 +19,13 @@
   width: 100%;
   height: 95vh;
 }
+
+/* 739 */
+@media screen and (max-width: 739px) {
+  .active_select {
+    font-size: 1.2rem;
+  }
+  .not_active_select {
+    font-size: 0.9rem;
+  }
+}

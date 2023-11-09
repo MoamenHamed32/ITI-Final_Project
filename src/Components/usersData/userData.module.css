@@ -5,8 +5,8 @@
   padding: 50px;
   padding-top: 45px;
   height: 95vh;
-  min-width: 75%;
-  gap: 30%;
+  width: 100%;
+  gap: 100px;
 }
 
 .profile_left_content {
@@ -21,7 +21,9 @@
   padding: 5px 20px;
   color: rgb(163 163 163);
   padding: 25px;
-  width: 500px;
+  width: 90%;
+  overflow: hidden;
+  text-wrap: nowrap;
 }
 
 .user_photo {
@@ -30,6 +32,7 @@
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 10px;
+  border: 2px solid rgb(200, 112, 101);
 }
 
 .profile_right_content {
@@ -73,4 +76,69 @@
   background-color: rgb(200, 112, 101);
   font-size: 1.5rem;
   color: #fff;
+}
+
+@media screen and (max-width: 1045px) {
+  .profile_container {
+    gap: 20px;
+    flex-wrap: wrap;
+    height: 100vh;
+    flex-direction: column;
+  }
+  .user_photo {
+    width: 100px;
+    height: 100px;
+  }
+  .profile_left_content p {
+    font-size: 1rem;
+    padding: 25px;
+  }
+  .profile_left_content_ele_svg {
+    font-size: 1rem;
+    padding: 25px;
+  }
+}
+
+@media screen and (max-width: 824px) {
+  .profile_left_content {
+    gap: 0;
+  }
+  .profile_left_content_w_i {
+    gap: 0;
+  }
+  .profile_container {
+    flex-direction: row;
+    gap: 0;
+  }
+  .profile_right_content {
+    flex-direction: row;
+    margin-top: 0;
+  }
+}
+
+@media screen and (max-width: 586px) {
+  .profile_left_content p {
+    font-size: 0.7rem;
+    padding: 12px;
+  }
+  .profile_left_content_ele_svg {
+    font-size: 0.7rem;
+    padding: 9px;
+  }
+  .profile_right_content p {
+    font-size: 1rem;
+  }
+  .profile_right_content p .ele_svg {
+    font-size: 1rem;
+  }
+  .profile_right_content {
+    gap: 2px;
+  }
+  .profile_container {
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    padding-left: 20px;
+    gap: 20px;
+  }
 }
