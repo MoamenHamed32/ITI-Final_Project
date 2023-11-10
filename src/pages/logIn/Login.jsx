@@ -1,18 +1,9 @@
 import { Stack } from "@mui/material";
-import { userCol, auth } from "../../config/firebase/firebase";
-import {
-  useSignInWithEmailAndPassword,
-  useAuthState,
-} from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import { useEffect, useMemo } from "react";
-import { useCollectionData } from "react-firebase-hooks/firestore";
-import { query, where } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
-  const [userAuth] = useAuthState(auth);
-  const [signInWithEmailAndPassword, user, loading, error] =
-    useSignInWithEmailAndPassword(auth);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -20,22 +11,8 @@ export default function Login() {
     formState: { errors },
   } = useForm();
 
-  const onSubmitForm = (data) => {
-    signInWithEmailAndPassword(data.email, data.password);
-  };
+  const onSubmitForm = (data) => {};
 
-  const isUserExist = useMemo(
-    () => user && query(userCol, where("uid", "==", user.user.uid)),
-    [user]
-  );
-  const [users] = useCollectionData(isUserExist);
-
-  useEffect(() => {
-    if (!!user && !error && !!users && users.length > 0) {
-      console.log("user loginin", user);
-      console.log(users);
-    }
-  }, [user, error]);
   return (
     <form
       className="p-3 md:p-10 bg-white w-1/2 m-auto mt-24 "
@@ -68,13 +45,23 @@ export default function Login() {
           style={{ background: "#efefef" }}
           {...register("password", { required: true })}
         />
+
         <button
           type="submit"
-          style={{ background: "#C87065", marginTop: "40px" }}
+          style={{ background: "#C87065", margin: "40px auto 0" }}
           className="text-white px-7 py-2 text-xs sm:text-sm md:text-base"
         >
           LOGIN
         </button>
+        <p style={{ margin: "20px auto" }}>
+          Already have an account ?!
+          <a
+            className="text-blue-700 font-bold cursor-pointer underline"
+            onClick={() => navigate("/signup")}
+          >
+            Sign Up
+          </a>
+        </p>
       </Stack>
     </form>
   );

@@ -1,16 +1,16 @@
 import { useForm } from "react-hook-form";
 import { Stack } from "@mui/material";
 import SignupWithGmail from "../../Components/signupGmail/SignupWithGmail";
-import Logout from "../../Components/logout/Logout";
 import {
   useCreateUserWithEmailAndPassword,
   useAuthState,
 } from "react-firebase-hooks/auth";
 import { addDoc } from "firebase/firestore";
 import { userCol, auth } from "../../config/firebase/firebase";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { signup } from "../../Redux/Store/auth-slice";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const myPc = {
   monitor: "",
@@ -34,8 +34,8 @@ const myPc = {
 };
 
 export default function Signup() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [userInfo, setUserInfo] = useState();
   const [userAuth] = useAuthState(auth);
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
@@ -48,12 +48,12 @@ export default function Signup() {
 
   useEffect(() => {
     if (!error && userAuth && user) {
-      console.log("inside email add doc");
-      console.log(" watshhhhh", watch);
+      console.log("new acc with email@pass has been created");
       const newUser = {
         uid: userAuth?.uid,
-        photoURL: userInfo?.photoURL || "",
-        displayName: userInfo?.displayName || "",
+        photoURL: watch("photoURL") || "",
+        displayName: watch("displayName") || "",
+        phoneNumber: watch("phoneNumber") || "",
         email: userAuth?.email,
         wishlist: [],
         cart: [],
@@ -65,11 +65,9 @@ export default function Signup() {
   }, [userAuth, error]);
 
   const onSubmitForm = (data) => {
-    // console.log(data);
-    setUserInfo(data);
-
     createUserWithEmailAndPassword(data.email, data.password);
   };
+
   return (
     <form
       className="p-3 md:p-10 bg-white w-1/2 m-auto mt-24 "
@@ -119,6 +117,7 @@ export default function Signup() {
             className="w-full p-3 pl-3 outline-none text-neutral-400 text-xs md:text-base"
             placeholder="Your Phone"
             style={{ background: "#efefef" }}
+            {...register("phoneNumber")}
           />
           <input
             className="w-full p-3 pl-3 outline-none text-neutral-400 text-xs md:text-base"
@@ -128,16 +127,22 @@ export default function Signup() {
         </div>
         <button
           type="submit"
-          style={{ background: "#C87065", marginTop: "40px" }}
+          style={{ background: "#C87065", margin: "40px auto 0" }}
           className="text-white px-7 py-2 text-xs sm:text-sm md:text-base"
+          disabled={loading}
         >
-          SIGNUP
+          {!loading ? "SIGNUP" : "loading ..."}
         </button>
-
+        <p style={{ margin: "20px auto" }}>
+          Already have an account ?!
+          <a
+            className="text-blue-700 font-bold cursor-pointer underline"
+            onClick={() => navigate("/login")}
+          >
+            LogIn
+          </a>
+        </p>
         <SignupWithGmail />
-        <br />
-        <br />
-        <Logout />
       </Stack>
     </form>
   );

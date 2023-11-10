@@ -37,12 +37,14 @@ function SignupWithGmail() {
   );
   const [users] = useCollectionData(isUserExist);
   useEffect(() => {
+    console.log("user", user);
     if (!!user && !!users && users.length === 0) {
-      console.log("acc with Gmail has been created");
+      console.log("new acc with Gmail has been created");
       const newUser = {
         uid: user?.uid,
         photoURL: user?.photoURL,
         displayName: user?.displayName,
+        phoneNumber: user?.phoneNumber,
         wishlist: [],
         cart: [],
         myPc: myPc,
@@ -58,10 +60,17 @@ function SignupWithGmail() {
     //   dispatch(signup({ token: user.accessToken, user: users[0] }));
     // }
   }, [user, users]);
-
   return (
-    <button type="button" onClick={() => signInWithGoogle()}>
-      sign up with google
+    <button
+      type="button"
+      onClick={() => signInWithGoogle()}
+      className="w-4/5 flex justify-center items-center rounded-2xl  shadow-lg hover:shadow-xl bg-slate-400 "
+      style={{ margin: "auto" }}
+    >
+      <figure className="w-14">
+        <img src="/imgs/prand/gmail-1.png" alt="" className="w-full" />
+      </figure>
+      <span className="font-semibold">Sign Up With Google</span>
     </button>
   );
 }

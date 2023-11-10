@@ -15,18 +15,15 @@ import SearchResults from "./pages/searchResults/SearchResults";
 import Shop from "./pages/shop/Shop";
 import Signup from "./pages/signup/Signup";
 import WishList from "./pages/wishList/WishList";
-import { Provider, useSelector } from "react-redux";
+import { Provider } from "react-redux";
 import store from "./Redux/Store/store";
 
 function App() {
-  const reduxState = useSelector((state) => state);
-
-  console.log("reduxState", reduxState);
   return (
     <Provider store={store}>
       <Router>
         <Header />
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-screen gap-9">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/profile" element={<Profile />} />
