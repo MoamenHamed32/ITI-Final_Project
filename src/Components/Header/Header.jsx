@@ -15,23 +15,32 @@ import { NavLink, Link } from "react-router-dom";
 import CloseIcon from "@mui/icons-material/Close";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import styles from "./header.module.css";
 import Logout from "../../Components/logout/Logout";
+import { useSelector } from "react-redux";
+import styles from "./header.module.css";
 
 const drawerWidth = 240;
 
-const navItems = [
-  { label: "Home", path: "/" },
-  { label: "Login", path: "/login" },
-  { label: "My PC", path: "/my-pc" },
-  { label: "Wishlist", path: "/wishlist" },
-  { label: "Cart", path: "/cart" },
-];
-
 const Header = (props) => {
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  let navItems = [];
+  if (!isLoggedIn) {
+    navItems = [
+      { label: "Home", path: "/" },
+      { label: "Login", path: "/login" },
+      // { label: "Sign Up", path: "/sign-up" },
+    ];
+  } else {
+    navItems = [
+      { label: "Home", path: "/" },
+      { label: "My PC", path: "/my-pc" },
+      { label: "Wishlist", path: "/wishlist" },
+      { label: "Cart", path: "/cart" },
+      { label: "logout" },
+    ];
+  }
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
@@ -45,17 +54,21 @@ const Header = (props) => {
         {navItems.map((item) => (
           <ListItem key={item.label} disablePadding>
             <ListItemButton sx={{ textAlign: "center" }}>
-              <NavLink
-                key={item.label}
-                className={styles.nav_links}
-                to={item.path}
-              >
-                {item.label !== "Wishlist" &&
-                  item.label !== "Cart" &&
-                  item.label}
-                {item.label === "Wishlist" && <FavoriteIcon />}
-                {item.label === "Cart" && <ShoppingCartIcon />}
-              </NavLink>
+              {item.label === "logout" ? (
+                <Logout />
+              ) : (
+                <NavLink
+                  key={item.label}
+                  className={styles.nav_links}
+                  to={item.path}
+                >
+                  {item.label !== "Wishlist" &&
+                    item.label !== "Cart" &&
+                    item.label}
+                  {item.label === "Wishlist" && <FavoriteIcon />}
+                  {item.label === "Cart" && <ShoppingCartIcon />}
+                </NavLink>
+              )}
             </ListItemButton>
           </ListItem>
         ))}
@@ -97,20 +110,23 @@ const Header = (props) => {
               display: { xs: "none", sm: "flex" },
             }}
           >
-            {navItems.map((item) => (
-              <NavLink
-                key={item.label}
-                className={styles.nav_links}
-                to={item.path}
-              >
-                {item.label !== "Wishlist" &&
-                  item.label !== "Cart" &&
-                  item.label}
-                {item.label === "Wishlist" && <FavoriteIcon />}
-                {item.label === "Cart" && <ShoppingCartIcon />}
-              </NavLink>
-            ))}
-            <Logout />
+            {navItems.map((item) =>
+              item.label === "logout" ? (
+                <Logout key={item.label} />
+              ) : (
+                <NavLink
+                  key={item.label}
+                  className={styles.nav_links}
+                  to={item.path}
+                >
+                  {item.label !== "Wishlist" &&
+                    item.label !== "Cart" &&
+                    item.label}
+                  {item.label === "Wishlist" && <FavoriteIcon />}
+                  {item.label === "Cart" && <ShoppingCartIcon />}
+                </NavLink>
+              )
+            )}
           </Box>
         </Toolbar>
       </AppBar>

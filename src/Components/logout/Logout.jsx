@@ -7,15 +7,16 @@ import { logout } from "../../Redux/Store/auth-slice";
 function Logout() {
   const dispatch = useDispatch();
   const [signOut] = useSignOut(auth);
+
   return (
     <button
-      type="button"
       onClick={() => {
         signOut();
         dispatch(logout());
       }}
+      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
     >
-      logOut
+      Logout
     </button>
   );
 }
