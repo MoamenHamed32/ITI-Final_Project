@@ -1,43 +1,26 @@
-import { useState } from "react";
 import PageBanner from "../../Components/pageBanner/PageBanner";
-import PorductCardRows from "../../Components/productCardRows/ProductCardRows";
 import AddIcon from "@mui/icons-material/Add";
 import { Link } from "react-router-dom";
 import style from "./MyPc.module.css";
-import SimpleDialog from "../../Components/myPcPopup/myPcPopup";
-import { useDispatch, useSelector } from "react-redux";
-import { openPopup, closePopup } from "../../Redux/Slices/myPcPopupSlice";
+import { useSelector } from "react-redux";
+import ProductCardRows from "../../Components/productCardRows/ProductCardRows";
 
 export default function MyPc() {
-  const popupState = useSelector((state) => state.open.open);
   const myPcData = useSelector((state) => state.myPcData.myPcData);
-  const dispatch = useDispatch();
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const handleClickOpen = (value) => {
-    dispatch(openPopup());
-    setSelectedCategory(value);
-  };
-  const handleClose = () => {
-    dispatch(closePopup());
-  };
+  const myPcCart = useSelector((state) => state.myPcCart.myPcCart);
 
   return (
     <section id="my-pc">
       <PageBanner page={"Collect Your PC"} />
       <div className="container mx-auto">
-        <SimpleDialog
-          open={popupState}
-          selectedValue={selectedCategory}
-          onClose={handleClose}
-        />
         <div className={style.pc_parts}>
           <div className={style.left}>
             <figure>
               <img src="/public/imgs/pc parts/Speakers.png" alt="" />
               {myPcData.speaker === "" ? (
-                <button onClick={() => handleClickOpen("speaker")}>
+                <Link to="/my-pc-select/speaker">
                   <AddIcon />
-                </button>
+                </Link>
               ) : (
                 <span className={style.selectedProduct}>
                   {myPcData.speaker}
@@ -50,9 +33,9 @@ export default function MyPc() {
               <img src="/public/imgs/pc parts/Monitor.png" alt="" />
 
               {myPcData.monitor === "" ? (
-                <button onClick={() => handleClickOpen("monitor")}>
+                <Link to="/my-pc-select/monitor">
                   <AddIcon />
-                </button>
+                </Link>
               ) : (
                 <span className={style.selectedProduct}>
                   {myPcData.monitor}
@@ -64,9 +47,9 @@ export default function MyPc() {
                 <img src="/public/imgs/pc parts/Keyboard.png" alt="" />
 
                 {myPcData.keyboard === "" ? (
-                  <button onClick={() => handleClickOpen("keyboard")}>
+                  <Link to="/my-pc-select/keyboard">
                     <AddIcon />
-                  </button>
+                  </Link>
                 ) : (
                   <span className={style.selectedProduct}>
                     {myPcData.keyboard}
@@ -77,12 +60,9 @@ export default function MyPc() {
                 <img src="/public/imgs/pc parts/Mouse.png" alt="" />
 
                 {myPcData.mouse === "" ? (
-                  <button
-                    className={style.mouse_add}
-                    onClick={() => handleClickOpen("mouse")}
-                  >
+                  <Link className={style.mouse_add} to="/my-pc-select/mouse">
                     <AddIcon />
-                  </button>
+                  </Link>
                 ) : (
                   <span className={style.selectedProduct}>
                     {myPcData.mouse}
@@ -96,9 +76,9 @@ export default function MyPc() {
               <img src="/public/imgs/pc parts/Case.png" alt="" />
 
               {myPcData.caseHardWare.case === "" ? (
-                <button onClick={() => handleClickOpen("case")}>
+                <Link to="/my-pc-select/case-hardware">
                   <AddIcon />
-                </button>
+                </Link>
               ) : (
                 <span className={style.selectedProduct}>
                   {myPcData.caseHardWare.case}
@@ -107,20 +87,22 @@ export default function MyPc() {
             </figure>
           </div>
         </div>
-        <div className={style.added}>
-          <h2>Your PC</h2>
-          <div className="products flex flex-wrap w-100">
-            <PorductCardRows />
-            <PorductCardRows />
-            <PorductCardRows />
+        {myPcCart.length > 0 && (
+          <div className={style.added}>
+            <h2>Your PC</h2>
+            <div className="products flex flex-wrap w-100">
+              {myPcCart.map((product) => {
+                return <ProductCardRows key={product.id} product={product} />;
+              })}
+            </div>
+            <div className={style.checkout}>
+              <Link>Checkout</Link>
+              <span className={style.total_price}>
+                <span>Total Price</span>$ 105.20
+              </span>
+            </div>
           </div>
-          <div className={style.checkout}>
-            <Link>Checkout</Link>
-            <span className={style.total_price}>
-              <span>Total Price</span>$ 105.20
-            </span>
-          </div>
-        </div>
+        )}
       </div>
     </section>
   );

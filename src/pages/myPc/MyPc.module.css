@@ -26,7 +26,7 @@ img {
   gap: 2rem;
 }
 
-.pc_parts figure button {
+.pc_parts figure a {
   position: absolute;
   top: 40%;
   left: 38%;
@@ -41,12 +41,12 @@ img {
   transition: 0.3s ease-in-out;
   cursor: pointer;
 }
-.pc_parts figure button svg {
+.pc_parts figure a svg {
   font-size: 3rem;
   color: #fff;
 }
 
-.pc_parts figure button:hover {
+.pc_parts figure a:hover {
   transform: rotate(135deg);
 }
 .mouse_add {

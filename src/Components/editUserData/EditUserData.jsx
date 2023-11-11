@@ -25,7 +25,7 @@ function EditProfile({ user }) {
             <Controller
               name="name"
               control={control}
-              defaultValue={user.name}
+              defaultValue={user.displayName || "add user name"}
               rules={{ required: "Name is required" }}
               render={({ field }) => (
                 <>
@@ -44,7 +44,7 @@ function EditProfile({ user }) {
             <Controller
               name="email"
               control={control}
-              defaultValue={user.email}
+              defaultValue={user.email || "add email"}
               rules={{ required: "Email is required" }}
               render={({ field }) => (
                 <>
@@ -63,7 +63,7 @@ function EditProfile({ user }) {
             <Controller
               name="phone"
               control={control}
-              defaultValue={user.phone}
+              defaultValue={user.phoneNumber || "add a phone number"}
               rules={{ required: "Phone is required" }}
               render={({ field }) => (
                 <>
@@ -82,7 +82,7 @@ function EditProfile({ user }) {
             <Controller
               name="address"
               control={control}
-              defaultValue={user.address}
+              defaultValue={user.address || "add new address"}
               rules={{ required: "Address is required" }}
               render={({ field }) => (
                 <>
@@ -101,7 +101,7 @@ function EditProfile({ user }) {
             <Controller
               name="photo"
               control={control}
-              defaultValue={user.photo}
+              defaultValue={user.photoURL || "add your photo URL"}
               rules={{ required: "Photo is required" }}
               render={({ field }) => (
                 <>
