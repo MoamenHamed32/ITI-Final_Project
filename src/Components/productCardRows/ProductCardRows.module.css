@@ -135,6 +135,7 @@
   color: #666;
 }
 .apply_btn {
+  text-align: center;
   background-color: #c87065;
   border-radius: 2rem;
   width: 25%;

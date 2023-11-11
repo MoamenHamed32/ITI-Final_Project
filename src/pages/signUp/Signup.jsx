@@ -1,37 +1,82 @@
-import { useMemo, useEffect } from "react";
-import { Stack } from "@mui/material";
-import { useCollectionData } from "react-firebase-hooks/firestore";
-import { userCol, auth } from "../../config/firebase/firebase";
+import { addDoc, query, where } from "firebase/firestore";
+import { auth, userCol } from "../../config/firebase/firebase";
 import {
-  useSignInWithGoogle,
   useAuthState,
+  useSignInWithGoogle,
   useSignOut,
 } from "react-firebase-hooks/auth";
-import { addDoc, query, where } from "firebase/firestore";
-export default function Signup() {
-  const [user] = useAuthState(auth);
-  const [signOut] = useSignOut(auth);
-  const [signInWithGoogle] = useSignInWithGoogle(auth);
-  console.log(user);
+import { useEffect, useMemo } from "react";
 
-  const isUserExist = useMemo(
-    () => user && query(userCol, where("uid", "==", user.uid)),
-    [user]
-  );
-  const [users] = useCollectionData(isUserExist);
+import SignupWithGmail from "../../Components/signupGmail/SignupWithGmail";
+import { Stack } from "@mui/material";
+import { signup } from "../../Redux/Store/auth-slice";
+import { useCollectionData } from "react-firebase-hooks/firestore";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { useDispatch } from "react-redux";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+
+const myPc = {
+  monitor: "",
+  mouse: "",
+  keyboard: "",
+  speaker: "",
+  caseHardWare: {
+    case: "",
+    ramOne: "",
+    ramTwo: "",
+    ramThree: "",
+    ramFour: "",
+    vga: "",
+    powerSupply: "",
+    board: "",
+    cpu: "",
+    hardDesk: "",
+    secondaryHardDesk: "",
+    fan: "",
+  },
+};
+
+export default function Signup() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [userAuth] = useAuthState(auth);
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
   useEffect(() => {
-    if (!!user && !!users && users.length === 0) {
-      addDoc(userCol, {
-        uid: user?.uid,
-        photoURL: user?.photoURL,
-        displayName: user?.displayName,
+    if (!error && userAuth && user) {
+      console.log("new acc with email@pass has been created");
+      const newUser = {
+        uid: userAuth?.uid,
+        photoURL: watch("photoURL") || "",
+        displayName: watch("displayName") || "",
+        phoneNumber: watch("phoneNumber") || "",
+        email: userAuth?.email,
         wishlist: [],
         cart: [],
-      });
+        myPc: myPc,
+      };
+      addDoc(userCol, newUser);
+      dispatch(signup({ token: userAuth.accessToken, user: newUser }));
     }
-  }, [user, users]);
+  }, [userAuth, error]);
+
+  const onSubmitForm = (data) => {
+    createUserWithEmailAndPassword(data.email, data.password);
+  };
+
   return (
-    <form className="p-3 md:p-10 bg-white w-1/2 m-auto mt-24 ">
+    <form
+      className="p-3 md:p-10 bg-white w-1/2 m-auto mt-24 "
+      onSubmit={handleSubmit(onSubmitForm)}
+    >
       <Stack
         direction="column"
         justifyContent="center"
@@ -47,27 +92,28 @@ export default function Signup() {
         <input
           className="w-full p-3 pl-3 outline-none text-neutral-400 text-xs md:text-base"
           placeholder="Enter Your Name"
-          required
           style={{ background: "#efefef" }}
+          {...register("displayName", { required: true, maxLength: 20 })}
         />
         <input
           className="w-full p-3 pl-3 outline-none text-neutral-400 text-xs md:text-base"
           placeholder="Enter Your Email"
-          required
           style={{ background: "#efefef" }}
+          {...register("email", { required: true })}
         />
         <input
           className="w-full p-3 pl-3 outline-none text-neutral-400 text-xs md:text-base"
           type="password"
           placeholder="Enter Your Password"
-          required
           style={{ background: "#efefef" }}
+          {...register("password", { required: true })}
         />
         <p>(OPTIONAL)</p>
         <div className="flex flex-col lg:flex-row gap-3">
           <input
             className="w-full p-3 pl-3 outline-none text-neutral-400 text-xs md:text-base"
             placeholder="Your Photo Link"
+            {...register("photoURL")}
             style={{ background: "#efefef" }}
             type="text"
           />
@@ -75,6 +121,7 @@ export default function Signup() {
             className="w-full p-3 pl-3 outline-none text-neutral-400 text-xs md:text-base"
             placeholder="Your Phone"
             style={{ background: "#efefef" }}
+            {...register("phoneNumber")}
           />
           <input
             className="w-full p-3 pl-3 outline-none text-neutral-400 text-xs md:text-base"
@@ -84,15 +131,22 @@ export default function Signup() {
         </div>
         <button
           type="submit"
-          style={{ background: "#C87065", marginTop: "40px" }}
+          style={{ background: "#C87065", margin: "40px auto 0" }}
           className="text-white px-7 py-2 text-xs sm:text-sm md:text-base"
+          disabled={loading}
         >
-          SIGNUP
+          {!loading ? "SIGNUP" : "loading ..."}
         </button>
-        <button onClick={() => signInWithGoogle()}>sign up with google</button>
-        <br />
-        <br />
-        <button onClick={() => signOut()}>logOut</button>
+        <p style={{ margin: "20px auto" }}>
+          Already have an account ?!
+          <a
+            className="text-blue-700 font-bold cursor-pointer underline"
+            onClick={() => navigate("/login")}
+          >
+            LogIn
+          </a>
+        </p>
+        <SignupWithGmail />
       </Stack>
     </form>
   );

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import LockIcon from "@mui/icons-material/Lock";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import styles from "./changePassword.module.css";
