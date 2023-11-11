@@ -7,17 +7,22 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import styles from "./userData.module.css";
 
 const UserData = ({ user }) => {
+  const defaultPhotoURL = "imgs/userIMG.jpg";
   return (
     <div className={styles.profile_container}>
       <div className={styles.profile_left_content}>
-        <img src={user.photo} alt={user.name} className={styles.user_photo} />
+        <img
+          src={user.photoURL || defaultPhotoURL}
+          alt={user.displayName}
+          className={styles.user_photo}
+        />
         <div className={styles.profile_left_content_w_i}>
           <div className={styles.profile_left_content_ele}>
             <div className={styles.profile_left_content_ele_svg}>
               <FaceIcon />
             </div>
             <p>
-              <span> {user.name}</span>
+              <span> {user.displayName || "no user name "}</span>
             </p>
           </div>
           <div className={styles.profile_left_content_ele}>
@@ -25,7 +30,7 @@ const UserData = ({ user }) => {
               <EmailIcon />
             </div>
             <p>
-              <span> {user.email}</span>
+              <span> {user.email || "no email"}</span>
             </p>
           </div>
           <div className={styles.profile_left_content_ele}>
@@ -33,7 +38,7 @@ const UserData = ({ user }) => {
               <PhoneIcon />
             </div>
             <p>
-              <span> {user.phone}</span>
+              <span> {user.phoneNumber || "no phone number"}</span>
             </p>
           </div>
           <div className={styles.profile_left_content_ele}>
@@ -41,7 +46,7 @@ const UserData = ({ user }) => {
               <LocationOnIcon />
             </div>
             <p>
-              <span> {user.address}</span>
+              <span> {user?.address || "no adress"}</span>
             </p>
           </div>
         </div>
@@ -51,13 +56,13 @@ const UserData = ({ user }) => {
           <span className={styles.ele_svg}>
             <FavoriteIcon />
           </span>
-          <span>{user.favorite.length}</span>
+          <span>{user.wishlist.length || "0"}</span>
         </p>
         <p>
           <span className={styles.ele_svg}>
             <ShoppingCartIcon />
           </span>
-          <span>{user.addToCard.length}</span>
+          <span>{user.cart.length || "0"}</span>
         </p>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -16,31 +16,46 @@ import CloseIcon from "@mui/icons-material/Close";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Logout from "../../Components/logout/Logout";
-import { useSelector } from "react-redux";
 import styles from "./header.module.css";
+import { useSelector } from "react-redux";
 
 const drawerWidth = 240;
 
 const Header = (props) => {
+  const currentUser = useSelector((state) => state.auth.currentUser);
+
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  let navItems = [];
-  if (!isLoggedIn) {
-    navItems = [
-      { label: "Home", path: "/" },
-      { label: "Login", path: "/login" },
-      // { label: "Sign Up", path: "/sign-up" },
-    ];
-  } else {
-    navItems = [
-      { label: "Home", path: "/" },
-      { label: "My PC", path: "/my-pc" },
-      { label: "Wishlist", path: "/wishlist" },
-      { label: "Cart", path: "/cart" },
-      { label: "logout" },
-    ];
-  }
+
+  const [navItems, setNavItems] = useState([]);
+
+  useEffect(() => {
+    let newNavItems = [];
+    if (!isLoggedIn) {
+      newNavItems = [
+        { label: "Home", path: "/" },
+        { label: "Shop", path: "/shop" },
+        { label: "Login", path: "/login" },
+        { label: "Sign Up", path: "/signup" },
+        { label: "My PC", path: "/my-pc" },
+        { label: "Wishlist", path: "/wishlist" },
+        { label: "Cart", path: "/cart" },
+      ];
+    } else {
+      newNavItems = [
+        { label: "Home", path: "/" },
+        { label: "Shop", path: "/shop" },
+        { label: "My PC", path: "/my-pc" },
+        { label: "Wishlist", path: "/wishlist" },
+        { label: "Cart", path: "/cart" },
+        { label: "Profile", path: "/profile" },
+        { label: "logout" },
+      ];
+    }
+    setNavItems(newNavItems);
+  }, [isLoggedIn]);
+
   const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
@@ -57,17 +72,33 @@ const Header = (props) => {
               {item.label === "logout" ? (
                 <Logout />
               ) : (
-                <NavLink
-                  key={item.label}
-                  className={styles.nav_links}
-                  to={item.path}
-                >
-                  {item.label !== "Wishlist" &&
-                    item.label !== "Cart" &&
-                    item.label}
-                  {item.label === "Wishlist" && <FavoriteIcon />}
-                  {item.label === "Cart" && <ShoppingCartIcon />}
-                </NavLink>
+                <React.Fragment key={item.label}>
+                  {item.label === "Profile" && isLoggedIn ? (
+                    <NavLink className={styles.nav_links} to={item.path}>
+                      <img
+                        src={currentUser.photoURL || "imgs/userIMG.jpg"}
+                        alt="Profile"
+                        style={{
+                          width: "40px",
+                          height: "40px",
+                          borderRadius: "50%",
+                        }}
+                      />
+                    </NavLink>
+                  ) : (
+                    <NavLink
+                      key={item.label}
+                      className={styles.nav_links}
+                      to={item.path}
+                    >
+                      {item.label !== "Wishlist" &&
+                        item.label !== "Cart" &&
+                        item.label}
+                      {item.label === "Wishlist" && <FavoriteIcon />}
+                      {item.label === "Cart" && <ShoppingCartIcon />}
+                    </NavLink>
+                  )}
+                </React.Fragment>
               )}
             </ListItemButton>
           </ListItem>
@@ -78,7 +109,6 @@ const Header = (props) => {
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
-
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -114,17 +144,35 @@ const Header = (props) => {
               item.label === "logout" ? (
                 <Logout key={item.label} />
               ) : (
-                <NavLink
-                  key={item.label}
-                  className={styles.nav_links}
-                  to={item.path}
-                >
-                  {item.label !== "Wishlist" &&
-                    item.label !== "Cart" &&
-                    item.label}
-                  {item.label === "Wishlist" && <FavoriteIcon />}
-                  {item.label === "Cart" && <ShoppingCartIcon />}
-                </NavLink>
+                <React.Fragment key={item.label}>
+                  {item.label === "Profile" ? (
+                    isLoggedIn ? (
+                      <NavLink className={styles.nav_links} to={item.path}>
+                        <img
+                          src={currentUser.photoURL || "imgs/userIMG.jpg"}
+                          alt="Profile"
+                          style={{
+                            width: "40px",
+                            height: "40px",
+                            borderRadius: "50%",
+                          }}
+                        />
+                      </NavLink>
+                    ) : (
+                      <NavLink className={styles.nav_links} to={item.path}>
+                        {item.label}
+                      </NavLink>
+                    )
+                  ) : (
+                    <NavLink className={styles.nav_links} to={item.path}>
+                      {item.label !== "Wishlist" &&
+                        item.label !== "Cart" &&
+                        item.label}
+                      {item.label === "Wishlist" && <FavoriteIcon />}
+                      {item.label === "Cart" && <ShoppingCartIcon />}
+                    </NavLink>
+                  )}
+                </React.Fragment>
               )
             )}
           </Box>

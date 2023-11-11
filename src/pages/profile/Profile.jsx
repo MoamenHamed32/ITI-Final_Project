@@ -1,22 +1,13 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import UserData from "../../Components/usersData/UserData";
 import EditUserData from "../../Components/editUserData/EditUserData";
 import ChangePassword from "../../Components/changePass/ChangePassword";
 import { Card, Typography, List, ListItem } from "@material-tailwind/react";
 import styles from "./profile.module.css";
 
-const dummyUserData = {
-  name: "ACE of Hunter",
-  email: "ACEofHunter@example.com",
-  photo:
-    "https://cdn.vectorstock.com/i/preview-1x/08/19/gray-photo-placeholder-icon-design-ui-vector-35850819.jpg",
-  phone: "123-456-7890",
-  address: "123 Main St, City, Country",
-  addToCard: [{}, {}],
-  favorite: [{}, {}, {}],
-};
-
 const Profile = () => {
+  const currentUser = useSelector((state) => state.auth.currentUser);
   const [activeButton, setActiveButton] = useState("UserData");
 
   const handleEditClickUserBtn = () => {
@@ -35,7 +26,7 @@ const Profile = () => {
         <div className="mb-2 p-4">
           <Typography variant="h5" color="blue-gray">
             <span className="text-base md:text-base lg:text-lg xl:text-xl">
-              {dummyUserData.name}
+              {currentUser.displayName}
             </span>
           </Typography>
         </div>
@@ -74,11 +65,11 @@ const Profile = () => {
       </Card>
       <div className={styles.profile_content}>
         {activeButton === "EditUserData" ? (
-          <EditUserData user={dummyUserData} />
+          <EditUserData user={currentUser} />
         ) : activeButton === "ChangePass" ? (
           <ChangePassword />
         ) : (
-          <UserData user={dummyUserData} />
+          <UserData user={currentUser} />
         )}
       </div>
     </div>
