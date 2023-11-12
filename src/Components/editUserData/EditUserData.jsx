@@ -5,13 +5,19 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import styles from "./editUserData.module.css";
+import useUpdateDoc from "../../hooks/useUpdateDoc";
+import { useSelector } from "react-redux";
 
 function EditProfile({ user }) {
   const { handleSubmit, control, setError, formState } = useForm();
   const { errors } = formState;
+  const currentUser = useSelector((state) => state.auth.currentUser);
+  const { update } = useUpdateDoc("users", currentUser._id);
 
+  console.log(user);
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
+    update({ phoneNumber: 1111 });
   };
 
   return (
