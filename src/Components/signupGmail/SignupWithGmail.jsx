@@ -27,7 +27,7 @@ const myPc = {
     fan: "",
   },
 };
-function SignupWithGmail() {
+function SignupWithGmail({ text = "ٍSign Up" }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [user] = useAuthState(auth);
@@ -87,7 +87,7 @@ function SignupWithGmail() {
       <figure className="w-14">
         <img src="/imgs/prand/gmail-1.png" alt="" className="w-full" />
       </figure>
-      <span className="font-semibold">Sign Up With Google</span>
+      <span className="font-semibold">{text} With Google</span>
     </button>
   );
 }

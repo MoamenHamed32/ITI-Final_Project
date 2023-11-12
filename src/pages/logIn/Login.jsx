@@ -1,9 +1,21 @@
 import { Stack } from "@mui/material";
+import { userCol, auth } from "../../config/firebase/firebase";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
+import { useEffect, useMemo } from "react";
+import { useCollectionData } from "react-firebase-hooks/firestore";
+import { getDocs, query, where } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import { signup } from "../../Redux/Store/auth-slice";
+
+import SignupWithGmail from "../../Components/signupGmail/SignupWithGmail";
+import { useDispatch } from "react-redux";
 
 export default function Login() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
   const {
     register,
     handleSubmit,
@@ -11,7 +23,30 @@ export default function Login() {
     formState: { errors },
   } = useForm();
 
-  const onSubmitForm = (data) => {};
+  const onSubmitForm = (data) => {
+    signInWithEmailAndPassword(data.email, data.password);
+  };
+
+  const isUserExist = useMemo(
+    () => user && query(userCol, where("uid", "==", user.user.uid)),
+    [user]
+  );
+
+  const [users] = useCollectionData(isUserExist);
+
+  useEffect(() => {
+    if (!!user && !error && !!users && users.length > 0) {
+      getDocs(isUserExist).then((querySnapshot) => {
+        dispatch(
+          signup({
+            token: user.user.accessToken,
+            user: { _id: querySnapshot.docs[0].id, ...users[0] },
+          })
+        );
+        navigate("/");
+      });
+    }
+  }, [user, error, users]);
 
   return (
     <form
@@ -50,11 +85,12 @@ export default function Login() {
           type="submit"
           style={{ background: "#C87065", margin: "40px auto 0" }}
           className="text-white px-7 py-2 text-xs sm:text-sm md:text-base"
+          disabled={loading}
         >
-          LOGIN
+          {!loading ? "LOGIN" : "loading ..."}
         </button>
         <p style={{ margin: "20px auto" }}>
-          Already have an account ?!
+          Create An Account ?!
           <a
             className="text-blue-700 font-bold cursor-pointer underline"
             onClick={() => navigate("/signup")}
@@ -62,6 +98,7 @@ export default function Login() {
             Sign Up
           </a>
         </p>
+        <SignupWithGmail text="LogIn" />
       </Stack>
     </form>
   );
