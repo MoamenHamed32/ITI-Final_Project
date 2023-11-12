@@ -33,14 +33,14 @@ const authReducer = createSlice({
       localStorage.removeItem("currentToken");
     },
     updateUserGeneral: (state, action) => {
-      // state.currentUser=action.payload.updatedUser
-      // localStorage.setItem(
-      //   "currentUser",
-      //   JSON.stringify(action.payload.updatedUser)
-      // );
+      state.currentUser = action.payload.updatedUser;
+      localStorage.setItem(
+        "currentUser",
+        JSON.stringify(action.payload.updatedUser)
+      );
     },
   },
 });
 
-export const { signup, logout } = authReducer.actions;
+export const { signup, logout, updateUserGeneral } = authReducer.actions;
 export default authReducer.reducer;
