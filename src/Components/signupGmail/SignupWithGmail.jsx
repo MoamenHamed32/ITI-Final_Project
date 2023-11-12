@@ -1,10 +1,11 @@
 import React, { useEffect, useMemo } from "react";
-import { addDoc, query, where } from "firebase/firestore";
+import { addDoc, query, where, getDocs } from "firebase/firestore";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { userCol, auth } from "../../config/firebase/firebase";
 import { useSignInWithGoogle, useAuthState } from "react-firebase-hooks/auth";
 import { signup } from "../../Redux/Store/auth-slice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const myPc = {
   monitor: "",
@@ -27,6 +28,7 @@ const myPc = {
   },
 };
 function SignupWithGmail() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [user] = useAuthState(auth);
   const [signInWithGoogle] = useSignInWithGoogle(auth);
@@ -35,30 +37,45 @@ function SignupWithGmail() {
     () => user && query(userCol, where("uid", "==", user.uid)),
     [user]
   );
+
   const [users] = useCollectionData(isUserExist);
+
+  const addNewDoc = async () => {
+    const newUser = {
+      uid: user?.uid,
+      photoURL: user?.photoURL,
+      displayName: user?.displayName,
+      phoneNumber: user?.phoneNumber,
+      email: user?.email,
+      address: user?.address || null,
+      providedBy: "gmail",
+      wishlist: [],
+      cart: [],
+      myPc: myPc,
+    };
+    const docref = await addDoc(userCol, newUser);
+    dispatch(
+      signup({ token: user.accessToken, user: { _id: docref.id, ...newUser } })
+    );
+  };
+
   useEffect(() => {
     console.log("user", user);
     if (!!user && !!users && users.length === 0) {
       console.log("new acc with Gmail has been created");
-      const newUser = {
-        uid: user?.uid,
-        photoURL: user?.photoURL,
-        displayName: user?.displayName,
-        phoneNumber: user?.phoneNumber,
-        wishlist: [],
-        cart: [],
-        myPc: myPc,
-      };
-
-      addDoc(userCol, newUser);
-      dispatch(signup({ token: user.accessToken, user: newUser }));
+      addNewDoc();
     }
-    // if (!!user && !!users && users.length > 0) {
-    //   console.log("the onther collection", user);
-    //   //user.accessToken
-    //   console.log("the onther collection", users[0]);
-    //   dispatch(signup({ token: user.accessToken, user: users[0] }));
-    // }
+    if (!!user && !!users && users.length > 0) {
+      getDocs(isUserExist).then((querySnapshot) => {
+        dispatch(
+          signup({
+            token: user.accessToken,
+            user: { _id: querySnapshot.docs[0].id, ...users[0] },
+          })
+        );
+        navigate("/");
+      });
+    }
   }, [user, users]);
   return (
     <button

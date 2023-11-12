@@ -46,21 +46,33 @@ export default function Signup() {
     formState: { errors },
   } = useForm();
 
+  const addNewDocument = async () => {
+    const newUser = {
+      uid: userAuth?.uid,
+      photoURL: watch("photoURL") || "",
+      displayName: watch("displayName") || "",
+      phoneNumber: watch("phoneNumber") || "",
+      address: watch("address") || "",
+      providedBy: "email",
+      email: userAuth?.email,
+      wishlist: [],
+      cart: [],
+      myPc: myPc,
+    };
+    const newDocRef = await addDoc(userCol, newUser);
+    dispatch(
+      signup({
+        token: userAuth.accessToken,
+        user: { _id: newDocRef.id, ...newUser },
+      })
+    );
+    navigate("/");
+  };
+
   useEffect(() => {
     if (!error && userAuth && user) {
       console.log("new acc with email@pass has been created");
-      const newUser = {
-        uid: userAuth?.uid,
-        photoURL: watch("photoURL") || "",
-        displayName: watch("displayName") || "",
-        phoneNumber: watch("phoneNumber") || "",
-        email: userAuth?.email,
-        wishlist: [],
-        cart: [],
-        myPc: myPc,
-      };
-      addDoc(userCol, newUser);
-      dispatch(signup({ token: userAuth.accessToken, user: newUser }));
+      addNewDocument();
     }
   }, [userAuth, error]);
 
@@ -121,8 +133,9 @@ export default function Signup() {
           />
           <input
             className="w-full p-3 pl-3 outline-none text-neutral-400 text-xs md:text-base"
-            placeholder="Your Adress"
+            placeholder="Your address"
             style={{ background: "#efefef" }}
+            {...register("address")}
           />
         </div>
         <button
