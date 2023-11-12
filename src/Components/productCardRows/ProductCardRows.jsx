@@ -6,25 +6,54 @@ import AutorenewIcon from "@mui/icons-material/Autorenew";
 import ZoomInIcon from "@mui/icons-material/ZoomIn";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import style from "./ProductCardRows.module.css";
-import { useDispatch } from "react-redux";
-import { closePopup } from "../../Redux/Slices/myPcPopupSlice";
-import { addToPc } from "../../Redux/Slices/myPcDataSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addProduct } from "../../Redux/Slices/myPcCartSlice";
+import { addToPc, addToPcCase } from "../../Redux/Slices/myPcDataSlice";
+import { Link, useParams } from "react-router-dom";
 
 export default function ProductCardRows({ product, type, dataCatigory }) {
+  const myPcCart = useSelector((state) => state.myPcCart.myPcCart);
+
   const dispatch = useDispatch();
 
   const ratingChanged = (newRating) => {
     console.log(newRating);
   };
+  const { category } = useParams();
+  const hardwareItems = [
+    "case",
+    "board",
+    "powerSupply",
+    "fan",
+    "cpu",
+    "gpu",
+    "hardDesk",
+    "ramOne",
+    "ramTwo",
+    "ramThree",
+    "ramFour",
+  ];
 
-  const handleApply = () => {
-    dispatch(closePopup());
-    dispatch(
-      addToPc({
-        catigory: dataCatigory,
-        productTitle: product.title,
-      })
-    );
+  const handleApply = (id) => {
+    let dublicated = myPcCart.find((product) => product.id == id);
+    if (!dublicated) {
+      dispatch(addProduct(product));
+      if (hardwareItems.includes(category)) {
+        dispatch(
+          addToPcCase({
+            catigory: dataCatigory,
+            productTitle: product.title,
+          })
+        );
+      } else {
+        dispatch(
+          addToPc({
+            catigory: dataCatigory,
+            productTitle: product.title,
+          })
+        );
+      }
+    }
   };
 
   return (
@@ -37,7 +66,7 @@ export default function ProductCardRows({ product, type, dataCatigory }) {
         <div className={style.product_details}>
           <div className={style.product_info}>
             <div className={style.title_rate}>
-              <h3 className={style.product_title}>Product Title</h3>
+              <h3 className={style.product_title}>{product.title}</h3>
               <div className={style.product_rating}>
                 <ReactStars
                   count={5}
@@ -63,9 +92,23 @@ export default function ProductCardRows({ product, type, dataCatigory }) {
             If you are going to use a passage of Lorem Ipsum.
           </p>
           {type === "mypc" ? (
-            <button onClick={handleApply} className={style.apply_btn}>
-              Apply Now
-            </button>
+            hardwareItems.includes(category) ? (
+              <Link
+                to="/my-pc-select/case-hardware"
+                onClick={() => handleApply(product.id)}
+                className={style.apply_btn}
+              >
+                Apply Now
+              </Link>
+            ) : (
+              <Link
+                to="/my-pc"
+                onClick={() => handleApply(product.id)}
+                className={style.apply_btn}
+              >
+                Apply Now
+              </Link>
+            )
           ) : (
             <div className={style.actions}>
               <div className={style.quantity}>

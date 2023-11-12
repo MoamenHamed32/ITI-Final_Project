@@ -1,7 +1,7 @@
 import PageBanner from './../../Components/pageBanner/PageBanner.jsx';
 import ProductList from '../../Components/productList/ProductList.jsx';
 import { useState } from 'react';
-import './shop.css';
+import styles from './shop.module.css';
 import Pagination from '../../Components/Pagination/Pagination.jsx';
 export default function Shop() {
   const [currentPage,setCurrentPage]=useState(1);
@@ -13,12 +13,12 @@ export default function Shop() {
   // const finishIndex= currentPage* productPerPage;
   // const displayedProducts= products.slice(startIndex,finishIndex);
   return (
-    <div className="shop-page">
+    <div className={styles.shop_page}>
       <PageBanner page={'Shop'} />
-      <div className="shop-content">
+      <div className={styles.shop_content}>
         <div className="container">
-          <div className="filter-section flex justify-between">
-            <ul className="filter-options flex justify-start">
+          <div className={styles.filter_section}>
+            <ul className={`${styles.filter_options} flex justify-start`}>
               <li>categories</li>
               <li>price</li>
               <li>color</li>

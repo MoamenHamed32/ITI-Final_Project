@@ -1,13 +1,16 @@
-.filter-section {
+.shop_content {
+  width: 90%;
+  margin: 0 auto;
+}
+.filter_section {
   background-color: #fff;
   padding: 0.5rem 1.5rem;
   text-transform: capitalize;
-  
 }
-.filter-options {
+.filter_options {
   color: #999999;
 }
-.filter-options li {
+.filter_options li {
   cursor: pointer;
   margin-right: 0.5rem;
 }
@@ -50,9 +53,7 @@ a {
   line-height: 30px;
 }
 .zmdi {
-  /* display: inline-block; */
   font: normal normal normal 14px/1 'Material-Design-Iconic-Font';
-  /* font-size: inherit; */
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
