@@ -20,6 +20,8 @@ const Profile = () => {
     setActiveButton("ChangePass");
   };
 
+  console.log(currentUser.providedBy);
+
   return (
     <div className={styles.profile_container}>
       <Card className="h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 flex-col">
@@ -41,32 +43,38 @@ const Profile = () => {
           >
             User Data
           </ListItem>
-          <ListItem
-            className={
-              activeButton === "EditUserData"
-                ? styles.active_select
-                : styles.not_active_select
-            }
-            onClick={handleEditClickEditBtn}
-          >
-            Edit User Data
-          </ListItem>
-          <ListItem
-            className={
-              activeButton === "ChangePass"
-                ? styles.active_select
-                : styles.not_active_select
-            }
-            onClick={handleEditClickChangePassBtn}
-          >
-            Change Password
-          </ListItem>
+          {currentUser.providedBy !== "gmail" && (
+            <>
+              <ListItem
+                className={
+                  activeButton === "EditUserData"
+                    ? styles.active_select
+                    : styles.not_active_select
+                }
+                onClick={handleEditClickEditBtn}
+              >
+                Edit User Data
+              </ListItem>
+              <ListItem
+                className={
+                  activeButton === "ChangePass"
+                    ? styles.active_select
+                    : styles.not_active_select
+                }
+                onClick={handleEditClickChangePassBtn}
+              >
+                Change Password
+              </ListItem>
+            </>
+          )}
         </List>
       </Card>
       <div className={styles.profile_content}>
-        {activeButton === "EditUserData" ? (
+        {activeButton === "EditUserData" &&
+        currentUser.providedBy !== "gmail" ? (
           <EditUserData user={currentUser} />
-        ) : activeButton === "ChangePass" ? (
+        ) : activeButton === "ChangePass" &&
+          currentUser.providedBy !== "gmail" ? (
           <ChangePassword />
         ) : (
           <UserData user={currentUser} />

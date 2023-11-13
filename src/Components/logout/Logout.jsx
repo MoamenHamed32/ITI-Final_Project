@@ -1,4 +1,3 @@
-import React from "react";
 import { auth } from "../../config/firebase/firebase";
 import { useSignOut } from "react-firebase-hooks/auth";
 import { useDispatch } from "react-redux";
@@ -14,7 +13,6 @@ function Logout() {
       onClick={() => {
         signOut();
         dispatch(logout());
-        window.location.href = "/";
       }}
       className={styles.logout_btn}
     >
