@@ -1,13 +1,11 @@
-import ReactStars from "react-rating-stars-component";
-
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import AutorenewIcon from "@mui/icons-material/Autorenew";
-import ZoomInIcon from "@mui/icons-material/ZoomIn";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-
+import ReactStars from "react-rating-stars-component";
+import ZoomInIcon from "@mui/icons-material/ZoomIn";
 import style from "./ProductCardCols.module.css";
 
-export default function ProductCardCols() {
+export default function ProductCardCols({ product }) {
   const ratingChanged = (newRating) => {
     console.log(newRating);
   };
@@ -16,14 +14,16 @@ export default function ProductCardCols() {
       <figure className={style.product_img}>
         <span className={style.product_status}>New</span>
         <div className={style.product_prices}>
-          <h3 className={style.product_price}>$ 56.20</h3>
+          <h3 className={style.product_price}>$ {product.price}</h3>
         </div>
-        <img src="/imgs/cards/1.png" alt="" />
+        <img src={product.image} alt="" />
       </figure>
       <div className={style.product_details}>
         <div className={style.product_info}>
           <div className={style.title_rate}>
-            <h3 className={style.product_title}>Product Title</h3>
+            <h3 className={style.product_title}>
+              {product.title.slice(0, 15)}
+            </h3>
             <div className={style.product_rating}>
               <ReactStars
                 count={5}
@@ -32,7 +32,7 @@ export default function ProductCardCols() {
                 color="#d9d9d9"
                 activeColor="#C87065"
                 isHalf={true}
-                value={2.5}
+                value={(product.rating_count / 100) * 5}
               />
             </div>
           </div>
