@@ -14,6 +14,7 @@ function Logout() {
       onClick={() => {
         signOut();
         dispatch(logout());
+        window.location.href = "/";
       }}
       className={styles.logout_btn}
     >
