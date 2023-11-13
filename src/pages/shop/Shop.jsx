@@ -6,7 +6,7 @@ import Pagination from "../../Components/Pagination/Pagination.jsx";
 import ProductList from "../../Components/productList/ProductList.jsx";
 import styles from "./shop.module.css";
 
-const catigories = [
+const categories = [
   "All",
   "Monitor",
   "Mouse",
@@ -31,13 +31,13 @@ export default function Shop() {
   // const displayedProducts= products.slice(startIndex,finishIndex);
 
   const [isActive, setIsActive] = useState(false);
-  const widgetRef = useRef(null);
+  const widgetCatRef = useRef(null);
+  const widgetPriceRef = useRef(null);
   const [categoryVal, setCategoryVal] = useState("");
 
   const handleCategoryBtn = () => {
-    widgetRef.current.classList.toggle("active");
+    widgetCatRef.current.classList.toggle("active");
     setIsActive(!isActive);
-    console.log(widgetRef.current);
   };
 
   const handleListVal = (event) => {
@@ -46,7 +46,7 @@ export default function Shop() {
     setIsActive(false);
   };
 
-  const catigoriesList = catigories.map((cat, idx) => (
+  const categoriesList = categories.map((cat, idx) => (
     <li onClick={handleListVal} key={idx}>
       {cat}
     </li>
@@ -69,15 +69,15 @@ export default function Shop() {
                   categories
                 </button>
                 <div
-                  ref={widgetRef}
+                  ref={widgetCatRef}
                   className={
                     isActive
-                      ? `${styles.widget} ${styles.widget_categories} ${styles.active} absolute z-50 bg-white pt-5`
+                      ? `${styles.widget} ${styles.widget_categories} block absolute z-50 bg-white pt-5`
                       : `${styles.widget} ${styles.widget_categories} absolute z-50 bg-white pt-5`
                   }
                 >
                   <h4 className="uppercase font-bold text-black">Categories</h4>
-                  <ul className="list-none">{catigoriesList}</ul>
+                  <ul className="list-none">{categoriesList}</ul>
                 </div>
               </li>
               <li>
