@@ -14,6 +14,14 @@
   cursor: pointer;
   margin-right: 0.5rem;
 }
+
+.filter_options li:hover > button {
+  color: #c8a165;
+}
+
+.filter_options li button.active {
+  color: #c8a165;
+}
 .pagination {
   background: #fff none repeat scroll 0 0;
   display: block;
@@ -40,8 +48,9 @@ ul {
   line-height: 30px;
   padding: 0 6px;
 }
-::before, a {
-  transition: all .3s ease 0s;
+::before,
+a {
+  transition: all 0.3s ease 0s;
 }
 a {
   text-decoration: none;
@@ -53,13 +62,39 @@ a {
   line-height: 30px;
 }
 .zmdi {
-  font: normal normal normal 14px/1 'Material-Design-Iconic-Font';
+  font: normal normal normal 14px/1 "Material-Design-Iconic-Font";
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-::before, a {
-  transition: all .3s ease 0s;
+::before,
+a {
+  transition: all 0.3s ease 0s;
 }
 
+.widget {
+  width: 290px;
+  border: 1px solid;
+  margin-top: 10px;
+  display: none;
+  transition: 0.5s;
+}
 
+.widget h4,
+.widget ul {
+  padding: 1.25rem;
+}
+
+.widget h4 {
+  border-bottom: 2px solid #f6f6f6;
+  padding-bottom: 1.25rem;
+  padding-top: 0;
+}
+
+.widget li:hover {
+  color: #c8a165;
+}
+
+/* .widget.active {
+  display: block !important;
+} */
