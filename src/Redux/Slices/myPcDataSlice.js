@@ -14,7 +14,7 @@ const initialState = {
       ramFour: "",
       gpu: "",
       powerSupply: "",
-      board: "",
+      motherboard: "",
       cpu: "",
       hardDesk: "",
       secondaryHardDesk: "",

@@ -9,13 +9,16 @@ import ProductCardRows from "../../Components/productCardRows/ProductCardRows";
 import CaseList from "../../Components/CaseList/CaseList";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useSelector } from "react-redux";
+import { productsCol } from "../../config/firebase/firebase";
+import { useCollectionData } from "react-firebase-hooks/firestore";
 
 export default function myPcSelect() {
   const myPcData = useSelector((state) => state.myPcData.myPcData);
-  const { category } = useParams();
+  let { category } = useParams();
+
   const hardwareItems = [
     "case",
-    "board",
+    "motherboard",
     "powerSupply",
     "fan",
     "cpu",
@@ -26,37 +29,14 @@ export default function myPcSelect() {
     "ramThree",
     "ramFour",
   ];
+  const [products] = useCollectionData(productsCol);
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     console.log(data);
   };
-  const products = [
-    {
-      id: 1,
-      title: "product 1",
-      desc: "There are many variations of passages of Lorem Ipsum available, but the majority have be suffered alteration in some form, by injected humou or randomised words which donot look even slightly believable. If you are going to use a passage of Lorem Ipsum.",
-      price: 56.2,
-      oldPrice: 96.2,
-      rate: 27,
-    },
-    {
-      id: 2,
-      title: "product 2",
-      desc: "There are many variations of passages of Lorem Ipsum available, but the majority have be suffered alteration in some form, by injected humou or randomised words which donot look even slightly believable. If you are going to use a passage of Lorem Ipsum.",
-      price: 56.2,
-      oldPrice: 96.2,
-      rate: 27,
-    },
-    {
-      id: 3,
-      title: "product 3",
-      desc: "There are many variations of passages of Lorem Ipsum available, but the majority have be suffered alteration in some form, by injected humou or randomised words which donot look even slightly believable. If you are going to use a passage of Lorem Ipsum.",
-      price: 56.2,
-      oldPrice: 96.2,
-      rate: 27,
-    },
-  ];
+
   console.log(myPcData);
+  console.log(products);
   return (
     <section id="mypc_select">
       <PageBanner page={category} />
@@ -90,14 +70,25 @@ export default function myPcSelect() {
             </form>
           </div>
           <List className={style.products_list} sx={{ pt: 0 }}>
-            {products.map((product) => (
-              <ProductCardRows
-                key={product.id}
-                product={product}
-                type={"mypc"}
-                dataCatigory={category}
-              />
-            ))}
+            {products?.map((product) =>
+              ["ramOne", "ramTwo", "ramThree", "ramFour"].includes(category)
+                ? product.category === "memory" && (
+                    <ProductCardRows
+                      key={product.id}
+                      product={product}
+                      type={"mypc"}
+                      dataCatigory={category}
+                    />
+                  )
+                : product.category === category && (
+                    <ProductCardRows
+                      key={product.id}
+                      product={product}
+                      type={"mypc"}
+                      dataCatigory={category}
+                    />
+                  )
+            )}
           </List>
         </div>
       )}

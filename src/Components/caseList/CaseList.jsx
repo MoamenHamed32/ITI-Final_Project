@@ -29,13 +29,13 @@ export default function CaseList() {
           <figure>
             <img src="/imgs/pc parts/Board.png" alt="" />
 
-            {myPcData.caseHardWare.board === "" ? (
-              <Link to="/my-pc-select/board">
+            {myPcData.caseHardWare.motherboard === "" ? (
+              <Link to="/my-pc-select/motherboard">
                 <AddIcon />
               </Link>
             ) : (
               <span className={style.selectedProduct}>
-                {myPcData.caseHardWare.board}
+                {myPcData.caseHardWare.motherboard}
               </span>
             )}
             <h2 className={style.category_title}>Board</h2>

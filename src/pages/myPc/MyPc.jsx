@@ -4,11 +4,19 @@ import { Link } from "react-router-dom";
 import style from "./MyPc.module.css";
 import { useSelector } from "react-redux";
 import ProductCardRows from "../../Components/productCardRows/ProductCardRows";
+import { useEffect, useState } from "react";
 
 export default function MyPc() {
   const myPcData = useSelector((state) => state.myPcData.myPcData);
   const myPcCart = useSelector((state) => state.myPcCart.myPcCart);
+  const [totalPrice, setTotalPrice] = useState(0);
+  useEffect(() => {
+    myPcCart.map((product) => {
+      setTotalPrice((prev) => prev + product.priceAfterDisc);
+    });
+  }, [myPcCart]);
 
+  console.log(totalPrice);
   return (
     <section id="my-pc">
       <PageBanner page={"Collect Your PC"} />
@@ -75,15 +83,9 @@ export default function MyPc() {
             <figure>
               <img src="/public/imgs/pc parts/Case.png" alt="" />
 
-              {myPcData.caseHardWare.case === "" ? (
-                <Link to="/my-pc-select/case-hardware">
-                  <AddIcon />
-                </Link>
-              ) : (
-                <span className={style.selectedProduct}>
-                  {myPcData.caseHardWare.case}
-                </span>
-              )}
+              <Link to="/my-pc-select/case-hardware">
+                <AddIcon />
+              </Link>
             </figure>
           </div>
         </div>
@@ -98,7 +100,7 @@ export default function MyPc() {
             <div className={style.checkout}>
               <Link>Checkout</Link>
               <span className={style.total_price}>
-                <span>Total Price</span>$ 105.20
+                <span>Total Price</span>$ {totalPrice.toFixed(2)}
               </span>
             </div>
           </div>
