@@ -15,6 +15,7 @@ import SearchResults from "./pages/searchResults/SearchResults";
 import Shop from "./pages/shop/Shop";
 import Signup from "./pages/signup/Signup";
 import WishList from "./pages/wishList/WishList";
+import MyPcSelect from "./pages/myPcSelect/myPcSelect";
 import { Provider } from "react-redux";
 import store from "./Redux/Store/store";
 
@@ -23,7 +24,7 @@ function App() {
     <Provider store={store}>
       <Router>
         <Header />
-        <div className="flex flex-col min-h-screen gap-5">
+        <div className="flex flex-col min-h-screen gap-9">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/profile" element={<Profile />} />
@@ -36,6 +37,7 @@ function App() {
             <Route path="/wishlist" element={<WishList />} />
             <Route path="/create-product" element={<CreateProduct />} />
             <Route path="/my-pc" element={<MyPc />} />
+            <Route path="/my-pc-select/:category" element={<MyPcSelect />} />
           </Routes>
           <Footer />
         </div>

@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import myPcPopupReducer from "../Slices/myPcPopupSlice";
 import myPcDataReducer from "../Slices/myPcDataSlice";
+import myPcCartReducer from "../Slices/myPcCartSlice";
+import authSlice from "./auth-slice";
 
 const store = configureStore({
   reducer: {
-    open: myPcPopupReducer,
+    auth: authSlice,
     myPcData: myPcDataReducer,
+    myPcCart: myPcCartReducer,
   },
 });
 

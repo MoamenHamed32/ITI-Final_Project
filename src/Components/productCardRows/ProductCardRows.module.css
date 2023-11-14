@@ -48,6 +48,10 @@
   font-family: "Bree Serif", serif;
   font-weight: 500;
   font-size: 1.5rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 70%;
 }
 
 .product_rating {
@@ -135,6 +139,7 @@
   color: #666;
 }
 .apply_btn {
+  text-align: center;
   background-color: #c87065;
   border-radius: 2rem;
   width: 25%;

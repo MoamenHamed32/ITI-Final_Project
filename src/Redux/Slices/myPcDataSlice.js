@@ -12,9 +12,9 @@ const initialState = {
       ramTwo: "",
       ramThree: "",
       ramFour: "",
-      vga: "",
+      gpu: "",
       powerSupply: "",
-      board: "",
+      motherboard: "",
       cpu: "",
       hardDesk: "",
       secondaryHardDesk: "",
@@ -30,8 +30,12 @@ export const myPcData = createSlice({
       const { catigory, productTitle } = action.payload;
       state.myPcData[catigory] = productTitle;
     },
+    addToPcCase: (state, action) => {
+      const { catigory, productTitle } = action.payload;
+      state.myPcData.caseHardWare[catigory] = productTitle;
+    },
   },
 });
 
-export const { addToPc } = myPcData.actions;
+export const { addToPc, addToPcCase } = myPcData.actions;
 export default myPcData.reducer;
