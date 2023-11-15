@@ -1,7 +1,11 @@
 import ProductCardCols from "../productCardCols/ProductCardCols";
+import { productsCol } from "../../config/firebase/firebase";
+import { useCollectionData } from "react-firebase-hooks/firestore";
 import styles from "./homeListing.module.css";
 
 const HomeListing = () => {
+  const [products] = useCollectionData(productsCol);
+  const displayedProducts = products ? products.slice(0, 8) : [];
   return (
     <section className={styles.homeListing_container}>
       <h2>blabla</h2>

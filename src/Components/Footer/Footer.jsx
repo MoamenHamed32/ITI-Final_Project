@@ -7,13 +7,12 @@ const Footer = () => {
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
             <Link to="/" className="flex items-center">
-              <img
-                src="https://www.kadencewp.com/wp-content/uploads/2020/10/alogo-2.png"
-                className="h-8 mr-3"
-                alt="FlowBite Logo"
-              />
-              <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                compLogo
+              <img src="imgs/logo.svg" className="h-8 mr-3" alt="..." />
+              <span
+                className="self-center text-lg font-semibold whitespace-nowrap dark:text-white"
+                style={{ color: "rgb(200, 112, 101)" }}
+              >
+                TechTrader
               </span>
             </Link>
           </div>

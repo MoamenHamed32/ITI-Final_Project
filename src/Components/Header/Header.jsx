@@ -131,7 +131,8 @@ const Header = (props) => {
           >
             <figure className={styles.nav_logo}>
               <Link to="/">
-                <h2>Logo</h2>
+                <img className={styles.logo_img} src="imgs/logo.svg" alt=".." />
+                <span className={styles.logo_na}>TechTrader</span>
               </Link>
             </figure>
           </Typography>

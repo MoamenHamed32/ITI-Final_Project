@@ -10,7 +10,7 @@
 .select_warper,
 .textarea_warper {
   display: flex;
-  width: 40%;
+  width: 40vw;
   background-color: #fff;
   padding: 5px;
   border-radius: 25px;
@@ -18,7 +18,7 @@
   transition: all ease-in-out 2s;
 }
 .input_warper:hover {
-  width: 45%;
+  width: 45vw;
 }
 .input_warper label,
 .select_warper label,
@@ -112,4 +112,33 @@ textarea::-webkit-scrollbar-thumb:hover {
 .errorLabel {
   background-color: #e53030 !important;
   color: #fff !important;
+}
+
+@media screen and (max-width: 1024px) {
+  .input_warper,
+  .select_warper,
+  .textarea_warper {
+    width: 60vw;
+  }
+  .input_warper:hover {
+    width: 65vw;
+  }
+}
+@media screen and (max-width: 768px) {
+  .input_warper,
+  .select_warper,
+  .textarea_warper {
+    width: 80vw;
+  }
+  .input_warper:hover {
+    width: 85vw;
+  }
+  .input_warper label,
+  .select_warper label,
+  .textarea_warper label {
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
