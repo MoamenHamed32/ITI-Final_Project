@@ -5,8 +5,8 @@ const Hero = () => {
     <section className={styles.hero_container}>
       <div className={styles.hero}>
         <div className={styles.hero_content}>
-          <h1>companyTitle</h1>
-          <p>company slogan ideas</p>
+          <h1>TechTrader</h1>
+          <p>Tomorrow's Tech, Today's Choices</p>
         </div>
       </div>
     </section>
