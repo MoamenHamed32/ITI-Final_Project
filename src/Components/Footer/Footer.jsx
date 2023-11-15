@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
             <Link to="/" className="flex items-center">
-              <img src="imgs/logo.svg" className="h-8 mr-3" alt="..." />
+              <img src="./imgs/logo.svg" className="h-8 mr-3" alt="..." />
               <span
                 className="self-center text-lg font-semibold whitespace-nowrap dark:text-white"
                 style={{ color: "rgb(200, 112, 101)" }}

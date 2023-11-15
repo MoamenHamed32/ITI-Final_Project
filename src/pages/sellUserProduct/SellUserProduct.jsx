@@ -1,16 +1,26 @@
 import { useForm } from "react-hook-form";
 import PageBanner from "../../Components/pageBanner/PageBanner";
+import { productsCol } from "../../config/firebase/firebase";
+import { useCollectionData } from "react-firebase-hooks/firestore";
+import { addDoc } from "firebase/firestore";
+import { useSelector } from "react-redux";
 import styles from "./sellUserProducts.module.css";
 
 const SellUserProduct = () => {
   const { handleSubmit, register, control, formState } = useForm({
     mode: "onChange",
   });
+  const [products] = useCollectionData(productsCol);
+  const currentUser = useSelector((state) => state.auth.currentUser);
 
   const { isValid, errors } = formState;
 
   const onSubmit = (data) => {
-    console.log(data);
+    addDoc(productsCol, {
+      ...data,
+      owner: currentUser?.uid,
+      id: products.length + 1,
+    });
   };
 
   return (
@@ -42,7 +52,7 @@ const SellUserProduct = () => {
           </div>
           <div className={styles.select_warper}>
             <label className={errors.type && styles.errorLabel}>Type</label>
-            <select {...register("type", { required: true })}>
+            <select {...register("category", { required: true })}>
               <option value="case">Case</option>
               <option value="cpu">CPU</option>
               <option value="internal-hard-drive">Internal Hard Drive</option>
@@ -71,7 +81,7 @@ const SellUserProduct = () => {
             <label className={errors.description && styles.errorLabel}>
               Description
             </label>
-            <textarea {...register("description", { required: true })} />
+            <textarea {...register("userDescription", { required: true })} />
           </div>
           <button type="submit">Create</button>
         </form>
