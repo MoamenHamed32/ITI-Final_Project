@@ -4,7 +4,6 @@ import { useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
 import { productsCol } from "../../config/firebase/firebase";
 
 import PageBanner from "../../Components/pageBanner/PageBanner";
@@ -17,7 +16,6 @@ import List from "@mui/material/List";
 import style from "./myPcSelect.module.css";
 
 export default function MyPcSelect() {
-  const { myPcData } = useSelector((state) => state.myPcData);
   const { category } = useParams();
 
   const hardwareItems = [
@@ -69,9 +67,6 @@ export default function MyPcSelect() {
     return products.filter(filterProducts);
   }, [products, category, searchQuery, error]);
 
-  console.log(myPcData);
-  console.log(products);
-  console.log(filteredProducts);
   return (
     <section id="mypc_select">
       <PageBanner page={category} />
@@ -83,7 +78,10 @@ export default function MyPcSelect() {
             : "/my-pc"
         }
       >
-        <ArrowBackIcon /> Back To My PC
+        <ArrowBackIcon />{" "}
+        {hardwareItems.includes(category)
+          ? "Back To Case Components"
+          : "Back To My PC"}
       </Link>
 
       {category === "case-hardware" ? (

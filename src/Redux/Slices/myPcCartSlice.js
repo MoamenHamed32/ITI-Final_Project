@@ -8,7 +8,6 @@ export const myPcCart = createSlice({
   initialState,
   reducers: {
     addProduct: (state, action) => {
-      console.log(action.payload);
       let dublicated = state.myPcCart.find(
         (product) => product.id == action.payload.id
       );
@@ -25,8 +24,13 @@ export const myPcCart = createSlice({
         });
       }
     },
+    removeFromCart: (state, action) => {
+      state.myPcCart = state.myPcCart.filter(
+        (product) => product.title !== action.payload
+      );
+    },
   },
 });
 
-export const { addProduct } = myPcCart.actions;
+export const { addProduct, removeFromCart } = myPcCart.actions;
 export default myPcCart.reducer;

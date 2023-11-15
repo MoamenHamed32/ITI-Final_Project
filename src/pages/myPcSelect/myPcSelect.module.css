@@ -50,3 +50,17 @@ div:has(> .products_list) {
 .loading {
   margin: 3rem;
 }
+
+.error {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+  font-size: 1.5rem;
+}
+@media screen and (max-width: 640px) {
+  .backToMyPc {
+    font-size: 0.9rem !important;
+  }
+}

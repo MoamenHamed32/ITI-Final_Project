@@ -93,7 +93,6 @@ export default function ProductDetails() {
       }
     });
   };
-  console.log(product?.rating);
   return (
     <section id="product_details">
       <PageBanner page={"Single Product"} />
