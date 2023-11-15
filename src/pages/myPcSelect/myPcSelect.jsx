@@ -1,20 +1,24 @@
 /* eslint-disable react-hooks/rules-of-hooks */
+import { useMemo } from "react";
+
 import { Link, useParams } from "react-router-dom";
-import PageBanner from "../../Components/pageBanner/PageBanner";
-import style from "./myPcSelect.module.css";
-import SearchIcon from "@mui/icons-material/Search";
+import { useCollectionData } from "react-firebase-hooks/firestore";
 import { useForm } from "react-hook-form";
-import List from "@mui/material/List";
+import { useSelector } from "react-redux";
+import { productsCol } from "../../config/firebase/firebase";
+
+import PageBanner from "../../Components/pageBanner/PageBanner";
 import ProductCardRows from "../../Components/productCardRows/ProductCardRows";
 import CaseList from "../../Components/CaseList/CaseList";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { useSelector } from "react-redux";
-import { productsCol } from "../../config/firebase/firebase";
-import { useCollectionData } from "react-firebase-hooks/firestore";
+import CircularProgress from "@mui/material/CircularProgress";
+import List from "@mui/material/List";
 
-export default function myPcSelect() {
-  const myPcData = useSelector((state) => state.myPcData.myPcData);
-  let { category } = useParams();
+import style from "./myPcSelect.module.css";
+
+export default function MyPcSelect() {
+  const { myPcData } = useSelector((state) => state.myPcData);
+  const { category } = useParams();
 
   const hardwareItems = [
     "case",
@@ -29,26 +33,58 @@ export default function myPcSelect() {
     "ramThree",
     "ramFour",
   ];
-  const [products] = useCollectionData(productsCol);
-  const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
+
+  const [products, loading, error] = useCollectionData(productsCol);
+  const { register, watch } = useForm();
+  const searchQuery = watch("searchQuery", "");
+
+  const filterProducts = (product) => {
+    const productCategory = product.category;
+    const searchCategory = category;
+
+    const isMemoryCategory =
+      ["ramOne", "ramTwo", "ramThree", "ramFour"].includes(searchCategory) &&
+      productCategory === "memory";
+
+    const isRegularCategory =
+      !["ramOne", "ramTwo", "ramThree", "ramFour"].includes(searchCategory) &&
+      productCategory === searchCategory;
+
+    return (
+      (isMemoryCategory || isRegularCategory) &&
+      product.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
   };
+
+  const filteredProducts = useMemo(() => {
+    if (error) {
+      console.error("Error fetching data:", error.message);
+      return [];
+    }
+
+    if (!products) {
+      return [];
+    }
+
+    return products.filter(filterProducts);
+  }, [products, category, searchQuery, error]);
 
   console.log(myPcData);
   console.log(products);
+  console.log(filteredProducts);
   return (
     <section id="mypc_select">
       <PageBanner page={category} />
-      {hardwareItems.includes(category) ? (
-        <Link className={style.backToMyPc} to="/my-pc-select/case-hardware">
-          <ArrowBackIcon /> Back To My PC
-        </Link>
-      ) : (
-        <Link className={style.backToMyPc} to="/my-pc">
-          <ArrowBackIcon /> Back To My PC
-        </Link>
-      )}
+      <Link
+        className={style.backToMyPc}
+        to={
+          hardwareItems.includes(category)
+            ? "/my-pc-select/case-hardware"
+            : "/my-pc"
+        }
+      >
+        <ArrowBackIcon /> Back To My PC
+      </Link>
 
       {category === "case-hardware" ? (
         <CaseList />
@@ -58,38 +94,35 @@ export default function myPcSelect() {
             <h1 className={style.title}>
               Select Your {category[0]?.toUpperCase() + category?.slice(1)}
             </h1>
-            <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
+            <form className={style.form}>
               <input
                 type="text"
                 {...register("searchQuery")}
                 placeholder={`Search for ${category}s`}
               />
-              <button type="submit">
-                <SearchIcon />
-              </button>
             </form>
           </div>
           <List className={style.products_list} sx={{ pt: 0 }}>
-            {products?.map((product) =>
-              ["ramOne", "ramTwo", "ramThree", "ramFour"].includes(category)
-                ? product.category === "memory" && (
-                    <ProductCardRows
-                      key={product.id}
-                      product={product}
-                      type={"mypc"}
-                      dataCatigory={category}
-                    />
-                  )
-                : product.category === category && (
-                    <ProductCardRows
-                      key={product.id}
-                      product={product}
-                      type={"mypc"}
-                      dataCatigory={category}
-                    />
-                  )
+            {loading ? (
+              <div className={style.loading}>
+                <CircularProgress style={{ color: "#c87065" }} />
+              </div>
+            ) : (
+              filteredProducts.map((product) => (
+                <ProductCardRows
+                  key={product.id}
+                  product={product}
+                  type={"mypc"}
+                  dataCatigory={category}
+                />
+              ))
             )}
           </List>
+          {error && (
+            <div className={style.error}>
+              <p>There was an error fetching data. Please try again later.</p>
+            </div>
+          )}
         </div>
       )}
     </section>

@@ -5,6 +5,7 @@ import style from "./MyPc.module.css";
 import { useSelector } from "react-redux";
 import ProductCardRows from "../../Components/productCardRows/ProductCardRows";
 import { useEffect, useState } from "react";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 export default function MyPc() {
   const myPcData = useSelector((state) => state.myPcData.myPcData);
@@ -12,11 +13,12 @@ export default function MyPc() {
   const [totalPrice, setTotalPrice] = useState(0);
   useEffect(() => {
     myPcCart.map((product) => {
-      setTotalPrice((prev) => prev + product.priceAfterDisc);
+      setTotalPrice((prev) => prev + product.totalPrice.current);
     });
   }, [myPcCart]);
 
-  console.log(totalPrice);
+  console.log(myPcCart);
+  console.log(myPcData);
   return (
     <section id="my-pc">
       <PageBanner page={"Collect Your PC"} />
@@ -32,6 +34,9 @@ export default function MyPc() {
               ) : (
                 <span className={style.selectedProduct}>
                   {myPcData.speaker}
+                  <button>
+                    <HighlightOffIcon />
+                  </button>
                 </span>
               )}
             </figure>
@@ -47,6 +52,9 @@ export default function MyPc() {
               ) : (
                 <span className={style.selectedProduct}>
                   {myPcData.monitor}
+                  <button>
+                    <HighlightOffIcon />
+                  </button>
                 </span>
               )}
             </figure>
@@ -61,6 +69,9 @@ export default function MyPc() {
                 ) : (
                   <span className={style.selectedProduct}>
                     {myPcData.keyboard}
+                    <button>
+                      <HighlightOffIcon />
+                    </button>
                   </span>
                 )}
               </figure>
@@ -74,6 +85,9 @@ export default function MyPc() {
                 ) : (
                   <span className={style.selectedProduct}>
                     {myPcData.mouse}
+                    <button>
+                      <HighlightOffIcon />
+                    </button>
                   </span>
                 )}
               </figure>
@@ -92,11 +106,9 @@ export default function MyPc() {
         {myPcCart.length > 0 && (
           <div className={style.added}>
             <h2>Your PC</h2>
-            <div className="products flex flex-wrap w-100">
-              {myPcCart.map((product) => {
-                return <ProductCardRows key={product.id} product={product} />;
-              })}
-            </div>
+            {myPcCart.map((product) => {
+              return <ProductCardRows key={product.id} product={product} />;
+            })}
             <div className={style.checkout}>
               <Link>Checkout</Link>
               <span className={style.total_price}>

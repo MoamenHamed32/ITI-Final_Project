@@ -8,7 +8,22 @@ export const myPcCart = createSlice({
   initialState,
   reducers: {
     addProduct: (state, action) => {
-      state.myPcCart.push(action.payload);
+      console.log(action.payload);
+      let dublicated = state.myPcCart.find(
+        (product) => product.id == action.payload.id
+      );
+
+      if (!dublicated) {
+        state.myPcCart.push(action.payload);
+      } else {
+        state.myPcCart.map((product) => {
+          if (product.id === action.payload.id) {
+            product.productQty.current++;
+            product.totalPrice.current =
+              product.priceAfterDisc * product.productQty.current;
+          }
+        });
+      }
     },
   },
 });

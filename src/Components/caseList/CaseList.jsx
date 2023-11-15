@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import AddIcon from "@mui/icons-material/Add";
 import { Link } from "react-router-dom";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import style from "./CaseList.module.css";
 
 export default function CaseList() {
@@ -20,6 +21,9 @@ export default function CaseList() {
             ) : (
               <span className={style.selectedProduct}>
                 {myPcData.caseHardWare.case}
+                <button>
+                  <HighlightOffIcon />
+                </button>
               </span>
             )}
             <h2 className={style.category_title}>Case</h2>
@@ -36,6 +40,9 @@ export default function CaseList() {
             ) : (
               <span className={style.selectedProduct}>
                 {myPcData.caseHardWare.motherboard}
+                <button>
+                  <HighlightOffIcon />
+                </button>
               </span>
             )}
             <h2 className={style.category_title}>Board</h2>
@@ -50,6 +57,9 @@ export default function CaseList() {
             ) : (
               <span className={style.selectedProduct}>
                 {myPcData.caseHardWare.powerSupply}
+                <button>
+                  <HighlightOffIcon />
+                </button>
               </span>
             )}
             <h2 className={style.category_title}>Power Supply</h2>
@@ -66,6 +76,9 @@ export default function CaseList() {
             ) : (
               <span className={style.selectedProduct}>
                 {myPcData.caseHardWare.fan}
+                <button>
+                  <HighlightOffIcon />
+                </button>
               </span>
             )}
             <h2 className={style.category_title}>Fan</h2>
@@ -80,6 +93,9 @@ export default function CaseList() {
             ) : (
               <span className={style.selectedProduct}>
                 {myPcData.caseHardWare.cpu}
+                <button>
+                  <HighlightOffIcon />
+                </button>
               </span>
             )}
             <h2 className={style.category_title}>CPU</h2>
@@ -94,6 +110,9 @@ export default function CaseList() {
             ) : (
               <span className={style.selectedProduct}>
                 {myPcData.caseHardWare.gpu}
+                <button>
+                  <HighlightOffIcon />
+                </button>
               </span>
             )}
             <h2 className={style.category_title}>GPU</h2>
@@ -108,6 +127,9 @@ export default function CaseList() {
             ) : (
               <span className={style.selectedProduct}>
                 {myPcData.caseHardWare.hardDesk}
+                <button>
+                  <HighlightOffIcon />
+                </button>
               </span>
             )}
             <h2 className={style.category_title}>Hard Desk</h2>
@@ -124,6 +146,9 @@ export default function CaseList() {
             ) : (
               <span className={style.selectedProduct}>
                 {myPcData.caseHardWare.ramOne}
+                <button>
+                  <HighlightOffIcon />
+                </button>
               </span>
             )}
             <h2 className={style.category_title}>Ram 1</h2>
@@ -138,6 +163,9 @@ export default function CaseList() {
             ) : (
               <span className={style.selectedProduct}>
                 {myPcData.caseHardWare.ramTwo}
+                <button>
+                  <HighlightOffIcon />
+                </button>
               </span>
             )}
             <h2 className={style.category_title}>Ram 2</h2>
@@ -152,6 +180,9 @@ export default function CaseList() {
             ) : (
               <span className={style.selectedProduct}>
                 {myPcData.caseHardWare.ramThree}
+                <button>
+                  <HighlightOffIcon />
+                </button>
               </span>
             )}
             <h2 className={style.category_title}>Ram 3</h2>
@@ -166,6 +197,9 @@ export default function CaseList() {
             ) : (
               <span className={style.selectedProduct}>
                 {myPcData.caseHardWare.ramFour}
+                <button>
+                  <HighlightOffIcon />
+                </button>
               </span>
             )}
             <h2 className={style.category_title}>Ram 4</h2>
