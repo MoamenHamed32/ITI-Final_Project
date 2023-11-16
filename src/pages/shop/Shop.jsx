@@ -1,10 +1,11 @@
 import { useRef, useState } from "react";
 
-import Catigories from "./../../Components/categories/Catigories";
 import PageBanner from "./../../Components/pageBanner/PageBanner.jsx";
-import Pagination from "../../Components/Pagination/Pagination.jsx";
+import { Pagination } from "@mui/material";
 import ProductList from "../../Components/productList/ProductList.jsx";
+import { productsCol } from "../../config/firebase/firebase.js";
 import styles from "./shop.module.css";
+import { useCollectionData } from "react-firebase-hooks/firestore";
 
 const categories = [
   "All",
@@ -22,17 +23,25 @@ const categories = [
 
 export default function Shop() {
   const [currentPage, setCurrentPage] = useState(1);
+  const [data] = useCollectionData(productsCol);
 
-  // const productPerPage=6;
-  const pages = 5;
-  // const pages = Math.ceil(sortedProductList.length / productPerPage);
-  // const startIndex=(currentPage-1)* productPerPage;
-  // const finishIndex= currentPage* productPerPage;
-  // const displayedProducts= products.slice(startIndex,finishIndex);
+  const productPerPage = 8;
+  // const pages = 5;
+  const pages = Math.ceil(data?.length / productPerPage);
+  // const startIndex = (currentPage - 1) * productPerPage;
+  const finishIndex = currentPage * productPerPage;
+  const startIndex = finishIndex - productPerPage;
+
+  let displayedProducts = data?.slice(startIndex, finishIndex);
+
+  const handlePageChange = (event, value) => {
+    setCurrentPage(value);
+    displayedProducts = data?.slice(startIndex, finishIndex);
+  };
 
   const [isActive, setIsActive] = useState(false);
   const widgetCatRef = useRef(null);
-  const widgetPriceRef = useRef(null);
+  // const widgetPriceRef = useRef(null);
   const [categoryVal, setCategoryVal] = useState("");
 
   const handleCategoryBtn = () => {
@@ -90,14 +99,24 @@ export default function Shop() {
                 <button className="capitalize relative">size</button>
               </li>
             </ul>
-            <p>Showing 01-09 of 17 Results</p>
+            <p>
+              Showing 0{productPerPage} of {data?.length} Results
+            </p>
           </div>
-          <ProductList filterData={categoryVal} />
+          <ProductList
+            filterData={categoryVal}
+            displayedProducts={displayedProducts}
+          />
           <div className="col-md-12">
-            <Pagination
+            {/* <Pagination
               pages={pages}
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
+            /> */}
+            <Pagination
+              className={styles.pagination}
+              count={pages}
+              onChange={handlePageChange}
             />
           </div>
         </div>

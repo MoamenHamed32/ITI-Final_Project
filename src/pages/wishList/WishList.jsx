@@ -6,8 +6,44 @@ import CloseIcon from "@mui/icons-material/Close";
 import PageBanner from "./../../Components/pageBanner/PageBanner";
 import ProductImg from "../../../public/imgs/2.webp";
 import styles from "./wishList.module.css";
+import { useSelector } from "react-redux";
 
 export default function WishList() {
+  const wishListData = useSelector((state) => state.wishListProducts.wishList);
+  console.log(wishListData);
+  const trItems = wishListData?.map((product) => {
+    return (
+      <tr key={product.id}>
+        <td className={styles.product_thumbnail}>
+          <div className={styles.product_img}>
+            <img src={product.image} alt="product img" />
+          </div>
+          <div className={styles.product_info}>
+            <h4 className="title">{product.title.slice(0, 30)}</h4>
+            <p>
+              <span>Color :</span> {product.color}
+            </p>
+            {/* <p>
+              <span>Size : </span> SL
+            </p> */}
+          </div>
+        </td>
+        <td className={styles.product_price}>${product.price.toFixed(2)}</td>
+        <td className={styles.product_stock}>IN STOCK</td>
+        <td className={styles.add_cart}>
+          <button>
+            <AddShoppingCartIcon className={styles.icon} />
+          </button>
+        </td>
+        <td className={styles.remove_product}>
+          <button>
+            <CloseIcon className={styles.icon} />
+          </button>
+        </td>
+      </tr>
+    );
+  });
+
   return (
     <div className={styles.wish_list}>
       <PageBanner page={"WishList"} />
@@ -29,92 +65,7 @@ export default function WishList() {
                         <th>REMOVE</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr>
-                        <td className={styles.product_thumbnail}>
-                          <div className={styles.product_img}>
-                            <img src={ProductImg} alt="product img" />
-                          </div>
-                          <div className={styles.product_info}>
-                            <h4 className="title">dummy product name</h4>
-                            <p>
-                              <span>Color :</span> Black
-                            </p>
-                            <p>
-                              <span>Size : </span> SL
-                            </p>
-                          </div>
-                        </td>
-                        <td className={styles.product_price}>$56.00</td>
-                        <td className={styles.product_stock}>IN STOCK</td>
-                        <td className={styles.add_cart}>
-                          <button>
-                            <AddShoppingCartIcon className={styles.icon} />
-                          </button>
-                        </td>
-                        <td className={styles.remove_product}>
-                          <button>
-                            <CloseIcon className={styles.icon} />
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className={styles.product_thumbnail}>
-                          <div className={styles.product_img}>
-                            <img src={ProductImg} alt="product img" />
-                          </div>
-                          <div className={styles.product_info}>
-                            <h4 className="title">dummy product name</h4>
-                            <p>
-                              <span>Color :</span> Black
-                            </p>
-                            <p>
-                              <span>Size : </span> SL
-                            </p>
-                          </div>
-                        </td>
-                        <td className={styles.product_price}>$56.00</td>
-                        <td className={styles.product_stock}>IN STOCK</td>
-                        <td className={styles.add_cart}>
-                          <button>
-                            <AddShoppingCartIcon className={styles.icon} />
-                          </button>
-                        </td>
-                        <td className={styles.remove_product}>
-                          <button>
-                            <CloseIcon className={styles.icon} />
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className={styles.product_thumbnail}>
-                          <div className={styles.product_img}>
-                            <img src={ProductImg} alt="product img" />
-                          </div>
-                          <div className={styles.product_info}>
-                            <h4 className="title">dummy product name</h4>
-                            <p>
-                              <span>Color :</span> Black
-                            </p>
-                            <p>
-                              <span>Size : </span> SL
-                            </p>
-                          </div>
-                        </td>
-                        <td className={styles.product_price}>$56.00</td>
-                        <td className={styles.product_stock}>IN STOCK</td>
-                        <td className={styles.add_cart}>
-                          <button>
-                            <AddShoppingCartIcon className={styles.icon} />
-                          </button>
-                        </td>
-                        <td className={styles.remove_product}>
-                          <button>
-                            <CloseIcon className={styles.icon} />
-                          </button>
-                        </td>
-                      </tr>
-                    </tbody>
+                    <tbody>{trItems}</tbody>
                   </table>
                 </div>
               </div>
