@@ -9,6 +9,7 @@ import { removeFromPc } from "../../Redux/Slices/myPcDataSlice";
 import { removeFromCart } from "../../Redux/Slices/myPcCartSlice";
 
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import useUpdateDoc from "../../hooks/useUpdateDoc";
 
 export default function MyPc() {
   const dispatch = useDispatch();
@@ -16,6 +17,13 @@ export default function MyPc() {
   const myPcCart = useSelector((state) => state.myPcCart.myPcCart);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalPriceAfterDisc, setTotalPriceAfterDisc] = useState(0);
+  const currentUser = useSelector((state) => state.auth.currentUser);
+  const { update } = useUpdateDoc("users", currentUser._id);
+
+  const onSaveUpdates = () => {
+    update({ myPc: myPcData });
+  };
+
   useEffect(() => {
     setTotalPrice(0);
     myPcCart?.map((product) => {
@@ -33,6 +41,7 @@ export default function MyPc() {
   return (
     <section id="my-pc">
       <PageBanner page={"Collect Your PC"} />
+      <button onClick={onSaveUpdates}>Save</button>
       <div className="container mx-auto">
         <div className={style.pc_parts}>
           <div className={style.left}>

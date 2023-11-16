@@ -27,7 +27,7 @@ const myPc = {
     fan: "",
   },
 };
-function SignupWithGmail({ text = "ٍSign Up" }) {
+function SignupWithGmail({ text = "Sign Up" }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [user] = useAuthState(auth);
@@ -60,7 +60,6 @@ function SignupWithGmail({ text = "ٍSign Up" }) {
   };
 
   useEffect(() => {
-    console.log("user", user);
     if (!!user && !!users && users.length === 0) {
       console.log("new acc with Gmail has been created");
       addNewDoc();

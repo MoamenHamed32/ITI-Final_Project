@@ -18,7 +18,7 @@ const SellUserProduct = () => {
   const onSubmit = (data) => {
     addDoc(productsCol, {
       ...data,
-      owner: currentUser?.uid,
+      owner: currentUser?._id,
       id: products.length + 1,
     });
   };

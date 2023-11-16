@@ -14,10 +14,9 @@ function EditProfile({ user }) {
   const currentUser = useSelector((state) => state.auth.currentUser);
   const { update } = useUpdateDoc("users", currentUser._id);
 
-  console.log(user);
   const onSubmit = (data) => {
     // console.log(data);
-    update({ phoneNumber: 1111 });
+    update({ phoneNumber: 999 });
   };
 
   return (
