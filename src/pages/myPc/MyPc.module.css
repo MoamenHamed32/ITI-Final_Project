@@ -91,7 +91,8 @@ img {
 
   font-weight: 600;
 }
-.checkout .total_price {
+.checkout .total_price,
+.checkout .old_total_price {
   width: 200px;
   height: 55px;
   border-radius: 15px;
@@ -105,17 +106,22 @@ img {
   box-shadow: 0 4px 4px 0 #00000046;
   position: relative;
 }
-.checkout .total_price span {
+.checkout .old_total_price {
+  text-decoration: line-through;
+}
+.checkout .total_price .price_label,
+.checkout .old_total_price .price_label {
   position: absolute;
   top: 0;
   left: 15px;
   font-size: 0.9rem;
   color: #c87065;
 }
+
 .selectedProduct {
   position: absolute;
   display: inline-block;
-  padding: 0.5rem 1.2rem;
+  padding: 0.5rem 1.8rem;
   border: 0.5px solid black;
   background-color: #ffffffe5;
   border-radius: 15px;
@@ -127,6 +133,13 @@ img {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+}
+.selectedProduct button {
+  position: absolute;
+  left: 87%;
+  top: 15%;
+  cursor: pointer;
+  z-index: 4;
 }
 @media screen and (max-width: 900px) {
   figure {

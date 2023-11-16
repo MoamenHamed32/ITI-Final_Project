@@ -17,5 +17,10 @@ body {
 } */
 
 .active {
-  color: #000 !important;
+  color: rgb(200, 112, 101) !important;
+  font-weight: 800 !important;
+}
+.slider-card-image {
+  width: 73% !important;
+  margin: 0 auto;
 }

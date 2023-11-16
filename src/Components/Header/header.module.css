@@ -6,7 +6,9 @@
   font-weight: 600;
   font-family: "Lato", sans-serif;
 }
-
+.nav_links:hover {
+  color: rgb(200, 112, 101);
+}
 nav {
   background-color: #fff !important;
 }
@@ -14,6 +16,11 @@ nav {
 .nav_logo {
   width: 135px;
   margin: 0;
+}
+.nav_logo a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .nav_logo_mob {
@@ -25,4 +32,20 @@ nav {
 }
 .nav_cross_per {
   text-align: left;
+}
+
+.logo_img {
+  max-width: 40% !important;
+}
+
+@media (max-width: 600px) {
+  figure,
+  img {
+    margin-left: auto !important;
+  }
+}
+
+.logo_na {
+  font-size: 21px;
+  color: rgb(200, 112, 101);
 }

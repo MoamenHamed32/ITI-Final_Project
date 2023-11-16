@@ -194,7 +194,9 @@
     "state": "new",
     "owner": "pcpartpicker",
     "title": "Logitech G502 LIGHTSPEED Wireless Optical Mouse",
-    "thumb-images": "//cdna.pcpartpicker.com/static/forever/images/product/688ab5cb5e71622cfe889c082d784cdb.256p.jpg",
+    "thumb-images": [
+      "//cdna.pcpartpicker.com/static/forever/images/product/688ab5cb5e71622cfe889c082d784cdb.256p.jpg"
+    ],
     "manufacturer": "Logitech",
     "model": "G502 LIGHTSPEED"
   },
@@ -370,7 +372,9 @@
     "state": "new",
     "owner": "pcpartpicker",
     "title": "Tecware Phantom RGB Wired Gaming Keyboard",
-    "thumb-images": "//cdna.pcpartpicker.com/static/forever/images/product/bcb15a0e2da50d090f9795d21ab49842.256p.jpg",
+    "thumb-images": [
+      "//cdna.pcpartpicker.com/static/forever/images/product/bcb15a0e2da50d090f9795d21ab49842.256p.jpg"
+    ],
     "manufacturer": "Tecware",
     "model": "Phantom RGB",
     "normal_Keys": 87
@@ -393,7 +397,9 @@
     "state": "new",
     "owner": "pcpartpicker",
     "title": "Corsair K100 RGB Wired Gaming Keyboard",
-    "thumb-images": "//cdna.pcpartpicker.com/static/forever/images/product/ae1d907d41a3e8795673075ec18e30b8.256p.jpg",
+    "thumb-images": [
+      "//cdna.pcpartpicker.com/static/forever/images/product/ae1d907d41a3e8795673075ec18e30b8.256p.jpg"
+    ],
     "manufacturer": "Corsair",
     "model": "K100 RGB",
     "normal_Keys": 87
@@ -445,7 +451,7 @@
     "state": "new",
     "owner": "pcpartpicker",
     "title": "Asus ROG Swift PG65UQ 64.5\u0022 3840 x 2160 144 Hz Monitor",
-    "thumb-images": "https://m.media-amazon.com/images/I/51pZL0YMf9L.jpg",
+    "thumb-images": ["https://m.media-amazon.com/images/I/51pZL0YMf9L.jpg"],
     "specifications": {
       "manufacturer": "Asus",
       "model": "ROG Swift PG65UQ",
@@ -473,7 +479,9 @@
     "state": "new",
     "owner": "pcpartpicker",
     "title": "Samsung Odyssey G9 49.0\u0022 5120 x 1440 240 Hz Curved Monitor",
-    "thumb-images": "//cdna.pcpartpicker.com/static/forever/images/product/1c3449001f4d13277a4b39a59ddf68f7.256p.jpg",
+    "thumb-images": [
+      "//cdna.pcpartpicker.com/static/forever/images/product/1c3449001f4d13277a4b39a59ddf68f7.256p.jpg"
+    ],
     "specifications": {
       "manufacturer": "Samsung",
       "model": "Odyssey G9",
@@ -536,7 +544,9 @@
     "state": "new",
     "owner": "pcpartpicker",
     "title": "MSI Optix MPG341CQR 34.0\u0022 3440 x 1440 144 Hz Curved Monitor",
-    "thumb-images": "//cdna.pcpartpicker.com/static/forever/images/product/f9ec6024f886b6c15297d1b893290efb.256p.jpg",
+    "thumb-images": [
+      "//cdna.pcpartpicker.com/static/forever/images/product/f9ec6024f886b6c15297d1b893290efb.256p.jpg"
+    ],
     "specifications": {
       "manufacturer": "MSI",
       "model": "Optix MPG341CQR",
@@ -564,7 +574,9 @@
     "state": "new",
     "owner": "pcpartpicker",
     "title": "Acer VG270 Pbiip 27.0\u0022 1920 x 1080 144 Hz Monitor",
-    "thumb-images": "//cdna.pcpartpicker.com/static/forever/images/product/d9ae47f18f889c4865581c302a2e4dea.256p.jpg",
+    "thumb-images": [
+      "//cdna.pcpartpicker.com/static/forever/images/product/d9ae47f18f889c4865581c302a2e4dea.256p.jpg"
+    ],
     "specifications": {
       "manufacturer": "Acer",
       "model": "VG270 Pbiip",
@@ -590,7 +602,9 @@
     "state": "new",
     "owner": "pcpartpicker",
     "title": "Logitech Z200 10 W Speakers",
-    "thumb-images": "//cdna.pcpartpicker.com/static/forever/images/product/044e21f178b0ad10f69fbc76b6ac013e.256p.jpg",
+    "thumb-images": [
+      "//cdna.pcpartpicker.com/static/forever/images/product/044e21f178b0ad10f69fbc76b6ac013e.256p.jpg"
+    ],
     "specifications": {
       "manufacturer": "Logitech",
       "model": "Z200",
@@ -620,7 +634,9 @@
     "state": "new",
     "owner": "pcpartpicker",
     "title": "Creative Labs Pebble 2.0 4.4 W Speakers",
-    "thumb-images": "//cdna.pcpartpicker.com/static/forever/images/product/a02af64b3b2cf5af614179a132aa367c.256p.jpg",
+    "thumb-images": [
+      "//cdna.pcpartpicker.com/static/forever/images/product/a02af64b3b2cf5af614179a132aa367c.256p.jpg"
+    ],
     "specifications": {
       "manufacturer": "Creative Labs",
       "model": "Pebble 2.0",
@@ -999,7 +1015,9 @@
     "state": "new",
     "owner": "pcpartpicker",
     "title": "MSI B550\u002DA PRO ATX AM4 Motherboard",
-    "thumb-images": "//cdna.pcpartpicker.com/static/forever/images/product/662aee2a85bbe3b7e12224e381e57d24.256p.jpg",
+    "thumb-images": [
+      "//cdna.pcpartpicker.com/static/forever/images/product/662aee2a85bbe3b7e12224e381e57d24.256p.jpg"
+    ],
     "specifications": {
       "manufacturer": "MSI",
       "model": "B550-A PRO",
@@ -1054,7 +1072,9 @@
     "state": "new",
     "owner": "pcpartpicker",
     "title": "TEAMGROUP T\u002DForce Vulcan Z 16 GB (2 x 8 GB) DDR4\u002D3200 CL16 Memory",
-    "thumb-images": "//cdna.pcpartpicker.com/static/forever/images/product/96753a64597c28e46bf80ef7064b214b.256p.jpg",
+    "thumb-images": [
+      "//cdna.pcpartpicker.com/static/forever/images/product/96753a64597c28e46bf80ef7064b214b.256p.jpg"
+    ],
     "specifications": {
       "manufacturer": "TEAMGROUP6",
       "model": "T-FORCE VULCAN",
@@ -1111,7 +1131,9 @@
     "state": "new",
     "owner": "pcpartpicker",
     "title": "Crucial Ballistix 16 GB (2 x 8 GB) DDR4\u002D3200 CL16 Memory",
-    "thumb-images": "//cdna.pcpartpicker.com/static/forever/images/product/aa34b3c28154431c4b8ebd2f90a647e4.256p.jpg",
+    "thumb-images": [
+      "//cdna.pcpartpicker.com/static/forever/images/product/aa34b3c28154431c4b8ebd2f90a647e4.256p.jpg"
+    ],
     "specifications": {
       "manufacturer": "Crucial",
       "model": "Ballistix",
@@ -1137,7 +1159,9 @@
     "state": "new",
     "owner": "pcpartpicker",
     "title": "Patriot Viper Steel 16 GB (2 x 8 GB) DDR4\u002D3200 CL16 Memory",
-    "thumb-images": "//cdna.pcpartpicker.com/static/forever/images/product/a6d150a1a9e9ad94874551eee42573e4.256p.jpg",
+    "thumb-images": [
+      "//cdna.pcpartpicker.com/static/forever/images/product/a6d150a1a9e9ad94874551eee42573e4.256p.jpg"
+    ],
     "specifications": {
       "manufacturer": "Patriot",
       "model": "Viper Steel",
@@ -1163,7 +1187,9 @@
     "state": "new",
     "owner": "pcpartpicker",
     "title": "Western Digital Blue SN550 1 TB M.2\u002D2280 PCIe 3.0 X4 NVME Solid State Drive",
-    "thumb-images": "//cdna.pcpartpicker.com/static/forever/images/product/73be90b182cdb68fe899775fb8fa56ed.256p.jpg",
+    "thumb-images": [
+      "//cdna.pcpartpicker.com/static/forever/images/product/73be90b182cdb68fe899775fb8fa56ed.256p.jpg"
+    ],
     "specifications": {
       "manufacturer": "Western Digital",
       "model": "SN550"
@@ -1187,7 +1213,9 @@
     "state": "new",
     "owner": "pcpartpicker",
     "title": "Samsung 970 Evo Plus 1 TB M.2\u002D2280 PCIe 3.0 X4 NVME Solid State Drive",
-    "thumb-images": "//cdna.pcpartpicker.com/static/forever/images/product/326881d073c1b667bd348893696c690e.256p.jpg",
+    "thumb-images": [
+      "//cdna.pcpartpicker.com/static/forever/images/product/326881d073c1b667bd348893696c690e.256p.jpg"
+    ],
     "specifications": {
       "manufacturer": "Samsung",
       "model": "970 Evo Plus"
@@ -1238,7 +1266,9 @@
     "state": "new",
     "owner": "pcpartpicker",
     "title": "Kingston A400 240 GB 2.5\u0022 Solid State Drive",
-    "thumb-images": "//cdna.pcpartpicker.com/static/forever/images/product/97e2bd828644767c8a80b71f8cb14743.256p.jpg",
+    "thumb-images": [
+      "//cdna.pcpartpicker.com/static/forever/images/product/97e2bd828644767c8a80b71f8cb14743.256p.jpg"
+    ],
     "specifications": {
       "manufacturer": "Kingston",
       "model": "A400"
@@ -1262,7 +1292,9 @@
     "state": "new",
     "owner": "pcpartpicker",
     "title": "Western Digital Blue SN550 500 GB M.2\u002D2280 PCIe 3.0 X4 NVME Solid State Drive",
-    "thumb-images": "//cdna.pcpartpicker.com/static/forever/images/product/73be90b182cdb68fe899775fb8fa56ed.256p.jpg",
+    "thumb-images": [
+      "//cdna.pcpartpicker.com/static/forever/images/product/73be90b182cdb68fe899775fb8fa56ed.256p.jpg"
+    ],
     "specifications": {
       "manufacturer": "Western",
       "model": "Digital Blue SN550"
@@ -1287,7 +1319,9 @@
     "state": "new",
     "owner": "pcpartpicker",
     "title": "AMD Athlon 200GE 3.2 GHz Dual\u002DCore Processor",
-    "thumb-images": "//cdna.pcpartpicker.com/static/forever/images/product/f55fe8a2443698085e9d8d2997cc3173.256p.jpg",
+    "thumb-images": [
+      "//cdna.pcpartpicker.com/static/forever/images/product/f55fe8a2443698085e9d8d2997cc3173.256p.jpg"
+    ],
     "specifications": {
       "manufacturer": "AMD",
       "model": "200GE",
@@ -1345,7 +1379,9 @@
     "state": "new",
     "owner": "pcpartpicker",
     "title": "AMD Ryzen 5 2600X 3.6 GHz 6\u002DCore Processor",
-    "thumb-images": "//cdna.pcpartpicker.com/static/forever/images/product/55aea2dd64e2e3a3e3b1d678048d8d76.256p.jpg",
+    "thumb-images": [
+      "//cdna.pcpartpicker.com/static/forever/images/product/55aea2dd64e2e3a3e3b1d678048d8d76.256p.jpg"
+    ],
     "specifications": {
       "manufacturer": "AMD",
       "model": "2600X",
@@ -1403,7 +1439,7 @@
     "state": "new",
     "owner": "pcpartpicker",
     "title": "Intel Core i7\u002D10700F 2.9 GHz 8\u002DCore Processor",
-    "thumb-images": "https://m.media-amazon.com/images/I/41P4d+8jqLL.jpg",
+    "thumb-images": ["https://m.media-amazon.com/images/I/41P4d+8jqLL.jpg"],
     "specifications": {
       "manufacturer": "Intel",
       "model": "i7-10700F",
