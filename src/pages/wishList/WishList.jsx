@@ -63,6 +63,11 @@ export default function WishList() {
                     </thead>
                     <tbody>{trItems}</tbody>
                   </table>
+                  {trItems.length <= 0 && (
+                    <p className="text-center pt-7 text-sm capitalize text-gray-400">
+                      no items added to wishList
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
