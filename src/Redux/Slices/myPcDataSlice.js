@@ -34,8 +34,17 @@ export const myPcData = createSlice({
       const { catigory, productTitle } = action.payload;
       state.myPcData.caseHardWare[catigory] = productTitle;
     },
+    removeFromPc: (state, action) => {
+      const category = action.payload;
+      state.myPcData[category] = "";
+    },
+    removeFromPcCase: (state, action) => {
+      const category = action.payload;
+      state.myPcData.caseHardWare[category] = "";
+    },
   },
 });
 
-export const { addToPc, addToPcCase } = myPcData.actions;
+export const { addToPc, addToPcCase, removeFromPc, removeFromPcCase } =
+  myPcData.actions;
 export default myPcData.reducer;

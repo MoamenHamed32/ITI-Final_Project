@@ -18,6 +18,7 @@ import WishList from "./pages/wishList/WishList";
 import MyPcSelect from "./pages/myPcSelect/myPcSelect";
 import { Provider } from "react-redux";
 import store from "./Redux/Store/store";
+import SellUserProduct from "./pages/sellUserProduct/SellUserProduct";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
             <Route path="/create-product" element={<CreateProduct />} />
             <Route path="/my-pc" element={<MyPc />} />
             <Route path="/my-pc-select/:category" element={<MyPcSelect />} />
+            <Route path="/sell-your-product" element={<SellUserProduct />} />
           </Routes>
           <Footer />
         </div>

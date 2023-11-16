@@ -76,7 +76,7 @@ const Header = (props) => {
                   {item.label === "Profile" && isLoggedIn ? (
                     <NavLink className={styles.nav_links} to={item.path}>
                       <img
-                        src={currentUser.photoURL || "imgs/userIMG.jpg"}
+                        src={currentUser.photoURL || "./imgs/userIMG.jpg"}
                         alt="Profile"
                         style={{
                           width: "40px",
@@ -131,7 +131,8 @@ const Header = (props) => {
           >
             <figure className={styles.nav_logo}>
               <Link to="/">
-                <h2>Logo</h2>
+                <img className={styles.logo_img} src="imgs/logo.svg" alt=".." />
+                <span className={styles.logo_na}>TechTrader</span>
               </Link>
             </figure>
           </Typography>
