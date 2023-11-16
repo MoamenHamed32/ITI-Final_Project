@@ -78,14 +78,6 @@ export default function ProductCardRows({ product, type, dataCatigory }) {
     }
   };
 
-  // const removeFromCart = () => {
-  //   dispatch(
-  //     addToPc({
-  //       catigory: dataCatigory,
-  //       productTitle: "",
-  //     })
-  //   );
-  // };
   return (
     <div className={style.product_card}>
       <figure className={style.product_img}>
@@ -97,7 +89,19 @@ export default function ProductCardRows({ product, type, dataCatigory }) {
       <div className={style.product_details}>
         <div className={style.product_info}>
           <div className={style.title_rate}>
-            <h3 className={style.product_title}>{product?.title}</h3>
+            {type === "mypc" ? (
+              <Link
+                className="w-3/4 cursor-pointer"
+                to={`/product-details/${product?.id}`}
+              >
+                {" "}
+                <h3 className={`${style.product_title} w-full`}>
+                  {product?.title}
+                </h3>
+              </Link>
+            ) : (
+              <h3 className={style.product_title}>{product?.title}</h3>
+            )}
             <div className={style.product_rating}>
               <ReactStars
                 count={5}
