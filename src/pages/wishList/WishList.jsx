@@ -6,8 +6,10 @@ import { useSelector } from "react-redux";
 
 export default function WishList() {
   const wishListData = useSelector((state) => state.wishListProducts.wishList);
-  console.log(wishListData);
-  const trItems = wishListData?.map((product) => {
+  const currentUser = useSelector((state) => state.auth.currentUser);
+  // console.log(wishListData);
+
+  const trItems = currentUser?.wishlist?.map((product) => {
     return (
       <tr key={product.id}>
         <td className={styles.product_thumbnail}>

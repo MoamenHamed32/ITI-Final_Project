@@ -14,6 +14,8 @@ import {
   deleteFromWishList,
 } from "../../Redux/Slices/wishListProducts";
 import { useEffect } from "react";
+import useUpdateDoc from "../../hooks/useUpdateDoc";
+import { useNavigate } from "react-router-dom";
 
 export default function ProductCardCols({ product }) {
   const [data] = useCollectionData(productsCol);
@@ -21,6 +23,9 @@ export default function ProductCardCols({ product }) {
   const [isAddedCart, setIsAddedCart] = useState(false);
 
   const dispatch = useDispatch();
+  const currentUser = useSelector((state) => state.auth.currentUser);
+  const { update } = useUpdateDoc("users", currentUser?._id || "dummm");
+  const navigate = useNavigate();
 
   const wishIcon = isAddedWish ? (
     <FavoriteIcon sx={{ fontSize: 20 }} style={{ color: "#e52424" }} />
@@ -29,14 +34,18 @@ export default function ProductCardCols({ product }) {
   );
 
   const handleWishClick = (e) => {
-    let itemId = e.target.closest(".card").id;
-    let item = data?.filter((el) => el.id == itemId);
-    if (!isAddedWish) {
-      dispatch(addToWishList(item));
-    } else {
-      dispatch(deleteFromWishList(itemId));
-    }
-    setIsAddedWish(!isAddedWish);
+    // let itemId = e.target.closest(".card").id;
+    // let item = data?.filter((el) => el.id == itemId);
+    // if (!isAddedWish) {
+    //   dispatch(addToWishList(item));
+    // } else {
+    //   dispatch(deleteFromWishList(itemId));
+    // }
+    // setIsAddedWish(!isAddedWish);
+    // console.log(currentUser.wishlist);
+    console.log(currentUser);
+    if (!currentUser) return navigate("/login");
+    update({ wishlist: [...currentUser?.wishlist, product] });
   };
 
   const ratingChanged = (newRating) => {
