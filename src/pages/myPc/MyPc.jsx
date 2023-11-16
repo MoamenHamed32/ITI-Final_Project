@@ -5,11 +5,12 @@ import style from "./MyPc.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import ProductCardRows from "../../Components/productCardRows/ProductCardRows";
 import { useEffect, useState } from "react";
-import { removeFromPc } from "../../Redux/Slices/myPcDataSlice";
+import { removeFromPc, initDbData } from "../../Redux/Slices/myPcDataSlice";
 import { removeFromCart } from "../../Redux/Slices/myPcCartSlice";
-
+import { userCol, auth } from "../../config/firebase/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import useUpdateDoc from "../../hooks/useUpdateDoc";
+import { getDocs, query, setDoc, where } from "firebase/firestore";
 
 export default function MyPc() {
   const dispatch = useDispatch();
@@ -17,13 +18,47 @@ export default function MyPc() {
   const myPcCart = useSelector((state) => state.myPcCart.myPcCart);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalPriceAfterDisc, setTotalPriceAfterDisc] = useState(0);
-  const currentUser = useSelector((state) => state.auth.currentUser);
-  const { update } = useUpdateDoc("users", currentUser._id);
+  const [userId, setUserId] = useState("");
+  const [user] = useAuthState(auth);
 
-  const onSaveUpdates = () => {
-    update({ myPc: myPcData });
-  };
+  // useEffect(() => {
+  //   dispatch(initDbData(user?.myPc));
+  //   console.log(myPcData);
+  // }, [dispatch, myPcData, user]);
 
+  useEffect(() => {
+    console.log(myPcData);
+
+    const updateUser = async () => {
+      setUserId(user?.uid);
+
+      if (user && userId) {
+        try {
+          const querySnapshot = await getDocs(
+            query(userCol, where("uid", "==", userId))
+          );
+          const currentUser = querySnapshot.docs[0];
+
+          if (currentUser) {
+            const userDocRef = currentUser.ref;
+
+            const updatedUserData = {
+              myPc: myPcData,
+            };
+
+            await setDoc(userDocRef, updatedUserData, { merge: true });
+            console.log("User updated");
+          } else {
+            console.error("User not found");
+          }
+        } catch (error) {
+          console.error("Error updating user:", error);
+        }
+      }
+    };
+
+    updateUser();
+  }, [user, userId, myPcData]);
   useEffect(() => {
     setTotalPrice(0);
     myPcCart?.map((product) => {
@@ -41,7 +76,6 @@ export default function MyPc() {
   return (
     <section id="my-pc">
       <PageBanner page={"Collect Your PC"} />
-      <button onClick={onSaveUpdates}>Save</button>
       <div className="container mx-auto">
         <div className={style.pc_parts}>
           <div className={style.left}>

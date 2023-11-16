@@ -26,6 +26,13 @@ export const myPcData = createSlice({
   name: "myPcData",
   initialState,
   reducers: {
+    initDbData: (state, action) => {
+      return {
+        ...state,
+        myPcData: action.payload,
+      };
+    },
+
     addToPc: (state, action) => {
       const { catigory, productTitle } = action.payload;
       state.myPcData[catigory] = productTitle;
@@ -45,6 +52,11 @@ export const myPcData = createSlice({
   },
 });
 
-export const { addToPc, addToPcCase, removeFromPc, removeFromPcCase } =
-  myPcData.actions;
+export const {
+  addToPc,
+  addToPcCase,
+  removeFromPc,
+  removeFromPcCase,
+  initDbData,
+} = myPcData.actions;
 export default myPcData.reducer;
