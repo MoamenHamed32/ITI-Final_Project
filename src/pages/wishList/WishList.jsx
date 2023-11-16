@@ -1,10 +1,6 @@
-import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
-import { useEffect, useState } from "react";
-
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import CloseIcon from "@mui/icons-material/Close";
 import PageBanner from "./../../Components/pageBanner/PageBanner";
-import ProductImg from "../../../public/imgs/2.webp";
 import styles from "./wishList.module.css";
 import { useSelector } from "react-redux";
 
