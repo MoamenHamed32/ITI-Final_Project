@@ -6,26 +6,30 @@ import ZoomInIcon from "@mui/icons-material/ZoomIn";
 import style from "./ProductCardCols.module.css";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useCollectionData } from "react-firebase-hooks/firestore";
-import { productsCol } from "../../config/firebase/firebase";
-import {
-  addToWishList,
-  deleteFromWishList,
-} from "../../Redux/Slices/wishListProducts";
+import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import useUpdateDoc from "../../hooks/useUpdateDoc";
 import { useNavigate } from "react-router-dom";
 
 export default function ProductCardCols({ product }) {
-  const [data] = useCollectionData(productsCol);
   const [isAddedWish, setIsAddedWish] = useState(false);
-  const [isAddedCart, setIsAddedCart] = useState(false);
-
-  const dispatch = useDispatch();
+  // const [isAddedCart, setIsAddedCart] = useState(false);
   const currentUser = useSelector((state) => state.auth.currentUser);
   const { update } = useUpdateDoc("users", currentUser?._id || "dummm");
   const navigate = useNavigate();
+
+  const [wishList, setWishList] = useState(
+    currentUser ? currentUser?.wishlist : []
+  );
+
+  useEffect(() => {
+    setWishList(currentUser.wishlist);
+    wishList.map((el) => {
+      if (el.id == product?.id) {
+        setIsAddedWish(true);
+      }
+    });
+  }, []);
 
   const wishIcon = isAddedWish ? (
     <FavoriteIcon sx={{ fontSize: 20 }} style={{ color: "#e52424" }} />
@@ -33,20 +37,46 @@ export default function ProductCardCols({ product }) {
     <FavoriteBorderIcon sx={{ fontSize: 20 }} />
   );
 
-  const handleWishClick = (e) => {
-    // let itemId = e.target.closest(".card").id;
-    // let item = data?.filter((el) => el.id == itemId);
-    // if (!isAddedWish) {
-    //   dispatch(addToWishList(item));
-    // } else {
-    //   dispatch(deleteFromWishList(itemId));
-    // }
-    // setIsAddedWish(!isAddedWish);
-    // console.log(currentUser.wishlist);
-    console.log(currentUser);
+  const handleWishClick = () => {
     if (!currentUser) return navigate("/login");
-    update({ wishlist: [...currentUser?.wishlist, product] });
+
+    let itemId = product?.id;
+    const exit = currentUser.wishlist.find((el) => el.id == itemId);
+
+    if (!exit) {
+      update({ wishlist: [...currentUser?.wishlist, product] });
+    } else {
+      setIsAddedWish(false);
+      const updatedWishlist = currentUser.wishlist.filter(
+        (el) => el.id !== exit.id
+      );
+      update({ wishlist: updatedWishlist });
+    }
+
+    setIsAddedWish(!isAddedWish);
   };
+
+  const handleCartClick = () => {
+    if (!currentUser) return navigate("/login");
+
+    let itemId = product?.id;
+    const exit = currentUser?.cart.find((el) => el.id == itemId);
+
+    if (!exit) {
+      update({ cart: [...currentUser?.cart, { ...product, count: 1 }] });
+    } else {
+      const updatedCart = currentUser.cart.map((item) =>
+        item.id == itemId ? { ...item, count: +item.count + 1 } : item
+      );
+      update({ cart: updatedCart });
+    }
+  };
+
+  useEffect(() => {
+    // update({ cart: [] });
+    // update({ wishlist: [] });
+    console.log(currentUser.cart);
+  });
 
   const ratingChanged = (newRating) => {
     console.log(newRating);
@@ -96,7 +126,7 @@ export default function ProductCardCols({ product }) {
               {<AutorenewIcon sx={{ fontSize: 20 }} />}
             </button>
             <span>|</span>
-            <button className="add_to_cart">
+            <button className="add_to_cart" onClick={handleCartClick}>
               {<AddShoppingCartIcon sx={{ fontSize: 20 }} />}
             </button>
           </div>

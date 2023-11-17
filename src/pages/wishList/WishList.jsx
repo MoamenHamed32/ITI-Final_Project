@@ -5,7 +5,7 @@ import styles from "./wishList.module.css";
 import { useSelector } from "react-redux";
 
 export default function WishList() {
-  const wishListData = useSelector((state) => state.wishListProducts.wishList);
+  // const wishListData = useSelector((state) => state.wishListProducts.wishList);
   const currentUser = useSelector((state) => state.auth.currentUser);
   // console.log(wishListData);
 
@@ -17,7 +17,7 @@ export default function WishList() {
             <img src={product.image} alt="product img" />
           </div>
           <div className={styles.product_info}>
-            <h4 className="title">{product.title.slice(0, 30)}</h4>
+            <h4 className="title">{product.title?.slice(0, 30)}</h4>
             <p>
               <span>Color :</span> {product.color}
             </p>
@@ -26,7 +26,7 @@ export default function WishList() {
             </p> */}
           </div>
         </td>
-        <td className={styles.product_price}>${product.price.toFixed(2)}</td>
+        <td className={styles.product_price}>${product.price?.toFixed(2)}</td>
         <td className={styles.product_stock}>IN STOCK</td>
         <td className={styles.add_cart}>
           <button>
