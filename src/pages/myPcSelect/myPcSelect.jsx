@@ -8,7 +8,7 @@ import { productsCol } from "../../config/firebase/firebase";
 
 import PageBanner from "../../Components/pageBanner/PageBanner";
 import ProductCardRows from "../../Components/productCardRows/ProductCardRows";
-import CaseList from "../../Components/CaseList/CaseList";
+import CaseList from "../../Components/caseList/CaseList";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import CircularProgress from "@mui/material/CircularProgress";
 import List from "@mui/material/List";

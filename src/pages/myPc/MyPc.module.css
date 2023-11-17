@@ -77,7 +77,7 @@ img {
   display: flex;
   justify-content: space-around;
 }
-.checkout a {
+.checkout button {
   width: 200px;
   height: 55px;
   border-radius: 15px;
@@ -90,6 +90,9 @@ img {
   box-shadow: 0 4px 4px 0 #00000046;
 
   font-weight: 600;
+}
+.checkout button:disabled {
+  opacity: 0.5;
 }
 .checkout .total_price,
 .checkout .old_total_price {
