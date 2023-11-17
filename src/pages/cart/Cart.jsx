@@ -1,20 +1,50 @@
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
+import { useEffect, useState } from "react";
 
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import CloseIcon from "@mui/icons-material/Close";
 import PageBanner from "./../../Components/pageBanner/PageBanner";
-import ProductImg from "../../../public/imgs/2.webp";
 import styles from "./cart.module.css";
-import { useState } from "react";
 import { useSelector } from "react-redux";
+import useUpdateDoc from "../../hooks/useUpdateDoc";
 
 export default function Cart() {
   const [toggle, setToggle] = useState(1);
-  const [total, setTotal] = useState(170);
-
+  const [total, setTotal] = useState(0);
   const currentUser = useSelector((state) => state.auth.currentUser);
+  const { update } = useUpdateDoc("users", currentUser?._id || "dummm");
+  const [cart, setCart] = useState(currentUser ? currentUser.cart : []);
 
-  const trItems = currentUser?.cart.map((product) => {
+  const handleRemove = (product) => {
+    const updatedCart = currentUser.cart.filter((el) => el.id !== product.id);
+    update({ cart: updatedCart });
+  };
+
+  useEffect(() => {
+    let subTotal = 0;
+    currentUser.cart.map((product) => {
+      subTotal += +product.count * product.price;
+    });
+    setTotal(subTotal);
+  }, [currentUser.cart]);
+
+  const handlePlus = (product) => {
+    const updatedCart = currentUser.cart.map((item) =>
+      item.id === product.id ? { ...item, count: item.count + 1 } : item
+    );
+    update({ cart: updatedCart });
+  };
+
+  const handleMin = (product) => {
+    if (product.count > 1) {
+      const updatedCart = currentUser.cart.map((item) =>
+        item.id === product.id ? { ...item, count: item.count - 1 } : item
+      );
+      update({ cart: updatedCart });
+    }
+  };
+
+  const trItems = currentUser.cart.map((product) => {
     return (
       <tr key={product.id} id={product.id}>
         <td className={styles.product_thumbnail}>
@@ -34,16 +64,16 @@ export default function Cart() {
         <td className={styles.product_price}>${product.price?.toFixed(2)}</td>
         <td className={styles.product_quantity}>
           <div className={styles.flex}>
-            <button>-</button>
-            <input type="number" defaultValue={product.count} min="1" />
-            <button>+</button>
+            <button onClick={() => handleMin(product)}>-</button>
+            <input type="number" value={product.count} min="1" />
+            <button onClick={() => handlePlus(product)}>+</button>
           </div>
         </td>
         <td className={styles.product_total}>
           ${(+product.price * +product.count).toFixed(2)}
         </td>
         <td className={styles.remove_product}>
-          <button>
+          <button onClick={() => handleRemove(product)}>
             <CloseIcon className={styles.icon} />
           </button>
         </td>
@@ -73,10 +103,12 @@ export default function Cart() {
       ],
     });
   };
+
   const onApprove = async (data, actions) => {
     const order = await actions.order.capture();
     console.log(order);
   };
+
   const onError = (err) => {
     console.log(err);
   };
@@ -154,6 +186,11 @@ export default function Cart() {
                     </thead>
                     <tbody>{trItems}</tbody>
                   </table>
+                  {trItems.length <= 0 && (
+                    <p className="text-center pt-7 text-sm capitalize text-gray-400">
+                      Your cart is currently empty.
+                    </p>
+                  )}
                 </div>
                 <div
                   className={`${styles.discount_payment} grid grid-cols-12 gap-6`}
@@ -179,7 +216,7 @@ export default function Cart() {
                       <tbody>
                         <tr>
                           <td>Cart Subtotal</td>
-                          <td>${155.0}</td>
+                          <td>${total.toFixed(2)}</td>
                         </tr>
                         <tr>
                           <td>Vat</td>
@@ -187,7 +224,7 @@ export default function Cart() {
                         </tr>
                         <tr className={styles.total}>
                           <td>Order Total</td>
-                          <td>$170.00</td>
+                          <td>${total.toFixed(2)}</td>
                         </tr>
                       </tbody>
                     </table>

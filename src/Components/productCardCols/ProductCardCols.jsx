@@ -1,15 +1,15 @@
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import AutorenewIcon from "@mui/icons-material/Autorenew";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import ReactStars from "react-rating-stars-component";
 import ZoomInIcon from "@mui/icons-material/ZoomIn";
 import style from "./ProductCardCols.module.css";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import { useState } from "react";
-import { useSelector } from "react-redux";
 import { useEffect } from "react";
-import useUpdateDoc from "../../hooks/useUpdateDoc";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useState } from "react";
+import useUpdateDoc from "../../hooks/useUpdateDoc";
 
 export default function ProductCardCols({ product }) {
   const [isAddedWish, setIsAddedWish] = useState(false);
