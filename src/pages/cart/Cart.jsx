@@ -198,7 +198,7 @@ export default function Cart() {
                     </thead>
                     <tbody>{trItems}</tbody>
                   </table>
-                  {trItems.length <= 0 && (
+                  {trItems && trItems.length <= 0 && (
                     <p className="text-center pt-7 text-sm capitalize text-gray-400">
                       Your cart is currently empty.
                     </p>

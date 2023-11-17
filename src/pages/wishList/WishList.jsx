@@ -69,6 +69,7 @@ export default function WishList() {
     );
   });
 
+  console.log("hereeee", trItems);
   return (
     <div className={styles.wish_list}>
       <PageBanner page={"WishList"} />
@@ -92,7 +93,7 @@ export default function WishList() {
                     </thead>
                     <tbody>{trItems}</tbody>
                   </table>
-                  {trItems.length <= 0 && (
+                  {trItems && trItems.length <= 0 && (
                     <p className="text-center pt-7 text-sm capitalize text-gray-400">
                       Your wishList is currently empty.
                     </p>

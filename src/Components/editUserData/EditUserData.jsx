@@ -16,7 +16,7 @@ function EditProfile({ user }) {
 
   const onSubmit = (data) => {
     // console.log(data);
-    update({ phoneNumber: 999 });
+    update({ phoneNumber: 55555 });
   };
 
   return (
