@@ -1,21 +1,22 @@
+import { Link, NavLink } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
+
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
+import CloseIcon from "@mui/icons-material/Close";
 import CssBaseline from "@mui/material/CssBaseline";
 import Drawer from "@mui/material/Drawer";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
+import Logout from "../../Components/logout/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
+import PropTypes from "prop-types";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { NavLink, Link } from "react-router-dom";
-import CloseIcon from "@mui/icons-material/Close";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import Logout from "../../Components/logout/Logout";
 import styles from "./header.module.css";
 import { useSelector } from "react-redux";
 
@@ -34,9 +35,9 @@ const Header = (props) => {
       newNavItems = [
         { label: "Home", path: "/" },
         { label: "Shop", path: "/shop" },
-        { label: "Login", path: "/login" },
-        { label: "Sign Up", path: "/signup" },
         { label: "My PC", path: "/my-pc" },
+        { label: "Login", path: "/login" },
+        // { label: "Sign Up", path: "/signup" },
         { label: "Wishlist", path: "/wishlist" },
         { label: "Cart", path: "/cart" },
       ];
