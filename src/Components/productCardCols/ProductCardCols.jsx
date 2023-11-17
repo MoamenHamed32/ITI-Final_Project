@@ -72,12 +72,6 @@ export default function ProductCardCols({ product }) {
     }
   };
 
-  useEffect(() => {
-    // update({ cart: [] });
-    // update({ wishlist: [] });
-    // console.log(currentUser.cart);
-  });
-
   const ratingChanged = (newRating) => {
     console.log(newRating);
   };

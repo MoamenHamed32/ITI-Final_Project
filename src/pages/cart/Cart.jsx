@@ -81,6 +81,15 @@ export default function Cart() {
     );
   });
 
+  const orderItems = currentUser?.cart?.map((product) => {
+    return (
+      <tr key={product.id}>
+        <td>{product.title?.slice(0, 20)} </td>
+        <td>${product.price?.toFixed(2)}</td>
+      </tr>
+    );
+  });
+
   const toggleTaps = (idx) => {
     setToggle(idx);
   };
@@ -106,7 +115,10 @@ export default function Cart() {
 
   const onApprove = async (data, actions) => {
     const order = await actions.order.capture();
-    console.log(order);
+    update({ cart: [] });
+    setToggle(3);
+    // console.log(order);
+    // console.log(currentUser?.cart);
   };
 
   const onError = (err) => {
@@ -271,17 +283,10 @@ export default function Cart() {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>Dummy Product Name x 2 </td>
-                          <td>$155.00</td>
-                        </tr>
-                        <tr>
-                          <td>Dummy Product Name x 1 </td>
-                          <td>$155.00</td>
-                        </tr>
+                        {orderItems}
                         <tr>
                           <td>Cart Subtotal</td>
-                          <td>$155.00</td>
+                          <td>${total}</td>
                         </tr>
                         <tr>
                           <td>Shipping and Handing </td>
@@ -293,7 +298,7 @@ export default function Cart() {
                         </tr>
                         <tr className={styles.total}>
                           <td>Order Total</td>
-                          <td>${total.toFixed(2)}</td>
+                          <td>${total > 0 ? total + 15 : total}</td>
                         </tr>
                       </tbody>
                     </table>
