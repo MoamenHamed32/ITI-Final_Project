@@ -256,6 +256,31 @@ export default function ProductDetails() {
                     </h3>
                   </div>
                 )}
+                {product?.category === "fan" && (
+                  <div className={style.category_details}>
+                    <h3>RPM : {product?.rpm[0]}</h3>
+
+                    <h3>AirFlow : {product?.airflow[0]}</h3>
+                    <h3>
+                      Includes Cooler :{" "}
+                      {product?.specifications["Static_pressure"]}
+                    </h3>
+
+                    <h3>
+                      Manufacturer : {product?.specifications?.manufacturer}
+                    </h3>
+                  </div>
+                )}
+                {product?.category === "gpu" && (
+                  <div className={style.category_details}>
+                    <h3>Chipset : {product?.chipset}</h3>
+
+                    <h3>Interface : {product?.specifications["Interface"]}</h3>
+                    <h3>
+                      Manufacturer : {product?.specifications?.manufacturer}
+                    </h3>
+                  </div>
+                )}
 
                 {product?.color && (
                   <div className={style.colors}>

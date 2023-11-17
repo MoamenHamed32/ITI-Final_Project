@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import PageBanner from "../../Components/pageBanner/PageBanner";
 import AddIcon from "@mui/icons-material/Add";
 import { Link } from "react-router-dom";
@@ -9,8 +10,10 @@ import { removeFromPc, initDbData } from "../../Redux/Slices/myPcDataSlice";
 import { removeFromCart } from "../../Redux/Slices/myPcCartSlice";
 import { userCol, auth } from "../../config/firebase/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useCollectionData } from "react-firebase-hooks/firestore";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { getDocs, query, setDoc, where } from "firebase/firestore";
+import { useMemo } from "react";
 
 export default function MyPc() {
   const dispatch = useDispatch();
@@ -20,18 +23,52 @@ export default function MyPc() {
   const [totalPriceAfterDisc, setTotalPriceAfterDisc] = useState(0);
   const [userId, setUserId] = useState("");
   const [user] = useAuthState(auth);
-
+  const currentUser = useMemo(
+    () => user && query(userCol, where("uid", "==", user.uid)),
+    [user]
+  );
   // useEffect(() => {
-  //   dispatch(initDbData(user?.myPc));
-  //   console.log(myPcData);
-  // }, [dispatch, myPcData, user]);
-
+  //   fetch("/computer_parts-data.json")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       data.map((product) => {
+  //         addDoc(productsCol, product);
+  //       });
+  //     });
+  // }, []);
+  // const [products] = useCollectionData(productsCol);
+  // console.log(products);
+  const [currentUserData] = useCollectionData(currentUser);
   useEffect(() => {
-    console.log(myPcData);
+    if (currentUserData) {
+      dispatch(initDbData(currentUserData[0]?.myPc));
+    }
+    console.log(currentUserData);
+    console.log(currentUser);
+  }, [dispatch, userId]);
+  // useEffect(() => {
+  //   const fetchUserData = async () => {
+  //     if (user) {
+  //       try {
+  //         const querySnapshot = await getDocs(
+  //           query(userCol, where("uid", "==", user.uid))
+  //         );
 
+  //         const currentUserData = querySnapshot.docs[0]?.data();
+
+  //         dispatch(initDbData(currentUserData?.myPc));
+  //         console.log(currentUserData);
+  //       } catch (error) {
+  //         console.error("Error fetching user data:", error);
+  //       }
+  //     }
+  //   };
+
+  //   fetchUserData();
+  // }, [user]);
+  useEffect(() => {
     const updateUser = async () => {
       setUserId(user?.uid);
-
       if (user && userId) {
         try {
           const querySnapshot = await getDocs(
@@ -47,7 +84,6 @@ export default function MyPc() {
             };
 
             await setDoc(userDocRef, updatedUserData, { merge: true });
-            console.log("User updated");
           } else {
             console.error("User not found");
           }
@@ -58,7 +94,8 @@ export default function MyPc() {
     };
 
     updateUser();
-  }, [user, userId, myPcData]);
+  }, [myPcCart, myPcData, user, userId]);
+
   useEffect(() => {
     setTotalPrice(0);
     myPcCart?.map((product) => {
@@ -68,6 +105,7 @@ export default function MyPc() {
   useEffect(() => {
     setTotalPriceAfterDisc(totalPrice - totalPrice * 0.15);
   }, [totalPrice]);
+
   const removeProduct = (category) => {
     dispatch(removeFromCart(myPcData[category]));
     dispatch(removeFromPc(category));
@@ -81,13 +119,13 @@ export default function MyPc() {
           <div className={style.left}>
             <figure>
               <img src="/public/imgs/pc parts/Speakers.png" alt="" />
-              {myPcData.speaker === "" ? (
+              {myPcData?.speaker === "" ? (
                 <Link to="/my-pc-select/speaker">
                   <AddIcon />
                 </Link>
               ) : (
                 <span className={style.selectedProduct}>
-                  {myPcData.speaker}
+                  {myPcData?.speaker}
                   <button onClick={() => removeProduct("speaker")}>
                     <HighlightOffIcon />
                   </button>
@@ -99,13 +137,13 @@ export default function MyPc() {
             <figure>
               <img src="/public/imgs/pc parts/Monitor.png" alt="" />
 
-              {myPcData.monitor === "" ? (
+              {myPcData?.monitor === "" ? (
                 <Link to="/my-pc-select/monitor">
                   <AddIcon />
                 </Link>
               ) : (
                 <span className={style.selectedProduct}>
-                  {myPcData.monitor}
+                  {myPcData?.monitor}
                   <button onClick={() => removeProduct("monitor")}>
                     <HighlightOffIcon />
                   </button>
@@ -116,13 +154,13 @@ export default function MyPc() {
               <figure>
                 <img src="/public/imgs/pc parts/Keyboard.png" alt="" />
 
-                {myPcData.keyboard === "" ? (
+                {myPcData?.keyboard === "" ? (
                   <Link to="/my-pc-select/keyboard">
                     <AddIcon />
                   </Link>
                 ) : (
                   <span className={style.selectedProduct}>
-                    {myPcData.keyboard}
+                    {myPcData?.keyboard}
                     <button onClick={() => removeProduct("keyboard")}>
                       <HighlightOffIcon />
                     </button>
@@ -132,13 +170,13 @@ export default function MyPc() {
               <figure>
                 <img src="/public/imgs/pc parts/Mouse.png" alt="" />
 
-                {myPcData.mouse === "" ? (
+                {myPcData?.mouse === "" ? (
                   <Link className={style.mouse_add} to="/my-pc-select/mouse">
                     <AddIcon />
                   </Link>
                 ) : (
                   <span className={style.selectedProduct}>
-                    {myPcData.mouse}
+                    {myPcData?.mouse}
                     <button onClick={() => removeProduct("mouse")}>
                       <HighlightOffIcon />
                     </button>

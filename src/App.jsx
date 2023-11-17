@@ -17,33 +17,38 @@ import Signup from "./pages/signup/Signup";
 import WishList from "./pages/wishList/WishList";
 import MyPcSelect from "./pages/myPcSelect/myPcSelect";
 import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+
+import { persistor } from "./Redux/Store/store";
 import store from "./Redux/Store/store";
 import SellUserProduct from "./pages/sellUserProduct/SellUserProduct";
 
 function App() {
   return (
     <Provider store={store}>
-      <Router>
-        <Header />
-        <div className="flex flex-col min-h-screen gap-9">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/shop" element={<Shop />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/product-details/:id" element={<ProductDetails />} />
-            <Route path="/search" element={<SearchResults />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/wishlist" element={<WishList />} />
-            <Route path="/create-product" element={<CreateProduct />} />
-            <Route path="/my-pc" element={<MyPc />} />
-            <Route path="/my-pc-select/:category" element={<MyPcSelect />} />
-            <Route path="/sell-your-product" element={<SellUserProduct />} />
-          </Routes>
-          <Footer />
-        </div>
-      </Router>
+      <PersistGate loading={null} persistor={persistor}>
+        <Router>
+          <Header />
+          <div className="flex flex-col min-h-screen gap-9">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/shop" element={<Shop />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/product-details/:id" element={<ProductDetails />} />
+              <Route path="/search" element={<SearchResults />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/wishlist" element={<WishList />} />
+              <Route path="/create-product" element={<CreateProduct />} />
+              <Route path="/my-pc" element={<MyPc />} />
+              <Route path="/my-pc-select/:category" element={<MyPcSelect />} />
+              <Route path="/sell-your-product" element={<SellUserProduct />} />
+            </Routes>
+            <Footer />
+          </div>
+        </Router>
+      </PersistGate>
     </Provider>
   );
 }
