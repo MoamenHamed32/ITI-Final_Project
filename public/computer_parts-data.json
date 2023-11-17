@@ -1446,5 +1446,301 @@
       "Includes_Cooler": "yes",
       "simultaneous-multithreading": "Yes: Hyper-Threading"
     }
+  },
+  {
+    "name": "Corsair iCUE LINK QX120 RGB Starter Kit 3-Pack",
+    "price": 149.99,
+    "size": 120,
+    "color": "Black",
+    "rpm": [480, 2400],
+    "airflow": [16.44, 63.1],
+    "noise_level": null,
+    "pwm": true,
+    "rating": 4,
+    "rating_count": 78,
+    "image": "//cdna.pcpartpicker.com/static/forever/images/product/022030846fd2908c85e111d037e80508.256p.jpg",
+    "id": 51,
+    "category": "fan",
+    "discount_percentage": 5,
+    "state": "new",
+    "owner": "pcpartpicker",
+    "title": "Corsair iCUE LINK QX120 RGB Starter Kit 63.1 CFM 120 mm Fans 3\u002DPack",
+    "thumb-images": [
+      "//cdna.pcpartpicker.com/static/forever/images/product/022030846fd2908c85e111d037e80508.256p.jpg",
+      "//cdna.pcpartpicker.com/static/forever/images/product/bd537d50272019737bb299ab9b75a716.256p.jpg",
+      "//cdna.pcpartpicker.com/static/forever/images/product/a3d3cb90bb0af73e83aa2a6c3952eed3.256p.jpg",
+      "//cdna.pcpartpicker.com/static/forever/images/product/08c31a66e90404ac748e74f1994f669a.256p.jpg",
+      "//cdna.pcpartpicker.com/static/forever/images/product/5bed855e18221791fd0bac40898ce743.256p.jpg",
+      "//cdna.pcpartpicker.com/static/forever/images/product/66725e1a40ed95b6e848c6288f149a65.256p.jpg"
+    ],
+    "specifications": {
+      "manufacturer": "Corsair",
+      "model": "iCUE LINK QX120 RGB Starter Kit",
+      "Controller": "USB",
+      "Static_pressure": "3.8 mmH₂O"
+    }
+  },
+  {
+    "name": "ARCTIC F PST",
+    "price": 11.49,
+    "size": 140,
+    "color": "Black",
+    "rpm": [200, 1350],
+    "airflow": 74,
+    "noise_level": null,
+    "pwm": true,
+    "rating": 4,
+    "rating_count": 13,
+    "image": "//cdna.pcpartpicker.com/static/forever/images/product/9d3413cb8c707b3f7e20f7f0ae10bb48.256p.jpg",
+    "id": 52,
+    "category": "fan",
+    "discount_percentage": 15,
+    "state": "new",
+    "owner": "pcpartpicker",
+    "title": "ARCTIC F PST 74 CFM 140 mm Fan",
+    "thumb-images": [
+      "//cdna.pcpartpicker.com/static/forever/images/product/9d3413cb8c707b3f7e20f7f0ae10bb48.256p.jpg"
+    ],
+    "specifications": {
+      "manufacturer": "ARCTIC",
+      "model": "F PST 74 CFM",
+      "Controller": "None",
+      "Static_pressure": "1.6 mmH₂O"
+    }
+  },
+  {
+    "name": "APNX FP2",
+    "price": 19.89,
+    "size": 120,
+    "color": "Black",
+    "rpm": [500, 1800],
+    "airflow": 83.87,
+    "noise_level": [15.3, 34.8],
+    "pwm": true,
+    "rating": 4,
+    "rating_count": 66,
+    "image": "//cdna.pcpartpicker.com/static/forever/images/product/930ec1586ac762a5980280a67c6ddaab.256p.jpg",
+    "id": 53,
+    "category": "fan",
+    "discount_percentage": 20,
+    "state": "new",
+    "owner": "pcpartpicker",
+    "title": "APNX FP2 83.87 CFM 120 mm Fan",
+    "thumb-images": [
+      "//cdna.pcpartpicker.com/static/forever/images/product/930ec1586ac762a5980280a67c6ddaab.256p.jpg"
+    ],
+    "specifications": {
+      "manufacturer": "APNX",
+      "model": "FP2 83.87 CFM",
+      "Controller": "None",
+      "Static_pressure": "3.49 mmH₂O"
+    }
+  },
+  {
+    "name": "Phanteks M25-140 PWM D-RGB",
+    "price": 21.43,
+    "size": 140,
+    "color": "White",
+    "rpm": [500, 1800],
+    "airflow": 104.62,
+    "noise_level": 36.57,
+    "pwm": true,
+    "rating": 4,
+    "rating_count": 45,
+    "image": "//cdna.pcpartpicker.com/static/forever/images/product/65f3c4b0b0958fe74f459b9c27583ccd.256p.jpg",
+    "id": 54,
+    "category": "fan",
+    "discount_percentage": 20,
+    "state": "new",
+    "owner": "pcpartpicker",
+    "title": "Phanteks M25\u002D140 PWM D\u002DRGB 104.62 CFM 140 mm Fan",
+    "thumb-images": [
+      "//cdna.pcpartpicker.com/static/forever/images/product/65f3c4b0b0958fe74f459b9c27583ccd.256p.jpg",
+      "//cdna.pcpartpicker.com/static/forever/images/product/df69bd8b79005a6ffcbe1906e672ff47.256p.jpg"
+    ],
+    "specifications": {
+      "manufacturer": "Phanteks",
+      "model": "M25-140 PWM D-RGB",
+      "Controller": "None",
+      "Static_pressure": "2.8 mmH₂O"
+    }
+  },
+  {
+    "name": "Scythe Kaze Flex II Slim",
+    "price": 16.95,
+    "size": 120,
+    "color": "Black",
+    "rpm": [300, 1800],
+    "airflow": [8.16, 48],
+    "noise_level": [2.58, 27.8],
+    "pwm": true,
+    "rating": 3,
+    "rating_count": 33,
+    "image": "https://m.media-amazon.com/images/I/41Fc12KLx4L.jpg",
+    "id": 55,
+    "category": "fan",
+    "discount_percentage": 30,
+    "state": "new",
+    "owner": "pcpartpicker",
+    "title": "Scythe Kaze Flex II Slim 48 CFM 120 mm Fan",
+    "thumb-images": [
+      "https://m.media-amazon.com/images/I/41Fc12KLx4L.jpg",
+      "https://m.media-amazon.com/images/I/41FGwmmarxL.jpg",
+      "https://m.media-amazon.com/images/I/41+S5HFulcL.jpg",
+      "https://m.media-amazon.com/images/I/41OjcYC2UAL.jpg",
+      "https://m.media-amazon.com/images/I/21HKBvtHz7L.jpg",
+      "https://m.media-amazon.com/images/I/31nX00Ez7ML.jpg"
+    ],
+    "specifications": {
+      "manufacturer": "Scythe",
+      "model": "Kaze Flex II Slim",
+      "Controller": "None",
+      "Static_pressure": "1.36 mmH₂O"
+    }
+  },
+  {
+    "name": "Asus ROG STRIX GAMING OC",
+    "price": 2655.04,
+    "chipset": "GeForce RTX 4090",
+    "memory": 24,
+    "core_clock": 2235,
+    "boost_clock": 2640,
+    "color": "Black",
+    "length": 358,
+    "rating": 4,
+    "rating_count": 12,
+    "image": "//cdna.pcpartpicker.com/static/forever/images/product/9f7b45a2816c45ea9449e8ca2bf6f616.256p.jpg",
+    "id": 56,
+    "category": "gpu",
+    "discount_percentage": 30,
+    "state": "new",
+    "owner": "pcpartpicker",
+    "title": "Asus ROG STRIX GAMING OC GeForce RTX 4090 24 GB Video Card",
+    "thumb-images": [
+      "//cdna.pcpartpicker.com/static/forever/images/product/9f7b45a2816c45ea9449e8ca2bf6f616.256p.jpg"
+    ],
+    "specifications": {
+      "manufacturer": "Asus",
+      "model": "ROG STRIX GAMING OC",
+      "Interface": "PCIe x16"
+    }
+  },
+  {
+    "name": "NVIDIA Founders Edition",
+    "price": 2698.99,
+    "chipset": "GeForce RTX 4090",
+    "memory": 24,
+    "core_clock": 2230,
+    "boost_clock": 2520,
+    "color": "Black / Silver",
+    "length": 304,
+    "rating": 3,
+    "rating_count": 33,
+    "image": "//cdna.pcpartpicker.com/static/forever/images/product/07ff8dc03a65e34edc811c97d838af9a.256p.jpg",
+    "id": 57,
+    "category": "gpu",
+    "discount_percentage": 5,
+    "state": "new",
+    "owner": "pcpartpicker",
+    "title": "NVIDIA Founders Edition GeForce RTX 4090 24 GB Video Card",
+    "thumb-images": [
+      "//cdna.pcpartpicker.com/static/forever/images/product/07ff8dc03a65e34edc811c97d838af9a.256p.jpg"
+    ],
+    "specifications": {
+      "manufacturer": "NVIDIA ",
+      "model": "GeForce RTX",
+      "Interface": "PCIe x16"
+    }
+  },
+  {
+    "name": "XFX Speedster SWFT 319",
+    "price": 389.99,
+    "chipset": "Radeon RX 6800",
+    "memory": 16,
+    "core_clock": 1700,
+    "boost_clock": 2105,
+    "color": "Black",
+    "length": 340,
+    "rating": 4,
+    "rating_count": 17,
+    "image": "https://m.media-amazon.com/images/I/31Y4vrPI-+L.jpg",
+    "id": 58,
+    "category": "gpu",
+    "discount_percentage": 18,
+    "state": "new",
+    "owner": "pcpartpicker",
+    "title": "XFX Speedster SWFT 319 Radeon RX 6800 16 GB Video Card",
+    "thumb-images": [
+      "https://m.media-amazon.com/images/I/41aCdMMAvYL.jpg",
+      "https://m.media-amazon.com/images/I/31Y4vrPI-+L.jpg",
+      "https://m.media-amazon.com/images/I/41I6uWJP66L.jpg",
+      "https://m.media-amazon.com/images/I/31mcfPIo65L.jpg",
+      "https://m.media-amazon.com/images/I/31v6HUQGo8L.jpg"
+    ],
+    "specifications": {
+      "manufacturer": "XFX",
+      "model": "Speedster SWFT 319",
+      "Interface": "PCIe x16"
+    }
+  },
+  {
+    "name": "Gigabyte EAGLE OC",
+    "price": 1466.59,
+    "chipset": "GeForce RTX 4080",
+    "memory": 16,
+    "core_clock": 2205,
+    "boost_clock": 2520,
+    "color": "Black",
+    "length": 342,
+    "rating": 5,
+    "rating_count": 2,
+    "image": "https://m.media-amazon.com/images/I/41kPbid2wiL.jpg",
+    "id": 59,
+    "category": "gpu",
+    "discount_percentage": 18,
+    "state": "new",
+    "owner": "pcpartpicker",
+    "title": "Gigabyte EAGLE OC GeForce RTX 4080 16 GB Video Card",
+    "thumb-images": [
+      "https://m.media-amazon.com/images/I/41kPbid2wiL.jpg",
+      "https://m.media-amazon.com/images/I/41+rjAJVRtL.jpg",
+      "https://m.media-amazon.com/images/I/41kgpXhqXAL.jpg",
+      "https://m.media-amazon.com/images/I/31Q9MtEA16L.jpg",
+      "https://m.media-amazon.com/images/I/31e6HSaV-GL.jpg",
+      "https://m.media-amazon.com/images/I/319PkIxeylL.jpg",
+      "//cdna.pcpartpicker.com/static/forever/images/product/3ccf7acffdab21f8765ec7b456641593.256p.jpg"
+    ],
+    "specifications": {
+      "manufacturer": "Gigabyte",
+      "model": "EAGLE OC",
+      "Interface": "PCIe x16"
+    }
+  },
+  {
+    "name": "Asus DUAL OC",
+    "price": 592.7,
+    "chipset": "GeForce RTX 4070",
+    "memory": 12,
+    "core_clock": 2520,
+    "boost_clock": 2550,
+    "color": "Black",
+    "length": 267,
+    "rating": 4,
+    "rating_count": 217,
+    "image": "//cdna.pcpartpicker.com/static/forever/images/product/704d58fa45fdd33c35495cbc1dcbac18.256p.jpg",
+    "id": 60,
+    "category": "gpu",
+    "discount_percentage": 10,
+    "state": "new",
+    "owner": "pcpartpicker",
+    "title": "Asus DUAL OC GeForce RTX 4070 12 GB Video Card",
+    "thumb-images": [
+      "//cdna.pcpartpicker.com/static/forever/images/product/704d58fa45fdd33c35495cbc1dcbac18.256p.jpg"
+    ],
+    "specifications": {
+      "manufacturer": "Asus",
+      "model": "DUAL OC",
+      "Interface": "PCIe x16"
+    }
   }
 ]

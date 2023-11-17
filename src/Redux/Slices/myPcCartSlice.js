@@ -7,6 +7,13 @@ export const myPcCart = createSlice({
   name: "myPcCart",
   initialState,
   reducers: {
+    reset: (state) => {
+      console.log(myPcCart);
+      return {
+        ...state,
+        myPcCart: [],
+      };
+    },
     addProduct: (state, action) => {
       let dublicated = state.myPcCart.find(
         (product) => product.id == action.payload.id
@@ -32,5 +39,5 @@ export const myPcCart = createSlice({
   },
 });
 
-export const { addProduct, removeFromCart } = myPcCart.actions;
+export const { addProduct, removeFromCart, reset } = myPcCart.actions;
 export default myPcCart.reducer;
