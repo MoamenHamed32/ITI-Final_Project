@@ -12,10 +12,15 @@ import { addToPc, addToPcCase } from "../../Redux/Slices/myPcDataSlice";
 import CloseIcon from "@mui/icons-material/Close";
 import { Link, useParams } from "react-router-dom";
 import { useRef } from "react";
+import {
+  removeFromPc,
+  removeFromPcCase,
+} from "../../Redux/Slices/myPcDataSlice";
+import { removeFromCart } from "../../Redux/Slices/myPcCartSlice";
 
 export default function ProductCardRows({ product, type, dataCatigory }) {
   const myPcCart = useSelector((state) => state.myPcCart.myPcCart);
-
+  console.log(myPcCart);
   const dispatch = useDispatch();
 
   const ratingChanged = (newRating) => {
@@ -34,6 +39,7 @@ export default function ProductCardRows({ product, type, dataCatigory }) {
     "ramTwo",
     "ramThree",
     "ramFour",
+    "memory",
   ];
   const priceAfterDisc =
     product?.price - (product?.discount_percentage / 100) * product?.price;
@@ -46,7 +52,12 @@ export default function ProductCardRows({ product, type, dataCatigory }) {
 
     if (["ramOne", "ramTwo", "ramThree", "ramFour"].includes(category)) {
       dispatch(
-        addProduct({ ...product, priceAfterDisc, productQty, totalPrice })
+        addProduct({
+          ...product,
+          priceAfterDisc,
+          productQty,
+          totalPrice,
+        })
       );
       dispatch(
         addToPcCase({
@@ -77,7 +88,24 @@ export default function ProductCardRows({ product, type, dataCatigory }) {
       }
     }
   };
-
+  const removeProduct = (cat) => {
+    console.log(product);
+    if (hardwareItems.includes(cat)) {
+      if (cat === "memory") {
+        dispatch(removeFromCart(product.title));
+        dispatch(removeFromPcCase("ramOne"));
+        dispatch(removeFromPcCase("ramTwo"));
+        dispatch(removeFromPcCase("ramThree"));
+        dispatch(removeFromPcCase("ramFour"));
+      } else {
+        dispatch(removeFromCart(product.title));
+        dispatch(removeFromPcCase(cat));
+      }
+    } else {
+      dispatch(removeFromCart(product.title));
+      dispatch(removeFromPc(cat));
+    }
+  };
   return (
     <div className={style.product_card}>
       <figure className={style.product_img}>
@@ -186,7 +214,10 @@ export default function ProductCardRows({ product, type, dataCatigory }) {
                 {<AutorenewIcon sx={{ fontSize: 20 }} />}
               </button>
               <span>|</span>
-              <button className="add_to_cart">
+              <button
+                onClick={() => removeProduct(product.category)}
+                className="remove_from_cart"
+              >
                 {<RemoveShoppingCartIcon sx={{ fontSize: 20 }} />}
               </button>
             </div>
