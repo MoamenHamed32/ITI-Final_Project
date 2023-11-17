@@ -13,23 +13,23 @@ export default function Cart() {
   const [total, setTotal] = useState(0);
   const currentUser = useSelector((state) => state.auth.currentUser);
   const { update } = useUpdateDoc("users", currentUser?._id || "dummm");
-  const [cart, setCart] = useState(currentUser ? currentUser.cart : []);
+  const [cart, setCart] = useState(currentUser ? currentUser?.cart : []);
 
   const handleRemove = (product) => {
-    const updatedCart = currentUser.cart.filter((el) => el.id !== product.id);
+    const updatedCart = currentUser?.cart?.filter((el) => el.id !== product.id);
     update({ cart: updatedCart });
   };
 
   useEffect(() => {
     let subTotal = 0;
-    currentUser.cart.map((product) => {
+    currentUser?.cart?.map((product) => {
       subTotal += +product.count * product.price;
     });
     setTotal(subTotal);
-  }, [currentUser.cart]);
+  }, [currentUser?.cart]);
 
   const handlePlus = (product) => {
-    const updatedCart = currentUser.cart.map((item) =>
+    const updatedCart = currentUser?.cart?.map((item) =>
       item.id === product.id ? { ...item, count: item.count + 1 } : item
     );
     update({ cart: updatedCart });
@@ -37,14 +37,14 @@ export default function Cart() {
 
   const handleMin = (product) => {
     if (product.count > 1) {
-      const updatedCart = currentUser.cart.map((item) =>
+      const updatedCart = currentUser?.cart?.map((item) =>
         item.id === product.id ? { ...item, count: item.count - 1 } : item
       );
       update({ cart: updatedCart });
     }
   };
 
-  const trItems = currentUser.cart.map((product) => {
+  const trItems = currentUser?.cart?.map((product) => {
     return (
       <tr key={product.id} id={product.id}>
         <td className={styles.product_thumbnail}>

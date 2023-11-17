@@ -23,8 +23,8 @@ export default function ProductCardCols({ product }) {
   );
 
   useEffect(() => {
-    setWishList(currentUser.wishlist);
-    wishList.map((el) => {
+    setWishList(currentUser?.wishlist);
+    wishList?.map((el) => {
       if (el.id == product?.id) {
         setIsAddedWish(true);
       }
@@ -41,13 +41,13 @@ export default function ProductCardCols({ product }) {
     if (!currentUser) return navigate("/login");
 
     let itemId = product?.id;
-    const exit = currentUser.wishlist.find((el) => el.id == itemId);
+    const exit = currentUser?.wishlist?.find((el) => el.id == itemId);
 
     if (!exit) {
       update({ wishlist: [...currentUser?.wishlist, product] });
     } else {
       setIsAddedWish(false);
-      const updatedWishlist = currentUser.wishlist.filter(
+      const updatedWishlist = currentUser?.wishlist?.filter(
         (el) => el.id !== exit.id
       );
       update({ wishlist: updatedWishlist });
@@ -75,7 +75,7 @@ export default function ProductCardCols({ product }) {
   useEffect(() => {
     // update({ cart: [] });
     // update({ wishlist: [] });
-    console.log(currentUser.cart);
+    // console.log(currentUser.cart);
   });
 
   const ratingChanged = (newRating) => {
