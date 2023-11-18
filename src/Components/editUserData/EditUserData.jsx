@@ -4,21 +4,24 @@ import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
-import styles from "./editUserData.module.css";
 import useUpdateDoc from "../../hooks/useUpdateDoc";
 import { useSelector } from "react-redux";
+import styles from "./editUserData.module.css";
 
 function EditProfile({ user }) {
   const { handleSubmit, control, setError, formState } = useForm();
   const { errors } = formState;
   const currentUser = useSelector((state) => state.auth.currentUser);
   const { update } = useUpdateDoc("users", currentUser._id);
-
   const onSubmit = (data) => {
-    // console.log(data);
-    update({ phoneNumber: 55555 });
+    update({
+      displayName: data.name,
+      email: data.email,
+      phoneNumber: data.phone,
+      address: data.address,
+      photoURL: data.photo,
+    });
   };
-
   return (
     <div className={styles.editProfile_container}>
       <form onSubmit={handleSubmit(onSubmit)}>
