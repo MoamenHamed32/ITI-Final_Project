@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useForm } from "react-hook-form";
 import PageBanner from "../../Components/pageBanner/PageBanner";
 import { productsCol } from "../../config/firebase/firebase";
@@ -71,7 +72,7 @@ const SellUserProduct = () => {
             <label className={errors.condition && styles.errorLabel}>
               Condition
             </label>
-            <select {...register("condition", { required: true })}>
+            <select {...register("state", { required: true })}>
               <option value="new">New</option>
               <option value="like-new">Like New</option>
               <option value="used">Used</option>
