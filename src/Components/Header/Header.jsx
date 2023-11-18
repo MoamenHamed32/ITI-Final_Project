@@ -130,16 +130,13 @@ const Header = (props) => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "block", sm: "block" } }}
           >
-<<<<<<< HEAD
-            <figure className={styles.nav_logo}>
+            {/* <figure className={styles.nav_logo}>
               <Link to="/">
                 <img className={styles.logo_img} src="imgs/logo.svg" alt=".." />
                 <span className={styles.logo_na}>TechnoMatic</span>
               </Link>
-            </figure>
-=======
+            </figure> */}
             <Logo />
->>>>>>> 58b020e23b36c6b956315c4914393b977fdc8a19
           </Typography>
           <Box
             sx={{
