@@ -12,7 +12,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import CloseIcon from "@mui/icons-material/Close";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -36,7 +36,6 @@ const Header = (props) => {
         { label: "Home", path: "/" },
         { label: "Shop", path: "/shop" },
         { label: "Login", path: "/login" },
-        { label: "Sign Up", path: "/signup" },
         { label: "My PC", path: "/my-pc" },
         { label: "Wishlist", path: "/wishlist" },
         { label: "Cart", path: "/cart" },
@@ -49,6 +48,7 @@ const Header = (props) => {
         { label: "Wishlist", path: "/wishlist" },
         { label: "Cart", path: "/cart" },
         { label: "Profile", path: "/profile" },
+        { label: "Sell", path: "/sell-your-product" },
         { label: "logout" },
       ];
     }
@@ -130,7 +130,7 @@ const Header = (props) => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "block", sm: "block" } }}
           >
-          <Logo/>
+            <Logo />
           </Typography>
           <Box
             sx={{

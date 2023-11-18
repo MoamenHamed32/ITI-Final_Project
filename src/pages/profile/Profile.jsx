@@ -3,24 +3,34 @@ import { useSelector } from "react-redux";
 import UserData from "../../Components/usersData/UserData";
 import EditUserData from "../../Components/editUserData/EditUserData";
 import ChangePassword from "../../Components/changePass/ChangePassword";
+import UserProducts from "../../Components/userProducts/UserProducts";
 import { Card, Typography, List, ListItem } from "@material-tailwind/react";
 import styles from "./profile.module.css";
 
 const Profile = () => {
   const currentUser = useSelector((state) => state.auth.currentUser);
   const [activeButton, setActiveButton] = useState("UserData");
+  const [activeTab, setActiveTab] = useState("UserData");
 
   const handleEditClickUserBtn = () => {
     setActiveButton("UserData");
-  };
-  const handleEditClickEditBtn = () => {
-    setActiveButton("EditUserData");
-  };
-  const handleEditClickChangePassBtn = () => {
-    setActiveButton("ChangePass");
+    setActiveTab("UserData");
   };
 
-  console.log(currentUser.providedBy);
+  const handleEditClickEditBtn = () => {
+    setActiveButton("EditUserData");
+    setActiveTab("EditUserData");
+  };
+
+  const handleEditClickChangePassBtn = () => {
+    setActiveButton("ChangePass");
+    setActiveTab("ChangePass");
+  };
+
+  const handleMyProductsClick = () => {
+    setActiveButton("MyProducts");
+    setActiveTab("MyProducts");
+  };
 
   return (
     <div className={styles.profile_container}>
@@ -67,15 +77,25 @@ const Profile = () => {
               </ListItem>
             </>
           )}
+          <ListItem
+            className={
+              activeButton === "MyProducts"
+                ? styles.active_select
+                : styles.not_active_select
+            }
+            onClick={handleMyProductsClick}
+          >
+            My Products
+          </ListItem>
         </List>
       </Card>
       <div className={styles.profile_content}>
-        {activeButton === "EditUserData" &&
-        currentUser.providedBy !== "gmail" ? (
+        {activeTab === "EditUserData" && currentUser.providedBy !== "gmail" ? (
           <EditUserData user={currentUser} />
-        ) : activeButton === "ChangePass" &&
-          currentUser.providedBy !== "gmail" ? (
+        ) : activeTab === "ChangePass" && currentUser.providedBy !== "gmail" ? (
           <ChangePassword />
+        ) : activeTab === "MyProducts" ? (
+          <UserProducts user={currentUser._id} />
         ) : (
           <UserData user={currentUser} />
         )}
