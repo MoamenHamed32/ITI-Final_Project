@@ -19,6 +19,7 @@ import MyPcSelect from "./pages/myPcSelect/myPcSelect";
 import { Provider } from "react-redux";
 import store from "./Redux/Store/store";
 import SellUserProduct from "./pages/sellUserProduct/SellUserProduct";
+import About from "./pages/about/About";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
             <Route path="/my-pc" element={<MyPc />} />
             <Route path="/my-pc-select/:category" element={<MyPcSelect />} />
             <Route path="/sell-your-product" element={<SellUserProduct />} />
+            <Route path="/about" element={<About/>} />
           </Routes>
           <Footer />
         </div>

@@ -20,9 +20,9 @@
   }
 }
 
-p {
-  overflow: hidden;
+/* p {
+    overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: 1.2rem;
-}
+  font-size: 1.2rem; 
+} */

@@ -7,11 +7,12 @@ import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
+import Logo from "../logo/Logo";
 import ListItemButton from "@mui/material/ListItemButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import CloseIcon from "@mui/icons-material/Close";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -129,12 +130,7 @@ const Header = (props) => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "block", sm: "block" } }}
           >
-            <figure className={styles.nav_logo}>
-              <Link to="/">
-                <img className={styles.logo_img} src="imgs/logo.svg" alt=".." />
-                <span className={styles.logo_na}>TechTrader</span>
-              </Link>
-            </figure>
+          <Logo/>
           </Typography>
           <Box
             sx={{
