@@ -21,6 +21,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { persistor } from "./Redux/Store/store";
 import store from "./Redux/Store/store";
 import SellUserProduct from "./pages/sellUserProduct/SellUserProduct";
+import About from "./pages/about/About";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
               <Route path="/product-details/:id" element={<ProductDetails />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
+              <Route path="/about" element={<About />} />
               <Route
                 path="/profile"
                 element={
