@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import styles from "./sellUserProducts.module.css";
 
 const SellUserProduct = () => {
-  const { handleSubmit, register, control, formState } = useForm({
+  const { handleSubmit, register, control, formState, reset } = useForm({
     mode: "onChange",
   });
   const [products] = useCollectionData(productsCol);
@@ -16,12 +16,19 @@ const SellUserProduct = () => {
 
   const { isValid, errors } = formState;
 
-  const onSubmit = (data) => {
-    addDoc(productsCol, {
-      ...data,
-      owner: currentUser?._id,
-      id: products.length + 1,
-    });
+  const onSubmit = async (data) => {
+    try {
+      await addDoc(productsCol, {
+        ...data,
+        owner: currentUser?._id,
+        id: products.length + 1,
+      });
+
+      // Reset the form after successful submission
+      reset();
+    } catch (error) {
+      console.error("Error adding document: ", error);
+    }
   };
 
   return (

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import AutorenewIcon from "@mui/icons-material/Autorenew";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -6,14 +7,13 @@ import ReactStars from "react-rating-stars-component";
 import ZoomInIcon from "@mui/icons-material/ZoomIn";
 import style from "./ProductCardCols.module.css";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import useUpdateDoc from "../../hooks/useUpdateDoc";
 
 export default function ProductCardCols({ product }) {
   const [isAddedWish, setIsAddedWish] = useState(false);
-  // const [isAddedCart, setIsAddedCart] = useState(false);
   const currentUser = useSelector((state) => state.auth.currentUser);
   const { update } = useUpdateDoc("users", currentUser?._id || "dummm");
   const navigate = useNavigate();
@@ -87,9 +87,7 @@ export default function ProductCardCols({ product }) {
       <div className={style.product_details}>
         <div className={style.product_info}>
           <div className={style.title_rate}>
-            <h3 className={style.product_title}>
-              {product?.title.slice(0, 15)}
-            </h3>
+            <h3 className={style.product_title}>{product?.title}</h3>
             <div className={style.product_rating}>
               <ReactStars
                 count={5}
@@ -98,7 +96,7 @@ export default function ProductCardCols({ product }) {
                 color="#d9d9d9"
                 activeColor="#C87065"
                 isHalf={true}
-                value={(product.rating_count / 100) * 5}
+                value={3.5}
               />
             </div>
           </div>
@@ -107,19 +105,14 @@ export default function ProductCardCols({ product }) {
         <div className={style.actions}>
           <div className={style.buttons}>
             <button className="favorite" onClick={handleWishClick}>
-              {/* {<FavoriteBorderIcon sx={{ fontSize: 20 }} />}
-              {<FavoriteIcon sx={{ fontSize: 20 }} />} */}
               {wishIcon}
             </button>
             <span>|</span>
-            <button className="more">
+            <Link to={`/product-details/${product.id}`} className="more">
               {<ZoomInIcon sx={{ fontSize: 20 }} />}
-            </button>
+            </Link>
             <span>|</span>
-            <button className="refresh">
-              {<AutorenewIcon sx={{ fontSize: 20 }} />}
-            </button>
-            <span>|</span>
+
             <button className="add_to_cart" onClick={handleCartClick}>
               {<AddShoppingCartIcon sx={{ fontSize: 20 }} />}
             </button>

@@ -2,7 +2,6 @@
 import ReactStars from "react-rating-stars-component";
 
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
-import AutorenewIcon from "@mui/icons-material/Autorenew";
 import ZoomInIcon from "@mui/icons-material/ZoomIn";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import style from "./ProductCardRows.module.css";
@@ -217,10 +216,7 @@ export default function ProductCardRows({ product, type, dataCatigory }) {
                 {<ZoomInIcon sx={{ fontSize: 20 }} />}
               </Link>
               <span>|</span>
-              <button className="refresh">
-                {<AutorenewIcon sx={{ fontSize: 20 }} />}
-              </button>
-              <span>|</span>
+
               <button
                 onClick={() => removeProduct(product.category)}
                 className="remove_from_cart"

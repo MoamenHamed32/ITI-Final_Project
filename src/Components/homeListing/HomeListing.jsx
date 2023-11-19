@@ -1,4 +1,3 @@
-import React from "react";
 import ProductCardCols from "../productCardCols/ProductCardCols";
 import { productsCol } from "../../config/firebase/firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
@@ -17,7 +16,7 @@ const HomeListing = () => {
 
   return (
     <section className={styles.homeListing_container}>
-      <h2>blabla</h2>
+      <h2>Latest Products</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {displayedProducts}
       </div>
