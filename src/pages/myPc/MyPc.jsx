@@ -33,17 +33,7 @@ export default function MyPc() {
     () => user && query(userCol, where("uid", "==", user.uid)),
     [user]
   );
-  // useEffect(() => {
-  //   fetch("/computer_parts-data.json")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       data.map((product) => {
-  //         addDoc(productsCol, product);
-  //       });
-  //     });
-  // }, []);
-  // const [products] = useCollectionData(productsCol);
-  // console.log(products);
+
   const [currentUserData] = useCollectionData(currentUser);
   useEffect(() => {
     if (currentUserData) {
@@ -52,26 +42,7 @@ export default function MyPc() {
     console.log(currentUserData);
     console.log(currentUser);
   }, [dispatch, userId]);
-  // useEffect(() => {
-  //   const fetchUserData = async () => {
-  //     if (user) {
-  //       try {
-  //         const querySnapshot = await getDocs(
-  //           query(userCol, where("uid", "==", user.uid))
-  //         );
 
-  //         const currentUserData = querySnapshot.docs[0]?.data();
-
-  //         dispatch(initDbData(currentUserData?.myPc));
-  //         console.log(currentUserData);
-  //       } catch (error) {
-  //         console.error("Error fetching user data:", error);
-  //       }
-  //     }
-  //   };
-
-  //   fetchUserData();
-  // }, [user]);
   useEffect(() => {
     const updateUser = async () => {
       setUserId(user?.uid);
@@ -129,7 +100,7 @@ export default function MyPc() {
             <figure>
               <img
                 draggable={false}
-                src="/public/imgs/pc parts/Speakers.png"
+                src="https://firebasestorage.googleapis.com/v0/b/iti-final-project-9831b.appspot.com/o/pc_parts%2FSpeakers.png?alt=media&token=52a057d7-94bc-4924-b462-b605865ddccb"
                 alt=""
               />
               {myPcData?.speaker === "" ? (
@@ -150,7 +121,7 @@ export default function MyPc() {
             <figure>
               <img
                 draggable={false}
-                src="/public/imgs/pc parts/Monitor.png"
+                src="https://firebasestorage.googleapis.com/v0/b/iti-final-project-9831b.appspot.com/o/pc_parts%2FMonitor.png?alt=media&token=315d144c-77a6-4a00-b3b4-0a70f836b5f4"
                 alt=""
               />
 
@@ -171,7 +142,7 @@ export default function MyPc() {
               <figure>
                 <img
                   draggable={false}
-                  src="/public/imgs/pc parts/Keyboard.png"
+                  src="https://firebasestorage.googleapis.com/v0/b/iti-final-project-9831b.appspot.com/o/pc_parts%2FKeyboard.png?alt=media&token=7df570b8-7681-494d-823c-ddeb38f08612"
                   alt=""
                 />
 
@@ -191,7 +162,7 @@ export default function MyPc() {
               <figure>
                 <img
                   draggable={false}
-                  src="/public/imgs/pc parts/Mouse.png"
+                  src="https://firebasestorage.googleapis.com/v0/b/iti-final-project-9831b.appspot.com/o/pc_parts%2FMouse.png?alt=media&token=4d798355-a5d7-4a66-bc8c-41c8874b2926"
                   alt=""
                 />
 
@@ -214,7 +185,7 @@ export default function MyPc() {
             <figure>
               <img
                 draggable={false}
-                src="/public/imgs/pc parts/Case.png"
+                src="https://firebasestorage.googleapis.com/v0/b/iti-final-project-9831b.appspot.com/o/pc_parts%2FCase.png?alt=media&token=9294cae2-9e88-4af5-8a37-a4dbdb45d203"
                 alt=""
               />
 

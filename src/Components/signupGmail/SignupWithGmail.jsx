@@ -1,4 +1,5 @@
-import React, { useEffect, useMemo } from "react";
+/* eslint-disable react/prop-types */
+import { useEffect, useMemo } from "react";
 import { addDoc, query, where, getDocs } from "firebase/firestore";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { userCol, auth } from "../../config/firebase/firebase";
@@ -84,7 +85,11 @@ function SignupWithGmail({ text = "Sign Up" }) {
       style={{ margin: "auto" }}
     >
       <figure className="w-14">
-        <img src="/imgs/prand/gmail-1.png" alt="" className="w-full" />
+        <img
+          src="https://firebasestorage.googleapis.com/v0/b/iti-final-project-9831b.appspot.com/o/prand%2Fgmail-1.png?alt=media&token=35e7c0b6-67ad-417b-81c8-025aa797d740"
+          alt=""
+          className="w-full"
+        />
       </figure>
       <span className="font-semibold">{text} With Google</span>
     </button>

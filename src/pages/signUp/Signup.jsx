@@ -1,16 +1,12 @@
-import { addDoc, query, where } from "firebase/firestore";
+/* eslint-disable no-unused-vars */
+import { addDoc } from "firebase/firestore";
 import { auth, userCol } from "../../config/firebase/firebase";
-import {
-  useAuthState,
-  useSignInWithGoogle,
-  useSignOut,
-} from "react-firebase-hooks/auth";
-import { useEffect, useMemo } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useEffect } from "react";
 
 import SignupWithGmail from "../../Components/signupGmail/SignupWithGmail";
 import { Stack } from "@mui/material";
 import { signup } from "../../Redux/Store/auth-slice";
-import { useCollectionData } from "react-firebase-hooks/firestore";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
