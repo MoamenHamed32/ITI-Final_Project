@@ -146,13 +146,13 @@ export default function ProductCardRows({ product, type, dataCatigory }) {
           </div>
           <div className={style.product_prices}>
             <h3 className={style.product_price}>
-              ${" "}
+              £{" "}
               {product.discount_percentage
                 ? priceAfterDisc?.toFixed(2)
                 : product.price}
             </h3>
             {product.discount_percentage && (
-              <h3 className={style.product_old_price}>$ {product?.price}</h3>
+              <h3 className={style.product_old_price}>£ {product?.price}</h3>
             )}
             {product?.productQty?.current > 1 && (
               <h3 className={style.product_qty}>

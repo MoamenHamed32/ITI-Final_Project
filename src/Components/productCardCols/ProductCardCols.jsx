@@ -81,7 +81,7 @@ export default function ProductCardCols({ product }) {
       <figure className={style.product_img}>
         <span className={style.product_status}>New</span>
         <div className={style.product_prices}>
-          <h3 className={style.product_price}>$ {product?.price}</h3>
+          <h3 className={style.product_price}>£ {product?.price}</h3>
         </div>
         <img src={product?.image} alt="" draggable={false} />
       </figure>

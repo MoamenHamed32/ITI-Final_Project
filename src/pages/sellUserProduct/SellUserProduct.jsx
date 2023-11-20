@@ -59,7 +59,7 @@ const SellUserProduct = () => {
           <div className={styles.input_warper}>
             <label className={errors.price && styles.errorLabel}>Price</label>
             <input type="number" {...register("price", { required: true })} />
-            <span>$</span>
+            <span>£</span>
           </div>
           <div className={styles.input_warper}>
             <label className={errors.color && styles.errorLabel}>Color</label>

@@ -118,26 +118,29 @@ export default function MyPc() {
             </figure>
           </div>
           <div className={style.mid}>
-            <figure>
-              <img
-                draggable={false}
-                src="https://firebasestorage.googleapis.com/v0/b/iti-final-project-9831b.appspot.com/o/pc_parts%2FMonitor.png?alt=media&token=315d144c-77a6-4a00-b3b4-0a70f836b5f4"
-                alt=""
-              />
+            <div className={style.mid_top}>
+              <figure className="m-0">
+                <img
+                  draggable={false}
+                  src="https://firebasestorage.googleapis.com/v0/b/iti-final-project-9831b.appspot.com/o/pc_parts%2FMonitor.png?alt=media&token=315d144c-77a6-4a00-b3b4-0a70f836b5f4"
+                  alt=""
+                />
 
-              {myPcData?.monitor === "" ? (
-                <Link to="/my-pc-select/monitor">
-                  <AddIcon />
-                </Link>
-              ) : (
-                <span className={style.selectedProduct}>
-                  {myPcData?.monitor}
-                  <button onClick={() => removeProduct("monitor")}>
-                    <HighlightOffIcon />
-                  </button>
-                </span>
-              )}
-            </figure>
+                {myPcData?.monitor === "" ? (
+                  <Link to="/my-pc-select/monitor">
+                    <AddIcon />
+                  </Link>
+                ) : (
+                  <span className={style.selectedProduct}>
+                    {myPcData?.monitor}
+                    <button onClick={() => removeProduct("monitor")}>
+                      <HighlightOffIcon />
+                    </button>
+                  </span>
+                )}
+              </figure>
+            </div>
+
             <div className={style.bottom}>
               <figure>
                 <img

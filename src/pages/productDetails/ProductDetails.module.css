@@ -211,8 +211,11 @@
   }
 }
 @media screen and (max-width: 470px) {
+  .product_card {
+    gap: 0.5rem;
+  }
   .product_qty {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
   .category_details h3 {
     font-size: 0.9rem;
@@ -222,5 +225,25 @@
   }
   .product_prices {
     flex-direction: column;
+  }
+  .actions {
+    gap: 0.4rem;
+  }
+  .buttons {
+    width: 50%;
+  }
+
+  .product_qty {
+    width: 50%;
+  }
+  .product_gallery figure {
+    width: 70px;
+    height: 70px;
+  }
+  .product_gallery {
+    gap: 0.6rem;
+  }
+  .product_details {
+    width: 60%;
   }
 }

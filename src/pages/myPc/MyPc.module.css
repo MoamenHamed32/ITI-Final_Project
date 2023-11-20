@@ -168,4 +168,22 @@ img {
   figure {
     width: 80px;
   }
+  .pc_parts figure a {
+    width: 30px;
+    height: 30px;
+    top: 33%;
+    left: 31%;
+  }
+  .pc_parts figure a svg {
+    font-size: 1.5rem;
+  }
+  .mouse_add {
+    top: 45% !important;
+    left: 38% !important;
+    width: 20px !important;
+    height: 20px !important;
+  }
+  .mouse_add svg {
+    font-size: 1.2rem !important;
+  }
 }
