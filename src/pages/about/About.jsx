@@ -10,7 +10,7 @@ const About = () => {
             <div className="grid md:grid-cols-2 sm:grid-cols-1 gap-8">
               <figure className={styles.about_photo}>
                 <img
-                  src="/imgs/about.png"
+                  src="https://firebasestorage.googleapis.com/v0/b/iti-final-project-9831b.appspot.com/o/images%2Fabout.png?alt=media&token=7d09e079-c524-426e-baf0-315883ceaab2"
                   alt=""
                   className={`${styles.about_img} object-cover w-full h-full rounded-md`}
                 />
