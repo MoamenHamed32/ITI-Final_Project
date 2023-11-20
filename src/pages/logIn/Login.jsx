@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import { Stack } from "@mui/material";
 import { userCol, auth } from "../../config/firebase/firebase";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";

@@ -6,7 +6,7 @@ import Cart from "./pages/cart/Cart";
 import Footer from "./Components/Footer/Footer";
 import Header from "./Components/Header/Header";
 import Home from "./pages/home/Home";
-import Login from "./pages/login/Login";
+import Login from "./pages/logIn/Login";
 import MyPc from "./pages/myPc/MyPc";
 import ProductDetails from "./pages/productDetails/ProductDetails";
 import Profile from "./pages/profile/Profile";
