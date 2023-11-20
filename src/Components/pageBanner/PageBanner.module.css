@@ -1,6 +1,7 @@
 .page_banner {
   height: 50vh;
-  background: url("/imgs/hero.png") no-repeat center;
+  background: url("https://firebasestorage.googleapis.com/v0/b/iti-final-project-9831b.appspot.com/o/images%2Fhero.png?alt=media&token=07b88ad6-08b3-451c-968b-ff2d177e4a25")
+    no-repeat center;
   background-size: cover;
   margin: 4rem 0;
   display: flex;

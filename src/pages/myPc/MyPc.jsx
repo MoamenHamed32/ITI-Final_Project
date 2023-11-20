@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
 import PageBanner from "../../Components/pageBanner/PageBanner";
 import CheckoutPopup from "../../Components/checkoutPopup/CheckoutPopup";
@@ -126,7 +127,11 @@ export default function MyPc() {
         <div className={style.pc_parts}>
           <div className={style.left}>
             <figure>
-              <img src="/public/imgs/pc parts/Speakers.png" alt="" />
+              <img
+                draggable={false}
+                src="/public/imgs/pc parts/Speakers.png"
+                alt=""
+              />
               {myPcData?.speaker === "" ? (
                 <Link to="/my-pc-select/speaker">
                   <AddIcon />
@@ -143,7 +148,11 @@ export default function MyPc() {
           </div>
           <div className={style.mid}>
             <figure>
-              <img src="/public/imgs/pc parts/Monitor.png" alt="" />
+              <img
+                draggable={false}
+                src="/public/imgs/pc parts/Monitor.png"
+                alt=""
+              />
 
               {myPcData?.monitor === "" ? (
                 <Link to="/my-pc-select/monitor">
@@ -160,7 +169,11 @@ export default function MyPc() {
             </figure>
             <div className={style.bottom}>
               <figure>
-                <img src="/public/imgs/pc parts/Keyboard.png" alt="" />
+                <img
+                  draggable={false}
+                  src="/public/imgs/pc parts/Keyboard.png"
+                  alt=""
+                />
 
                 {myPcData?.keyboard === "" ? (
                   <Link to="/my-pc-select/keyboard">
@@ -176,7 +189,11 @@ export default function MyPc() {
                 )}
               </figure>
               <figure>
-                <img src="/public/imgs/pc parts/Mouse.png" alt="" />
+                <img
+                  draggable={false}
+                  src="/public/imgs/pc parts/Mouse.png"
+                  alt=""
+                />
 
                 {myPcData?.mouse === "" ? (
                   <Link className={style.mouse_add} to="/my-pc-select/mouse">
@@ -195,7 +212,11 @@ export default function MyPc() {
           </div>
           <div className={style.right}>
             <figure>
-              <img src="/public/imgs/pc parts/Case.png" alt="" />
+              <img
+                draggable={false}
+                src="/public/imgs/pc parts/Case.png"
+                alt=""
+              />
 
               <Link to="/my-pc-select/case-hardware">
                 <AddIcon />

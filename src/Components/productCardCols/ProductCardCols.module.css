@@ -6,6 +6,7 @@
   padding: 1rem;
   gap: 1rem;
   margin: 1rem 0;
+  user-select: none;
   /* width: 100%; */
 }
 

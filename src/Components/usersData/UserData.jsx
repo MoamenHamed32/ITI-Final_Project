@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FaceIcon from "@mui/icons-material/Face";
@@ -7,7 +8,8 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import styles from "./userData.module.css";
 
 const UserData = ({ user }) => {
-  const defaultPhotoURL = "imgs/userIMG.jpg";
+  const defaultPhotoURL =
+    "https://firebasestorage.googleapis.com/v0/b/iti-final-project-9831b.appspot.com/o/images%2FuserIMG.jpg?alt=media&token=dd4716ad-a073-420a-8ef2-2c076bf2a4ce";
   return (
     <div className={styles.profile_container}>
       <div className={styles.profile_left_content}>

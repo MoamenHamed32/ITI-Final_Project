@@ -77,7 +77,10 @@ const Header = (props) => {
                   {item.label === "Profile" && isLoggedIn ? (
                     <NavLink className={styles.nav_links} to={item.path}>
                       <img
-                        src={currentUser.photoURL || "./imgs/userIMG.jpg"}
+                        src={
+                          currentUser.photoURL ||
+                          "https://firebasestorage.googleapis.com/v0/b/iti-final-project-9831b.appspot.com/o/images%2FuserIMG.jpg?alt=media&token=dd4716ad-a073-420a-8ef2-2c076bf2a4ce"
+                        }
                         alt="Profile"
                         style={{
                           width: "40px",

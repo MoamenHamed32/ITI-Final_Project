@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unsafe-optional-chaining */
 /* eslint-disable react/prop-types */
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import AutorenewIcon from "@mui/icons-material/Autorenew";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ReactStars from "react-rating-stars-component";
@@ -82,7 +83,7 @@ export default function ProductCardCols({ product }) {
         <div className={style.product_prices}>
           <h3 className={style.product_price}>$ {product?.price}</h3>
         </div>
-        <img src={product?.image} alt="" />
+        <img src={product?.image} alt="" draggable={false} />
       </figure>
       <div className={style.product_details}>
         <div className={style.product_info}>
