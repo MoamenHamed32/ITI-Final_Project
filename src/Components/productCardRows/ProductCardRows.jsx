@@ -2,7 +2,6 @@
 import ReactStars from "react-rating-stars-component";
 
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
-import AutorenewIcon from "@mui/icons-material/Autorenew";
 import ZoomInIcon from "@mui/icons-material/ZoomIn";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import style from "./ProductCardRows.module.css";
@@ -12,10 +11,15 @@ import { addToPc, addToPcCase } from "../../Redux/Slices/myPcDataSlice";
 import CloseIcon from "@mui/icons-material/Close";
 import { Link, useParams } from "react-router-dom";
 import { useRef } from "react";
+import {
+  removeFromPc,
+  removeFromPcCase,
+} from "../../Redux/Slices/myPcDataSlice";
+import { removeFromCart } from "../../Redux/Slices/myPcCartSlice";
 
 export default function ProductCardRows({ product, type, dataCatigory }) {
   const myPcCart = useSelector((state) => state.myPcCart.myPcCart);
-
+  console.log(myPcCart);
   const dispatch = useDispatch();
 
   const ratingChanged = (newRating) => {
@@ -34,9 +38,12 @@ export default function ProductCardRows({ product, type, dataCatigory }) {
     "ramTwo",
     "ramThree",
     "ramFour",
+    "memory",
   ];
+
   const priceAfterDisc =
     product?.price - (product?.discount_percentage / 100) * product?.price;
+
   const productQty = useRef(1);
   const totalPrice = useRef(priceAfterDisc);
   const colors = product?.color?.split(" / ");
@@ -46,7 +53,12 @@ export default function ProductCardRows({ product, type, dataCatigory }) {
 
     if (["ramOne", "ramTwo", "ramThree", "ramFour"].includes(category)) {
       dispatch(
-        addProduct({ ...product, priceAfterDisc, productQty, totalPrice })
+        addProduct({
+          ...product,
+          priceAfterDisc,
+          productQty,
+          totalPrice,
+        })
       );
       dispatch(
         addToPcCase({
@@ -77,15 +89,24 @@ export default function ProductCardRows({ product, type, dataCatigory }) {
       }
     }
   };
-
-  // const removeFromCart = () => {
-  //   dispatch(
-  //     addToPc({
-  //       catigory: dataCatigory,
-  //       productTitle: "",
-  //     })
-  //   );
-  // };
+  const removeProduct = (cat) => {
+    console.log(product);
+    if (hardwareItems.includes(cat)) {
+      if (cat === "memory") {
+        dispatch(removeFromCart(product.title));
+        dispatch(removeFromPcCase("ramOne"));
+        dispatch(removeFromPcCase("ramTwo"));
+        dispatch(removeFromPcCase("ramThree"));
+        dispatch(removeFromPcCase("ramFour"));
+      } else {
+        dispatch(removeFromCart(product.title));
+        dispatch(removeFromPcCase(cat));
+      }
+    } else {
+      dispatch(removeFromCart(product.title));
+      dispatch(removeFromPc(cat));
+    }
+  };
   return (
     <div className={style.product_card}>
       <figure className={style.product_img}>
@@ -97,7 +118,19 @@ export default function ProductCardRows({ product, type, dataCatigory }) {
       <div className={style.product_details}>
         <div className={style.product_info}>
           <div className={style.title_rate}>
-            <h3 className={style.product_title}>{product?.title}</h3>
+            {type === "mypc" ? (
+              <Link
+                className="w-3/4 cursor-pointer"
+                to={`/product-details/${product?.id}`}
+              >
+                {" "}
+                <h3 className={`${style.product_title} w-full`}>
+                  {product?.title}
+                </h3>
+              </Link>
+            ) : (
+              <h3 className={style.product_title}>{product?.title}</h3>
+            )}
             <div className={style.product_rating}>
               <ReactStars
                 count={5}
@@ -113,9 +146,14 @@ export default function ProductCardRows({ product, type, dataCatigory }) {
           </div>
           <div className={style.product_prices}>
             <h3 className={style.product_price}>
-              $ {priceAfterDisc?.toFixed(2)}
+              ${" "}
+              {product.discount_percentage
+                ? priceAfterDisc?.toFixed(2)
+                : product.price}
             </h3>
-            <h3 className={style.product_old_price}>$ {product?.price}</h3>
+            {product.discount_percentage && (
+              <h3 className={style.product_old_price}>$ {product?.price}</h3>
+            )}
             {product?.productQty?.current > 1 && (
               <h3 className={style.product_qty}>
                 <CloseIcon /> {product.productQty.current}
@@ -178,11 +216,11 @@ export default function ProductCardRows({ product, type, dataCatigory }) {
                 {<ZoomInIcon sx={{ fontSize: 20 }} />}
               </Link>
               <span>|</span>
-              <button className="refresh">
-                {<AutorenewIcon sx={{ fontSize: 20 }} />}
-              </button>
-              <span>|</span>
-              <button className="add_to_cart">
+
+              <button
+                onClick={() => removeProduct(product.category)}
+                className="remove_from_cart"
+              >
                 {<RemoveShoppingCartIcon sx={{ fontSize: 20 }} />}
               </button>
             </div>

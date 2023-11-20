@@ -8,9 +8,9 @@ export default function PageBanner({ page }) {
         <h1 className={style.banner_title}>{page}</h1>
       </div>
       <div className={style.page_path}>
-        <a href="">Home</a>
+        <span>Home</span>
         <span>/</span>
-        <a href="">{page}</a>
+        <span>{page}</span>
       </div>
     </div>
   );

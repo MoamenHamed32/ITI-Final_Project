@@ -1,13 +1,19 @@
+/* eslint-disable no-unused-vars */
 import { useForm } from "react-hook-form";
 import PageBanner from "../../Components/pageBanner/PageBanner";
 import { productsCol } from "../../config/firebase/firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { addDoc } from "firebase/firestore";
 import { useSelector } from "react-redux";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { storage } from "../../config/firebase/firebase";
+import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import styles from "./sellUserProducts.module.css";
+import { useState } from "react";
 
 const SellUserProduct = () => {
-  const { handleSubmit, register, control, formState } = useForm({
+  const [imageUpload, setImageUpload] = useState();
+  const { handleSubmit, register, control, formState, reset } = useForm({
     mode: "onChange",
   });
   const [products] = useCollectionData(productsCol);
@@ -15,12 +21,27 @@ const SellUserProduct = () => {
 
   const { isValid, errors } = formState;
 
-  const onSubmit = (data) => {
-    addDoc(productsCol, {
-      ...data,
-      owner: currentUser?.uid,
-      id: products.length + 1,
-    });
+  const onSubmit = async (data) => {
+    console.log(data);
+    try {
+      const imagesRef = await ref(
+        storage,
+        `product_images/${data.image[0].name}`
+      );
+      const snapshot = await uploadBytes(imagesRef, data.image[0]);
+      const url = await getDownloadURL(snapshot.ref);
+      await addDoc(productsCol, {
+        ...data,
+        image: url,
+        "thumb-images": [url],
+        owner: currentUser?._id,
+        id: products.length + 1,
+      });
+
+      reset();
+    } catch (error) {
+      console.error("Error adding document: ", error);
+    }
   };
 
   return (
@@ -44,11 +65,20 @@ const SellUserProduct = () => {
             <label className={errors.color && styles.errorLabel}>Color</label>
             <input {...register("color", { required: true })} />
           </div>
-          <div className={styles.input_warper}>
+          <div className={styles.input_warper_image}>
             <label className={errors.image && styles.errorLabel}>
               Image URL
             </label>
-            <input {...register("image", { required: true })} />
+            <label className={styles.img_label} htmlFor="image">
+              <CameraAltIcon />
+              <h3>Upload Your Image</h3>
+              <input
+                id="image"
+                type="file"
+                accept="image/png, image/jpeg"
+                {...register("image", { required: true })}
+              />
+            </label>
           </div>
           <div className={styles.select_warper}>
             <label className={errors.type && styles.errorLabel}>Type</label>
@@ -71,7 +101,7 @@ const SellUserProduct = () => {
             <label className={errors.condition && styles.errorLabel}>
               Condition
             </label>
-            <select {...register("condition", { required: true })}>
+            <select {...register("state", { required: true })}>
               <option value="new">New</option>
               <option value="like-new">Like New</option>
               <option value="used">Used</option>

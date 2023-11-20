@@ -20,13 +20,13 @@ export default function CaseList() {
           <figure>
             <img src="/imgs/pc parts/Case.png" alt="" />
 
-            {myPcData.caseHardWare.case === "" ? (
+            {myPcData?.caseHardWare.case === "" ? (
               <Link to="/my-pc-select/case">
                 <AddIcon />
               </Link>
             ) : (
               <span className={style.selectedProduct}>
-                {myPcData.caseHardWare.case}
+                {myPcData?.caseHardWare.case}
                 <button onClick={() => removeProduct("case")}>
                   <HighlightOffIcon />
                 </button>
@@ -39,13 +39,13 @@ export default function CaseList() {
           <figure>
             <img src="/imgs/pc parts/Board.png" alt="" />
 
-            {myPcData.caseHardWare.motherboard === "" ? (
+            {myPcData?.caseHardWare.motherboard === "" ? (
               <Link to="/my-pc-select/motherboard">
                 <AddIcon />
               </Link>
             ) : (
               <span className={style.selectedProduct}>
-                {myPcData.caseHardWare.motherboard}
+                {myPcData?.caseHardWare.motherboard}
                 <button onClick={() => removeProduct("motherboard")}>
                   <HighlightOffIcon />
                 </button>
@@ -56,13 +56,13 @@ export default function CaseList() {
           <figure>
             <img src="/imgs/pc parts/PowerSupply.png" alt="" />
 
-            {myPcData.caseHardWare.powerSupply === "" ? (
+            {myPcData?.caseHardWare.powerSupply === "" ? (
               <Link to="/my-pc-select/powerSupply">
                 <AddIcon />
               </Link>
             ) : (
               <span className={style.selectedProduct}>
-                {myPcData.caseHardWare.powerSupply}
+                {myPcData?.caseHardWare.powerSupply}
                 <button onClick={() => removeProduct("powerSupply")}>
                   <HighlightOffIcon />
                 </button>
@@ -78,13 +78,13 @@ export default function CaseList() {
             <figure>
               <img src="/imgs/pc parts/Fan.png" alt="" />
 
-              {myPcData.caseHardWare.fan === "" ? (
+              {myPcData?.caseHardWare.fan === "" ? (
                 <Link to="/my-pc-select/fan">
                   <AddIcon />
                 </Link>
               ) : (
                 <span className={style.selectedProduct}>
-                  {myPcData.caseHardWare.fan}
+                  {myPcData?.caseHardWare.fan}
                   <button onClick={() => removeProduct("fan")}>
                     <HighlightOffIcon />
                   </button>
@@ -95,13 +95,13 @@ export default function CaseList() {
             <figure>
               <img src="/imgs/pc parts/CPU.png" alt="" />
 
-              {myPcData.caseHardWare.cpu === "" ? (
+              {myPcData?.caseHardWare.cpu === "" ? (
                 <Link to="/my-pc-select/cpu" className={style.add_cpu}>
                   <AddIcon />
                 </Link>
               ) : (
                 <span className={style.selectedProduct}>
-                  {myPcData.caseHardWare.cpu}
+                  {myPcData?.caseHardWare.cpu}
                   <button onClick={() => removeProduct("cpu")}>
                     <HighlightOffIcon />
                   </button>
@@ -114,13 +114,13 @@ export default function CaseList() {
             <figure>
               <img src="/imgs/pc parts/GPU.png" alt="" />
 
-              {myPcData.caseHardWare.gpu === "" ? (
+              {myPcData?.caseHardWare.gpu === "" ? (
                 <Link to="/my-pc-select/gpu">
                   <AddIcon />
                 </Link>
               ) : (
                 <span className={style.selectedProduct}>
-                  {myPcData.caseHardWare.gpu}
+                  {myPcData?.caseHardWare.gpu}
                   <button onClick={() => removeProduct("gpu")}>
                     <HighlightOffIcon />
                   </button>
@@ -131,13 +131,13 @@ export default function CaseList() {
             <figure>
               <img src="/imgs/pc parts/Hard Desk.png" alt="" />
 
-              {myPcData.caseHardWare.hardDesk === "" ? (
+              {myPcData?.caseHardWare.hardDesk === "" ? (
                 <Link to="/my-pc-select/hardDesk">
                   <AddIcon />
                 </Link>
               ) : (
                 <span className={style.selectedProduct}>
-                  {myPcData.caseHardWare.hardDesk}
+                  {myPcData?.caseHardWare.hardDesk}
                   <button onClick={() => removeProduct("hardDesk")}>
                     <HighlightOffIcon />
                   </button>
@@ -154,13 +154,13 @@ export default function CaseList() {
             <figure>
               <img src="/imgs/pc parts/Rams.png" alt="" />
 
-              {myPcData.caseHardWare.ramOne === "" ? (
+              {myPcData?.caseHardWare.ramOne === "" ? (
                 <Link to="/my-pc-select/ramOne">
                   <AddIcon />
                 </Link>
               ) : (
                 <span className={style.selectedProduct}>
-                  {myPcData.caseHardWare.ramOne}
+                  {myPcData?.caseHardWare.ramOne}
                   <button onClick={() => removeProduct("ramOne")}>
                     <HighlightOffIcon />
                   </button>
@@ -171,13 +171,13 @@ export default function CaseList() {
             <figure>
               <img src="/imgs/pc parts/Rams.png" alt="" />
 
-              {myPcData.caseHardWare.ramTwo === "" ? (
+              {myPcData?.caseHardWare.ramTwo === "" ? (
                 <Link to="/my-pc-select/ramTwo">
                   <AddIcon />
                 </Link>
               ) : (
                 <span className={style.selectedProduct}>
-                  {myPcData.caseHardWare.ramTwo}
+                  {myPcData?.caseHardWare.ramTwo}
                   <button onClick={() => removeProduct("ramTwo")}>
                     <HighlightOffIcon />
                   </button>
@@ -190,13 +190,13 @@ export default function CaseList() {
             <figure>
               <img src="/imgs/pc parts/Rams.png" alt="" />
 
-              {myPcData.caseHardWare.ramThree === "" ? (
+              {myPcData?.caseHardWare.ramThree === "" ? (
                 <Link to="/my-pc-select/ramThree">
                   <AddIcon />
                 </Link>
               ) : (
                 <span className={style.selectedProduct}>
-                  {myPcData.caseHardWare.ramThree}
+                  {myPcData?.caseHardWare.ramThree}
                   <button onClick={() => removeProduct("ramThree")}>
                     <HighlightOffIcon />
                   </button>
@@ -207,13 +207,13 @@ export default function CaseList() {
             <figure>
               <img src="/imgs/pc parts/Rams.png" alt="" />
 
-              {myPcData.caseHardWare.ramFour === "" ? (
+              {myPcData?.caseHardWare.ramFour === "" ? (
                 <Link to="/my-pc-select/ramFour">
                   <AddIcon />
                 </Link>
               ) : (
                 <span className={style.selectedProduct}>
-                  {myPcData.caseHardWare.ramFour}
+                  {myPcData?.caseHardWare.ramFour}
                   <button onClick={() => removeProduct("ramFour")}>
                     <HighlightOffIcon />
                   </button>

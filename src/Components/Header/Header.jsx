@@ -7,11 +7,12 @@ import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
+import Logo from "../logo/Logo";
 import ListItemButton from "@mui/material/ListItemButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import CloseIcon from "@mui/icons-material/Close";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -35,7 +36,6 @@ const Header = (props) => {
         { label: "Home", path: "/" },
         { label: "Shop", path: "/shop" },
         { label: "Login", path: "/login" },
-        { label: "Sign Up", path: "/signup" },
         { label: "My PC", path: "/my-pc" },
         { label: "Wishlist", path: "/wishlist" },
         { label: "Cart", path: "/cart" },
@@ -48,6 +48,7 @@ const Header = (props) => {
         { label: "Wishlist", path: "/wishlist" },
         { label: "Cart", path: "/cart" },
         { label: "Profile", path: "/profile" },
+        { label: "Sell", path: "/sell-your-product" },
         { label: "logout" },
       ];
     }
@@ -76,7 +77,10 @@ const Header = (props) => {
                   {item.label === "Profile" && isLoggedIn ? (
                     <NavLink className={styles.nav_links} to={item.path}>
                       <img
-                        src={currentUser.photoURL || "./imgs/userIMG.jpg"}
+                        src={
+                          currentUser.photoURL ||
+                          "https://firebasestorage.googleapis.com/v0/b/iti-final-project-9831b.appspot.com/o/images%2FuserIMG.jpg?alt=media&token=dd4716ad-a073-420a-8ef2-2c076bf2a4ce"
+                        }
                         alt="Profile"
                         style={{
                           width: "40px",
@@ -129,12 +133,13 @@ const Header = (props) => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "block", sm: "block" } }}
           >
-            <figure className={styles.nav_logo}>
+            {/* <figure className={styles.nav_logo}>
               <Link to="/">
                 <img className={styles.logo_img} src="imgs/logo.svg" alt=".." />
-                <span className={styles.logo_na}>TechTrader</span>
+                <span className={styles.logo_na}>TechnoMatic</span>
               </Link>
-            </figure>
+            </figure> */}
+            <Logo />
           </Typography>
           <Box
             sx={{

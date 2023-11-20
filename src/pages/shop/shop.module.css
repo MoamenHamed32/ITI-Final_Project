@@ -95,6 +95,11 @@ a {
   color: #c8a165;
 }
 
+.pagination ul {
+  display: flex;
+  justify-content: center;
+}
+
 /* .widget.active {
   display: block !important;
 } */

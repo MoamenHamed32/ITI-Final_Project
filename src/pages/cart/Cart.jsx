@@ -1,15 +1,94 @@
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
+import { useEffect, useState } from "react";
 
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import CloseIcon from "@mui/icons-material/Close";
 import PageBanner from "./../../Components/pageBanner/PageBanner";
-import ProductImg from "../../../public/imgs/2.webp";
 import styles from "./cart.module.css";
-import { useState } from "react";
+import { useSelector } from "react-redux";
+import useUpdateDoc from "../../hooks/useUpdateDoc";
 
 export default function Cart() {
   const [toggle, setToggle] = useState(1);
-  const [total, setTotal] = useState(170);
+  const [total, setTotal] = useState(0);
+  const currentUser = useSelector((state) => state.auth.currentUser);
+  const { update } = useUpdateDoc("users", currentUser?._id || "dummm");
+  const [cart, setCart] = useState(currentUser ? currentUser?.cart : []);
+
+  const handleRemove = (product) => {
+    const updatedCart = currentUser?.cart?.filter((el) => el.id !== product.id);
+    update({ cart: updatedCart });
+  };
+
+  useEffect(() => {
+    let subTotal = 0;
+    currentUser?.cart?.map((product) => {
+      subTotal += +product.count * product.price;
+    });
+    setTotal(subTotal);
+  }, [currentUser?.cart]);
+
+  const handlePlus = (product) => {
+    const updatedCart = currentUser?.cart?.map((item) =>
+      item.id === product.id ? { ...item, count: item.count + 1 } : item
+    );
+    update({ cart: updatedCart });
+  };
+
+  const handleMin = (product) => {
+    if (product.count > 1) {
+      const updatedCart = currentUser?.cart?.map((item) =>
+        item.id === product.id ? { ...item, count: item.count - 1 } : item
+      );
+      update({ cart: updatedCart });
+    }
+  };
+
+  const trItems = currentUser?.cart?.map((product) => {
+    return (
+      <tr key={product.id} id={product.id}>
+        <td className={styles.product_thumbnail}>
+          <div className={styles.product_img}>
+            <img src={product.image} alt="product img" />
+          </div>
+          <div className={styles.product_info}>
+            <h4 className={styles.title}>{product.title?.slice(0, 30)}</h4>
+            <p>
+              <span>Color :</span> {product.color}
+            </p>
+            {/* <p>
+              <span>Size : </span> SL
+            </p> */}
+          </div>
+        </td>
+        <td className={styles.product_price}>${product.price?.toFixed(2)}</td>
+        <td className={styles.product_quantity}>
+          <div className={styles.flex}>
+            <button onClick={() => handleMin(product)}>-</button>
+            <input type="number" value={product.count} min="1" />
+            <button onClick={() => handlePlus(product)}>+</button>
+          </div>
+        </td>
+        <td className={styles.product_total}>
+          ${(+product.price * +product.count).toFixed(2)}
+        </td>
+        <td className={styles.remove_product}>
+          <button onClick={() => handleRemove(product)}>
+            <CloseIcon className={styles.icon} />
+          </button>
+        </td>
+      </tr>
+    );
+  });
+
+  const orderItems = currentUser?.cart?.map((product) => {
+    return (
+      <tr key={product.id}>
+        <td>{product.title?.slice(0, 20)} </td>
+        <td>${product.price?.toFixed(2)}</td>
+      </tr>
+    );
+  });
 
   const toggleTaps = (idx) => {
     setToggle(idx);
@@ -33,10 +112,15 @@ export default function Cart() {
       ],
     });
   };
+
   const onApprove = async (data, actions) => {
     const order = await actions.order.capture();
-    console.log(order);
+    update({ cart: [] });
+    setToggle(3);
+    // console.log(order);
+    // console.log(currentUser?.cart);
   };
+
   const onError = (err) => {
     console.log(err);
   };
@@ -112,99 +196,13 @@ export default function Cart() {
                         <th>REMOVE</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr>
-                        <td className={styles.product_thumbnail}>
-                          <div className={styles.product_img}>
-                            <img src={ProductImg} alt="product img" />
-                          </div>
-                          <div className={styles.product_info}>
-                            <h4 className={styles.title}>dummy product name</h4>
-                            <p>
-                              <span>Color :</span> Black
-                            </p>
-                            <p>
-                              <span>Size : </span> SL
-                            </p>
-                          </div>
-                        </td>
-                        <td className={styles.product_price}>$56.00</td>
-                        <td className={styles.product_quantity}>
-                          <div className={styles.flex}>
-                            <button>-</button>
-                            <input type="number" value="1" min="1" />
-                            <button>+</button>
-                          </div>
-                        </td>
-                        <td className={styles.product_total}>$112.00</td>
-                        <td className={styles.remove_product}>
-                          <button>
-                            <CloseIcon className={styles.icon} />
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className={styles.product_thumbnail}>
-                          <div className={styles.product_img}>
-                            <img src={ProductImg} alt="product img" />
-                          </div>
-                          <div className={styles.product_info}>
-                            <h4 className={styles.title}>dummy product name</h4>
-                            <p>
-                              <span>Color :</span> Black
-                            </p>
-                            <p>
-                              <span>Size : </span> SL
-                            </p>
-                          </div>
-                        </td>
-                        <td className={styles.product_price}>$56.00</td>
-                        <td className={styles.product_quantity}>
-                          <div className={styles.flex}>
-                            <button>-</button>
-                            <input type="number" value="1" min="1" />
-                            <button>+</button>
-                          </div>
-                        </td>
-                        <td className={styles.product_total}>$112.00</td>
-                        <td className={styles.remove_product}>
-                          <button>
-                            <CloseIcon className={styles.icon} />
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className={styles.product_thumbnail}>
-                          <div className={styles.product_img}>
-                            <img src={ProductImg} alt="product img" />
-                          </div>
-                          <div className={styles.product_info}>
-                            <h4 className={styles.title}>dummy product name</h4>
-                            <p>
-                              <span>Color :</span> Black
-                            </p>
-                            <p>
-                              <span>Size : </span> SL
-                            </p>
-                          </div>
-                        </td>
-                        <td className={styles.product_price}>$56.00</td>
-                        <td className={styles.product_quantity}>
-                          <div className={styles.flex}>
-                            <button>-</button>
-                            <input type="number" value="1" min="1" />
-                            <button>+</button>
-                          </div>
-                        </td>
-                        <td className={styles.product_total}>$112.00</td>
-                        <td className={styles.remove_product}>
-                          <button>
-                            <CloseIcon className={styles.icon} />
-                          </button>
-                        </td>
-                      </tr>
-                    </tbody>
+                    <tbody>{trItems}</tbody>
                   </table>
+                  {trItems && trItems.length <= 0 && (
+                    <p className="text-center pt-7 text-sm capitalize text-gray-400">
+                      Your cart is currently empty.
+                    </p>
+                  )}
                 </div>
                 <div
                   className={`${styles.discount_payment} grid grid-cols-12 gap-6`}
@@ -230,11 +228,7 @@ export default function Cart() {
                       <tbody>
                         <tr>
                           <td>Cart Subtotal</td>
-                          <td>$155.00</td>
-                        </tr>
-                        <tr>
-                          <td>Cart Subtotal </td>
-                          <td>$15.00</td>
+                          <td>${total.toFixed(2)}</td>
                         </tr>
                         <tr>
                           <td>Vat</td>
@@ -242,7 +236,7 @@ export default function Cart() {
                         </tr>
                         <tr className={styles.total}>
                           <td>Order Total</td>
-                          <td>$170.00</td>
+                          <td>${total.toFixed(2)}</td>
                         </tr>
                       </tbody>
                     </table>
@@ -289,17 +283,10 @@ export default function Cart() {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>Dummy Product Name x 2 </td>
-                          <td>$155.00</td>
-                        </tr>
-                        <tr>
-                          <td>Dummy Product Name x 1 </td>
-                          <td>$155.00</td>
-                        </tr>
+                        {orderItems}
                         <tr>
                           <td>Cart Subtotal</td>
-                          <td>$155.00</td>
+                          <td>${total}</td>
                         </tr>
                         <tr>
                           <td>Shipping and Handing </td>
@@ -311,7 +298,7 @@ export default function Cart() {
                         </tr>
                         <tr className={styles.total}>
                           <td>Order Total</td>
-                          <td>${total.toFixed(2)}</td>
+                          <td>${total > 0 ? total + 15 : total}</td>
                         </tr>
                       </tbody>
                     </table>
