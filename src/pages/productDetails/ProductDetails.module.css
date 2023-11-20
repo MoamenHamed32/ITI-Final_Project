@@ -105,12 +105,13 @@
   background-color: #f6f6f6;
   display: flex;
   align-items: center;
+  width: 45%;
 }
 .quantity .product_qty {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 45px;
+  width: 30%;
   height: 40px;
 }
 .quantity span {
@@ -120,7 +121,7 @@
   border: none;
   background-color: transparent;
   outline: none;
-  width: 90px;
+  width: 50%;
   height: 40px;
   font-size: 1rem;
 }
@@ -134,6 +135,8 @@
   background-color: #f6f6f6;
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: 45%;
 }
 .buttons svg {
   color: #666;
@@ -189,4 +192,35 @@
 }
 .category_details h3 {
   font-size: 1.2rem;
+}
+@media screen and (max-width: 1280px) {
+  .title_rate {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .product_title {
+    max-width: 90%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .product_price {
+    font-size: 1rem;
+  }
+  .product_old_price {
+    font-size: 1rem;
+  }
+}
+@media screen and (max-width: 470px) {
+  .product_qty {
+    font-size: 0.8rem;
+  }
+  .category_details h3 {
+    font-size: 0.9rem;
+  }
+  .product_rating {
+    display: none;
+  }
+  .product_prices {
+    flex-direction: column;
+  }
 }
