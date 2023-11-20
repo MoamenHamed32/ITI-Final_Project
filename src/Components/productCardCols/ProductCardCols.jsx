@@ -86,20 +86,18 @@ export default function ProductCardCols({ product }) {
         <img src={product?.image} alt="" draggable={false} />
       </figure>
       <div className={style.product_details}>
-        <div className={style.product_info}>
-          <div className={style.title_rate}>
-            <h3 className={style.product_title}>{product?.title}</h3>
-            <div className={style.product_rating}>
-              <ReactStars
-                count={5}
-                onChange={ratingChanged}
-                size={20}
-                color="#d9d9d9"
-                activeColor="#C87065"
-                isHalf={true}
-                value={3.5}
-              />
-            </div>
+        <div className={style.title_rate}>
+          <h3 className={style.product_title}>{product?.title}</h3>
+          <div className={style.product_rating}>
+            <ReactStars
+              count={5}
+              onChange={ratingChanged}
+              size={20}
+              color="#d9d9d9"
+              activeColor="#C87065"
+              isHalf={true}
+              value={3.5}
+            />
           </div>
         </div>
 
