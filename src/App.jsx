@@ -11,7 +11,7 @@ import MyPc from "./pages/myPc/MyPc";
 import ProductDetails from "./pages/productDetails/ProductDetails";
 import Profile from "./pages/profile/Profile";
 import Shop from "./pages/shop/Shop";
-import Signup from "./pages/signup/Signup";
+import Signup from "./pages/signUp/Signup";
 import WishList from "./pages/wishList/WishList";
 import MyPcSelect from "./pages/myPcSelect/myPcSelect";
 import Protection from "./Components/protection/Protection";
