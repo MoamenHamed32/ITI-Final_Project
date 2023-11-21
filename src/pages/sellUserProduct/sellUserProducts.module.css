@@ -160,3 +160,16 @@ input[type="file"] {
     justify-content: center;
   }
 }
+@media screen and (max-width: 680px) {
+  .img_label h3 {
+    display: none;
+  }
+  .input_warper_image label {
+    font-size: 0.8rem !important;
+    width: 50%;
+  }
+  .img_label {
+    display: block;
+    text-align: end;
+  }
+}

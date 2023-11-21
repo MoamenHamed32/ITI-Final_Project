@@ -66,9 +66,7 @@ const SellUserProduct = () => {
             <input {...register("color", { required: true })} />
           </div>
           <div className={styles.input_warper_image}>
-            <label className={errors.image && styles.errorLabel}>
-              Image URL
-            </label>
+            <label className={errors.image && styles.errorLabel}>Image</label>
             <label className={styles.img_label} htmlFor="image">
               <CameraAltIcon />
               <h3>Upload Your Image</h3>

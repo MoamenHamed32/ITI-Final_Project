@@ -1,0 +1,28 @@
+.testimonial_card {
+  position: relative;
+}
+.testimonial_card::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 6.25rem;
+  height: 0.5rem;
+  top: 0;
+  border-radius: 0.5rem 0rem 0rem 0rem;
+  background-color: #c87065;
+}
+
+.quote_content svg {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  align-self: baseline;
+}
+.testimonial_section .testimonial_card h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  user-select: none;
+}
